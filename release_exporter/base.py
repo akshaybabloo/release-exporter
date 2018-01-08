@@ -15,10 +15,12 @@ class RequestBase:
     Base class for requests.
     """
 
-    def __init__(self, token=None, header=None, api_url=None, *args, **kwargs):
+    def __init__(self, token=None, header=None, api_url=None, info=None, url=None, *args, **kwargs):
         self.token = token
         self.header = header
         self.api_url = api_url
+        self.info = info
+        self.url = url
 
     def _total_number_releases(self):
         pass

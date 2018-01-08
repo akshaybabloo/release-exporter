@@ -11,3 +11,7 @@ Note = """
 
 def check_provider():
     pass
+
+
+def get_repo_url():
+    pass

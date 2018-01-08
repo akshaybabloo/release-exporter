@@ -10,12 +10,22 @@ FILE_TYPE = {
 }
 
 
-class FormatBase:
+class RequestBase:
     """
-    Base formatter for logs.
+    Base class for requests.
     """
 
-    def __init__(self, location=os.getcwd(), file_name='CHANGELOG', force=False, file_type='markdown'):
+    def __init__(self, token=None, header=None, api_url=None, *args, **kwargs):
+        self.token = token
+        self.header = header
+        self.api_url = api_url
+
+    def _total_number_releases(self):
+        pass
+
+    def releases(self):
+        pass
+
 
         self.location = location
         self.file_name = file_name

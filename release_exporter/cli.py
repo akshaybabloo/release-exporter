@@ -19,19 +19,18 @@ def init():
 
 @cli.command(help='Creates markdown file.')
 @click.option('--location', help='Where do you want to save your file.')
-def markdown():
-    pass
+def markdown(location):
 
 
 @cli.command(help='Creates JSON file.')
 @click.option('--location', help='Where do you want to save your file.')
-def json():
+def json(location):
     pass
 
 
 @cli.command(help='Creates YAML file.')
 @click.option('--location', help='Where do you want to save your file.')
-def yaml():
+def yaml(location):
     pass
 
 

@@ -10,6 +10,11 @@ class GitHubRequest(FormatBase):
         self.headers = {'Authorization': 'token %s' % self.token}
         self.api_url = 'https://api.github.com/graphql'
 
+        if self.url is not None:
+            self.info = get_repo_url_info(self.location, url=self.url)
+        else:
+            self.info = get_repo_url_info(self.location)
+
     def _total_number_releases(self):
         _json = {"query": "{ repository(owner:\"akshaybabloo\", name:\"gollahalli-com\") { releases{ totalCount } } }"}
 

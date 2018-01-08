@@ -1,4 +1,4 @@
-from release_exporter.core import FormatBase
+from release_exporter.base import FormatBase
 import requests
 import json
 

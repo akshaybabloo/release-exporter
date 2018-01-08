@@ -1,5 +1,4 @@
-def check_provider():
-    note = """
+Note = """
     ----------------------
             Details
     ----------------------
@@ -8,3 +7,7 @@ def check_provider():
     Tags: {3}
 
     """
+
+
+def check_provider():
+    pass

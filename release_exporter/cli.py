@@ -32,7 +32,3 @@ def json(location):
 @click.option('--location', help='Where do you want to save your file.')
 def yaml(location):
     pass
-
-
-if __name__ == "__main__":
-    cli()

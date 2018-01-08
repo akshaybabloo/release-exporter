@@ -1,0 +1,42 @@
+from release_exporter.core import FormatBase
+import requests
+import json
+
+
+class GitHubRequest(FormatBase):
+
+    def __init__(self, *args, **kwargs):
+        super(GitHubRequest, self).__init__(*args, **kwargs)
+        self.headers = {'Authorization': 'token %s' % self.token}
+        self.api_url = 'https://api.github.com/graphql'
+
+    def _total_number_releases(self):
+        _json = {"query": "{ repository(owner:\"akshaybabloo\", name:\"gollahalli-com\") { releases{ totalCount } } }"}
+
+        r = requests.post(url=self.api_url, json=_json, headers=self.headers)
+        return json.loads(r.text)
+
+    def releases(self):
+        _json = {
+            "query": """
+                query {
+                  repository(owner: \"akshaybabloo\", name: \"gollahalli-com\") {
+                    releases(first:52, orderBy: {field: CREATED_AT, direction: DESC}){
+                      edges{
+                        node{
+                          name
+                          tag{
+                            name
+                          }
+                          description
+                          createdAt
+                        }
+                      }
+                    }
+                  }
+                }
+            """
+        }
+
+        r = requests.post(url=self.api_url, json=_json, headers=self.headers)
+        return json.loads(r.text)

@@ -10,24 +10,24 @@ def cli(provider, repo, token, tags):
     pass
 
 
-@cli.command()
+@cli.command(help='Creates .rex file.')
 def init():
     pass
 
 
-@cli.command()
+@cli.command(help='Creates markdown file.')
 @click.option('--location', help='Where do you want to save your file.')
 def markdown():
     pass
 
 
-@cli.command()
+@cli.command(help='Creates JSON file.')
 @click.option('--location', help='Where do you want to save your file.')
 def json():
     pass
 
 
-@cli.command()
+@cli.command(help='Creates YAML file.')
 @click.option('--location', help='Where do you want to save your file.')
 def yaml():
     pass

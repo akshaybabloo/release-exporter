@@ -27,12 +27,17 @@ class RequestBase:
         pass
 
 
+class FormatBase(RequestBase):
+    """
+    Base formatter for logs.
+    """
+
+    def __init__(self, location=os.getcwd(), file_name='CHANGELOG', force=False, file_type='markdown', *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.location = location
         self.file_name = file_name
         self.force = force
         self.file_type = file_type
-
-        print(location + os.sep + file_name + self._get_file_type())
 
         if not force:
             if pathlib.Path(location + os.sep + file_name + self._get_file_type()).is_file():
@@ -52,4 +57,7 @@ class RequestBase:
         pass
 
     def write_yaml(self):
+        pass
+
+    def process(self):
         pass

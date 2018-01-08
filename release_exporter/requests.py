@@ -19,7 +19,7 @@ class GitHubRequest(FormatBase):
         _json = {"query": "{ repository(owner:\"akshaybabloo\", name:\"gollahalli-com\") { releases{ totalCount } } }"}
 
         r = requests.post(url=self.api_url, json=_json, headers=self.headers)
-        return json.loads(r.text)
+        return int(json.loads(r.text)['data']['repository']['releases']['totalCount'])
 
     def releases(self):
         _json = {

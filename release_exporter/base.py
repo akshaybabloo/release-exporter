@@ -91,5 +91,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [{tag}]: {url}
 """.format(tag=self.tag, url=self.url)
 
-    def _compare(self):
+    def _converter(self):
         pass

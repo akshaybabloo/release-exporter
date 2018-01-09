@@ -67,9 +67,6 @@ class FormatBase(RequestBase):
     def write_yaml(self):
         pass
 
-    def process(self):
-        pass
-
     @classmethod
     def _header(cls):
         return """\

@@ -8,7 +8,7 @@ class GitHubRequest(FormatBase):
 
     def __init__(self, *args, **kwargs):
         super(GitHubRequest, self).__init__(*args, **kwargs)
-        self.headers = {'Authorization': 'token %s' % self.token}
+        self.request_headers = {'Authorization': 'token %s' % self.token}
         self.api_url = 'https://api.github.com/graphql'
 
         if self.url is not None:
@@ -27,7 +27,7 @@ class GitHubRequest(FormatBase):
             }
         """}
 
-        r = requests.post(url=self.api_url, json=_json, headers=self.headers)
+        r = requests.post(url=self.api_url, json=_json, headers=self.request_headers)
         return int(json.loads(r.text)['data']['repository']['releases']['totalCount'])
 
     def releases(self):
@@ -52,5 +52,5 @@ class GitHubRequest(FormatBase):
             """
         }
 
-        r = requests.post(url=self.api_url, json=_json, headers=self.headers)
+        r = requests.post(url=self.api_url, json=_json, headers=self.request_headers)
         return json.loads(r.text)

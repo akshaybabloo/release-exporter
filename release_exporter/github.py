@@ -9,6 +9,8 @@ class GitHubFormat(GitHubRequest):
     def __init__(self, *args, **kwargs):
         super(GitHubFormat, self).__init__(*args, **kwargs)
 
+        self.compare = 'https://' + self.info.resource + '/' + self.info.owner + '/' + self.info.name + '/compare/'
+
     def write_json(self):
         pass
 

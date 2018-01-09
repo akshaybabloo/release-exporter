@@ -59,13 +59,13 @@ class FormatBase(RequestBase):
             print(e)
 
     def write_markdown(self):
-        pass
+        raise NotImplementedError('Coming soon.')
 
     def write_json(self):
-        pass
+        raise NotImplementedError('Coming soon.')
 
     def write_yaml(self):
-        pass
+        raise NotImplementedError('Coming soon.')
 
     @classmethod
     def _header(cls):

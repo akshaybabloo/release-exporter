@@ -75,19 +75,19 @@ class GitLabRequest(FormatBase):
         url = self.api_url + 'projects?search={}'.format(self.info.name)
 
         r = requests.get(url=url, headers=self.request_headers)
-        data = json.loads(r.text)
+        id_number = json.loads(r.text)
 
-        if len(data) > 1:
+        if len(id_number) > 1:
             print(
                 "The search resulted in more that one repository. Please check your repository name and type in it's ID")
             print('ID - Repository Name - Username')
 
-            for content in data:
+            for content in id_number:
                 print('{id} - {repo_name} - {user_name}'.format(id=content['id'], repo_name=content['name'],
                                                                 user_name=multi_key_gitlab(content)))
 
-            _id = input('ID > ')
-            return _id
+            id_number = input('ID > ')
+            return id_number
 
         return data[0]['id']
 

@@ -35,8 +35,11 @@ def get_repo_url_info(location=os.getcwd(), url=None):
 
 
 def date_convert(date):
-    date = datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%Sz')
-    date = date.strftime('%Y-%m-%d')
+    try:
+        date = datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%Sz')
+        date = date.strftime('%Y-%m-%d')
+    except ValueError:
+        date = dateutil.parser.parse(date).date()
     return date
 
 

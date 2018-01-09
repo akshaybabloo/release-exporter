@@ -1,4 +1,5 @@
 from release_exporter.requests import GitHubRequest
+from release_exporter.utils import date_convert
 
 
 class GitHubFormat(GitHubRequest):
@@ -14,6 +15,32 @@ class GitHubFormat(GitHubRequest):
     def write_json(self):
         pass
 
+    def write_markdown(self):
+        with open('CHANssGELOG.md', 'w') as md_file:
+            md_file.writelines(self._converter())
+
+    def _converter(self):
+        self.all_content.append(self._header())
+
+        temp = self.releases()['data']['repository']['releases']['edges']
+        temp_l = []
+
+        for edge in temp:
+            self.tag = edge['node']['tag']['name']
+            self.content = edge['node']['description'].replace('\r\n', '\n')
+            self.date = date_convert(edge['node']['createdAt'])
+            self.all_content.append(self._body())
+
+        for edge in temp:
+            temp_l.append(edge['node']['tag']['name'])
+
+        pair = list(['{}...{}'.format(a, b) for a, b in zip(temp_l, ['master'] + temp_l[:-1])])
+        print(pair)
+
+        for tags in pair:
+            self.all_content.append('[' + tags.split('...')[1] + ']: ' + self.compare + tags + '\n')
+
+        return tuple(self.all_content)
 
 
 github_format = GitHubFormat

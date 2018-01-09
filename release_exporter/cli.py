@@ -2,7 +2,8 @@ import os
 
 import click
 
-from release_exporter.github import github_format
+from release_exporter.formatter import github
+from release_exporter.formatter import gitlab
 
 
 @click.group()

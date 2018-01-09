@@ -1,9 +1,10 @@
+from operator import itemgetter
 import json
 
 import requests
 
 from release_exporter.base import FormatBase
-from release_exporter.utils import get_repo_url_info
+from release_exporter.utils import get_repo_url_info, multi_key_gitlab
 
 
 class GitHubRequest(FormatBase):
@@ -56,4 +57,41 @@ class GitHubRequest(FormatBase):
         }
 
         r = requests.post(url=self.api_url, json=_json, headers=self.request_headers)
+        return json.loads(r.text)
+
+
+class GitLabRequest(FormatBase):
+
+    def __init__(self, *args, **kwargs):
+        super(GitLabRequest, self).__init__(*args, **kwargs)
+        self.request_headers = {'Private-Token': '%s' % self.token}
+        self.api_url = 'https://gitlab.com/api/v4/'
+
+        if self.url is not None:
+            self.info = get_repo_url_info(self.location, url=self.url)
+        else:
+            self.info = get_repo_url_info(self.location)
+
+    def _repo_id(self):
+        url = self.api_url + 'projects?search={}'.format(self.info.name)
+
+        r = requests.get(url=url, headers=self.request_headers)
+        data = json.loads(r.text)
+
+        if len(data) > 1:
+            print("The search resulted in more that one repository. Please check your repository name and type in it's ID")
+            print('ID - Repository Name - Username')
+
+            for content in data:
+                print('{id} - {repo_name} - {user_name}'.format(id=content['id'], repo_name=content['name'], user_name=multi_key_gitlab(content)))
+
+            _id = input('ID > ')
+            return _id
+
+        return data[0]['id']
+
+    def releases(self):
+        url = 'https://gitlab.com/api/v4/projects/{id}/repository/tags'.format(id=self._repo_id())
+
+        r = requests.get(url=url, headers=self.request_headers)
         return json.loads(r.text)

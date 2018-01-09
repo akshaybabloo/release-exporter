@@ -26,16 +26,13 @@ class GitHubFormat(GitHubRequest):
         temp_l = []
 
         for edge in temp:
+            temp_l.append(edge['node']['tag']['name'])
             self.tag = edge['node']['tag']['name']
             self.content = edge['node']['description'].replace('\r\n', '\n')
             self.date = date_convert(edge['node']['createdAt'])
             self.all_content.append(self._body())
 
-        for edge in temp:
-            temp_l.append(edge['node']['tag']['name'])
-
         pair = list(['{}...{}'.format(a, b) for a, b in zip(temp_l, ['master'] + temp_l[:-1])])
-        print(pair)
 
         for tags in pair:
             self.all_content.append('[' + tags.split('...')[1] + ']: ' + self.compare + tags + '\n')

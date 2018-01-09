@@ -51,3 +51,11 @@ def pairwise(iterable):
     a, b = tee(iterable)
     next(b, 'master')
     return zip(a, b)
+
+
+def multi_key_gitlab(value):
+
+    try:
+        return value['owner']['username']
+    except KeyError:
+        return None

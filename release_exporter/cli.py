@@ -1,5 +1,6 @@
-import click
 import os
+
+import click
 
 from release_exporter.github import github_format
 

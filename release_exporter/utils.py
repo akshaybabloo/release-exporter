@@ -1,9 +1,11 @@
-import os
 import configparser
-from giturlparse import parse
-from .exceptions import ParserError
 import datetime
+import os
 from itertools import tee
+
+from giturlparse import parse
+
+from .exceptions import ParserError
 
 Note = """
     ----------------------
@@ -33,7 +35,6 @@ def get_repo_url_info(location=os.getcwd(), url=None):
 
 
 def date_convert(date):
-
     date = datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%Sz')
     date = date.strftime('%Y-%m-%d')
     return date

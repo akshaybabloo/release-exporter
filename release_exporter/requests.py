@@ -1,6 +1,8 @@
-from release_exporter.base import FormatBase
-import requests
 import json
+
+import requests
+
+from release_exporter.base import FormatBase
 from release_exporter.utils import get_repo_url_info
 
 
@@ -19,7 +21,8 @@ class GitHubRequest(FormatBase):
     def _total_number_releases(self):
         _json = {"query": """
             {
-              repository(owner: """ + """\"{}\",""".format(self.info.owner) + """ name: """ + """\"{}\")""".format(self.info.name) + """ {
+              repository(owner: """ + """\"{}\",""".format(self.info.owner) + """ name: """ + """\"{}\")""".format(
+            self.info.name) + """ {
                 releases {
                   totalCount
                 }
@@ -34,8 +37,8 @@ class GitHubRequest(FormatBase):
         _json = {
             "query": """
                 query {""" +
-                  """repository(owner: \"{}\", name: \"{}\") """.format(self.info.owner, self.info.name) + """{
-                    releases("""+"""first:{}""".format(self._total_number_releases())+""", orderBy: {field: CREATED_AT, direction: DESC}){
+                     """repository(owner: \"{}\", name: \"{}\") """.format(self.info.owner, self.info.name) + """{
+                    releases(""" + """first:{}""".format(self._total_number_releases()) + """, orderBy: {field: CREATED_AT, direction: DESC}){
                       edges{
                         node{
                           name

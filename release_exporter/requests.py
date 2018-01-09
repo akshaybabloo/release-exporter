@@ -1,4 +1,3 @@
-from operator import itemgetter
 import json
 
 import requests
@@ -79,11 +78,13 @@ class GitLabRequest(FormatBase):
         data = json.loads(r.text)
 
         if len(data) > 1:
-            print("The search resulted in more that one repository. Please check your repository name and type in it's ID")
+            print(
+                "The search resulted in more that one repository. Please check your repository name and type in it's ID")
             print('ID - Repository Name - Username')
 
             for content in data:
-                print('{id} - {repo_name} - {user_name}'.format(id=content['id'], repo_name=content['name'], user_name=multi_key_gitlab(content)))
+                print('{id} - {repo_name} - {user_name}'.format(id=content['id'], repo_name=content['name'],
+                                                                user_name=multi_key_gitlab(content)))
 
             _id = input('ID > ')
             return _id

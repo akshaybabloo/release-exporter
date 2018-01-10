@@ -1,3 +1,4 @@
+tabulate
 click==6.7
 requests==2.18.4
 graphene==2.0.1

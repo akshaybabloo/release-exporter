@@ -24,6 +24,22 @@ def check_provider():
 
 
 def get_repo_url_info(location=os.getcwd(), url=None):
+    """
+    Returns the parsed URL.
+
+    Parameters
+    ----------
+    location: str
+        Absolute location of the current directory.
+    url: str
+        URL of the repository.
+
+    Returns
+    -------
+    parse: giturlparse.parser.Parsed
+        A named tuple.
+
+    """
     if url is None:
         config = configparser.ConfigParser()
         config.read(location + os.sep + '.git' + os.sep + 'config')
@@ -36,6 +52,20 @@ def get_repo_url_info(location=os.getcwd(), url=None):
 
 
 def date_convert(date):
+    """
+    Converts ISO8601 date and time and returns only the date.
+
+    Parameters
+    ----------
+    date: str
+        datetime string.
+
+    Returns
+    -------
+    date: str
+        Date as Y-m-d format..
+
+    """
     try:
         date = datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%Sz')
         date = date.strftime('%Y-%m-%d')
@@ -58,6 +88,19 @@ def pairwise(iterable):
 
 
 def multi_key_gitlab(value):
+    """
+    Returns the username, if an exception occurs None is returned.
+
+    Parameters
+    ----------
+    value: dict
+        A dictionary of GitLab.
+
+    Returns
+    -------
+    value: str or None
+        Username or none.
+    """
 
     try:
         return value['owner']['username']

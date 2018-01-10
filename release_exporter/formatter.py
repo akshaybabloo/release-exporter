@@ -13,13 +13,27 @@ class GitHubFormat(GitHubRequest):
         self.compare = 'https://' + self.info.resource + '/' + self.info.owner + '/' + self.info.name + '/compare/'
 
     def write_json(self):
+        """
+        Writes down a CHANGELOG.json file.
+        """
         pass
 
     def write_markdown(self):
+        """
+        Writes down a CHANGELOG.md file.
+        """
         with open('CHANGELOG.md', 'w') as md_file:
             md_file.writelines(self._converter())
 
     def _converter(self):
+        """
+        A tuple of formatted tag name, description, created at and the compare links.
+
+        Returns
+        -------
+        tuple: tuple
+            A tuple of list.
+        """
         self.all_content.append(self._header())
 
         temp = self.releases()['data']['repository']['releases']['edges']
@@ -57,10 +71,21 @@ class GitLabFormat(GitLabRequest):
         pass
 
     def write_markdown(self):
+        """
+        Writes down a CHANGELOG.md file.
+        """
         with open('CHANGELOG.md', 'w') as md_file:
             md_file.writelines(self._converter())
 
     def _converter(self):
+        """
+        A tuple of formatted tag name, description, created at and the compare links.
+
+        Returns
+        -------
+        tuple: tuple
+            A tuple of list.
+        """
         self.all_content.append(self._header())
 
         temp = self.releases()

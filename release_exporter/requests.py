@@ -7,6 +7,9 @@ from release_exporter.utils import get_repo_url_info, multi_key_gitlab
 
 
 class GitHubRequest(FormatBase):
+    """
+    GitHub request base.
+    """
 
     def __init__(self, *args, **kwargs):
         super(GitHubRequest, self).__init__(*args, **kwargs)
@@ -19,6 +22,14 @@ class GitHubRequest(FormatBase):
             self.info = get_repo_url_info(self.location)
 
     def _total_number_releases(self):
+        """
+        Queries total number of releases.
+
+        Returns
+        -------
+        int: int
+            Number of releases.
+        """
         _json = {"query": """
             {
               repository(owner: """ + """\"{}\",""".format(self.info.owner) + """ name: """ + """\"{}\")""".format(
@@ -34,6 +45,14 @@ class GitHubRequest(FormatBase):
         return int(json.loads(r.text)['data']['repository']['releases']['totalCount'])
 
     def releases(self):
+        """
+        A JSON object with name of the repository, tag name, description and the created date and time.
+
+        Returns
+        -------
+        JSON: dict
+            A JSON object.
+        """
         _json = {
             "query": """
                 query {""" +
@@ -60,6 +79,9 @@ class GitHubRequest(FormatBase):
 
 
 class GitLabRequest(FormatBase):
+    """
+    GitLab request base.
+    """
 
     def __init__(self, *args, **kwargs):
         super(GitLabRequest, self).__init__(*args, **kwargs)
@@ -72,6 +94,16 @@ class GitLabRequest(FormatBase):
             self.info = get_repo_url_info(self.location)
 
     def _repo_id(self):
+        """
+        Searches and returns the repository ID based on the repository name. If the repository is not found then a table
+        of repository is shown so that the user can manually enter the ID of their repository.
+
+        Returns
+        -------
+        id_number: int
+            Repository ID.
+
+        """
         url = self.api_url + 'projects?search={}'.format(self.info.name)
 
         r = requests.get(url=url, headers=self.request_headers)
@@ -89,9 +121,17 @@ class GitLabRequest(FormatBase):
             id_number = input('ID > ')
             return id_number
 
-        return data[0]['id']
+        return id_number[0]['id']
 
     def releases(self):
+        """
+        A JSON object containing name of the repository, tag name, description and the created date and time
+
+        Returns
+        -------
+        JSON: dict
+            A dict object.
+        """
         url = 'https://gitlab.com/api/v4/projects/{id}/repository/tags'.format(id=self._repo_id())
 
         r = requests.get(url=url, headers=self.request_headers)

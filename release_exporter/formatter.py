@@ -1,5 +1,5 @@
 from release_exporter.requests import GitHubRequest, GitLabRequest
-from release_exporter.utils import date_convert
+from release_exporter.utils import date_convert, description
 
 
 class GitHubFormat(GitHubRequest):
@@ -25,6 +25,8 @@ class GitHubFormat(GitHubRequest):
         with open('CHANGELOG.md', 'w') as md_file:
             md_file.writelines(self._converter())
 
+        print('\n' + 'Done ' + u"\U0001F44D")
+
     def _converter(self):
         """
         A tuple of formatted tag name, description, created at and the compare links.
@@ -38,6 +40,8 @@ class GitHubFormat(GitHubRequest):
 
         temp = self.releases()['data']['repository']['releases']['edges']
         temp_l = []
+
+        description(provider=self.info.resource, repo_name=self.info.name, tags_number=sum(1 for k in temp if k['node']['tag']['name']))
 
         for edge in temp:
             temp_l.append(edge['node']['tag']['name'])

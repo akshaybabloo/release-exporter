@@ -5,18 +5,9 @@ from itertools import tee
 
 import dateutil.parser
 from giturlparse import parse
+from tabulate import tabulate
 
 from .exceptions import ParserError
-
-Note = """
-    ----------------------
-            Details
-    ----------------------
-    Provider: {1}
-    Repository Name: {2}
-    Tags: {3}
-
-    """
 
 
 def check_provider():
@@ -106,3 +97,25 @@ def multi_key_gitlab(value):
         return value['owner']['username']
     except KeyError:
         return None
+
+
+def description(provider=None, repo_name=None, tags_number=None):
+    """
+    Description generator.
+
+    Parameters
+    ----------
+    provider: str
+        Name of the Git host.
+    repo_name: str
+        Repository name.
+    tags_number: str or int
+        Number of tags.
+    """
+    table = [
+        ['Provider', provider],
+        ['Repository Name', repo_name],
+        ['Number of Tags', tags_number]
+    ]
+
+    print(tabulate(table, tablefmt="grid"))

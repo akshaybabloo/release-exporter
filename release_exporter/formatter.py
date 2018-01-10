@@ -41,7 +41,8 @@ class GitHubFormat(GitHubRequest):
         temp = self.releases()['data']['repository']['releases']['edges']
         temp_l = []
 
-        description(provider=self.info.resource, repo_name=self.info.name, tags_number=sum(1 for k in temp if k['node']['tag']['name']))
+        description(provider=self.info.resource, repo_name=self.info.name,
+                    tags_number=sum(1 for k in temp if k['node']['tag']['name']))
 
         for edge in temp:
             temp_l.append(edge['node']['tag']['name'])
@@ -81,6 +82,8 @@ class GitLabFormat(GitLabRequest):
         with open('CHANGELOG.md', 'w') as md_file:
             md_file.writelines(self._converter())
 
+        print('\n' + 'Done ' + u"\U0001F44D")
+
     def _converter(self):
         """
         A tuple of formatted tag name, description, created at and the compare links.
@@ -94,6 +97,9 @@ class GitLabFormat(GitLabRequest):
 
         temp = self.releases()
         temp_l = []
+
+        description(provider=self.info.resource, repo_name=self.info.name,
+                    tags_number=sum(1 for k in temp if k['name']))
 
         for content in temp:
             temp_l.append(content['name'])

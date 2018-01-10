@@ -16,7 +16,8 @@ class GitHubFormat(GitHubRequest):
         """
         Writes down a CHANGELOG.json file.
         """
-        pass
+
+        print('\n' + 'Done ' + u"\U0001F44D")
 
     def write_markdown(self):
         """
@@ -36,7 +37,6 @@ class GitHubFormat(GitHubRequest):
         tuple: tuple
             A tuple of list.
         """
-        self.all_content.append(self._header())
 
         temp = self.releases()['data']['repository']['releases']['edges']
         temp_l = []
@@ -44,19 +44,28 @@ class GitHubFormat(GitHubRequest):
         description(provider=self.info.resource, repo_name=self.info.name,
                     tags_number=sum(1 for k in temp if k['node']['tag']['name']))
 
-        for edge in temp:
-            temp_l.append(edge['node']['tag']['name'])
-            self.tag = edge['node']['tag']['name']
-            self.content = edge['node']['description'].replace('\r\n', '\n')
-            self.date = date_convert(edge['node']['createdAt'])
-            self.all_content.append(self._body())
+        if self.file_type == 'markdown':
 
-        pair = list(['{}...{}'.format(a, b) for a, b in zip(temp_l, ['master'] + temp_l[:-1])])
+            self.all_content.append(self._header())
 
-        for tags in pair:
-            self.all_content.append('[' + tags.split('...')[1] + ']: ' + self.compare + tags + '\n')
+            for edge in temp:
+                temp_l.append(edge['node']['tag']['name'])
+                self.tag = edge['node']['tag']['name']
+                self.content = edge['node']['description'].replace('\r\n', '\n')
+                self.date = date_convert(edge['node']['createdAt'])
+                self.all_content.append(self._body())
 
-        return tuple(self.all_content)
+            pair = list(['{}...{}'.format(a, b) for a, b in zip(temp_l, ['master'] + temp_l[:-1])])
+
+            for tags in pair:
+                self.all_content.append('[' + tags.split('...')[1] + ']: ' + self.compare + tags + '\n')
+
+            return tuple(self.all_content)
+
+        elif self.file_type == 'json':
+
+            for edge in temp:
+                self.all_content.append(self._dict_template(tag_name=edge['node']['tag']['name'], repo_name=))
 
 
 github = GitHubFormat

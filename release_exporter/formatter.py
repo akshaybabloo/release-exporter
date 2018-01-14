@@ -109,10 +109,12 @@ class GitLabFormat(GitLabRequest):
         temp = self.releases()
         temp_l = []
 
-        description(provider=self.info.resource, repo_name=self.info.name,
-                    tags_number=sum(1 for k in temp if k['name']))
+        self.total_number_tags = um(1 for k in temp if k['name'])
 
-        for content in temp:
+        description(provider=self.info.resource, repo_name=self.info.name, tags_number=self.total_number_tags)
+
+        for count, content in enumerate(temp):
+            self.iter_count = count
             temp_l.append(content['name'])
             self.tag_name = content['name']
             self.description = content['release']['description'].replace('\r\n', '\n')

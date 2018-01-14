@@ -36,18 +36,19 @@ class FormatBase(RequestBase):
 
     def __init__(self, location=os.getcwd(), file_name='CHANGELOG', force=False, file_type='markdown', *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.tag = None
-        self.date = None
-        self.content = None
-        self.compare = None
-        self.total_number_tags = None
-        self.iter_count = None
 
         self.location = location
         self.file_name = file_name
         self.force = force
         self.file_type = file_type
         self.all_content = []
+
+        self.tag = None
+        self.date = None
+        self.content = None
+        self.compare = None
+        self.total_number_tags = None
+        self.iter_count = None
 
         if not force:
             if pathlib.Path(location + os.sep + file_name + self._get_file_type()).is_file():

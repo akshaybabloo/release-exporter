@@ -113,7 +113,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
             "repositoryName": self.info.name,
             "provider": self.info.resource,
             "owner": self.info.owner,
-            "repoUrl": self.info.href,
+            "repoUrl": 'https://' + self.info.resource + '/' + self.info.owner + '/' + self.info.name,
             "totalTags": self.total_number_tags,
             "data": []
         }

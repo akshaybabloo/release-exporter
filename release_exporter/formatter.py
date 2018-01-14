@@ -104,7 +104,6 @@ class GitLabFormat(GitLabRequest):
         tuple: tuple
             A tuple of list.
         """
-        self.all_content.append(self._header())
 
         temp = self.releases()
         temp_l = []
@@ -113,22 +112,26 @@ class GitLabFormat(GitLabRequest):
 
         description(provider=self.info.resource, repo_name=self.info.name, tags_number=self.total_number_tags)
 
-        for count, content in enumerate(temp):
-            self.iter_count = count
-            temp_l.append(content['name'])
-            self.tag_name = content['name']
-            self.description = content['release']['description'].replace('\r\n', '\n')
-            self.date = date_convert(content['commit']['created_at'])
-            self.all_content.append(self._body())
+        if self.file_type == 'markdown':
 
-        pair = list(['{}...{}'.format(a, b) for a, b in zip(temp_l, ['master'] + temp_l[:-1])])
+            self.all_content.append(self._header())
 
-        self.all_content.append('\n')
+            for count, content in enumerate(temp):
+                self.iter_count = count
+                temp_l.append(content['name'])
+                self.tag_name = content['name']
+                self.description = content['release']['description'].replace('\r\n', '\n')
+                self.date = date_convert(content['commit']['created_at'])
+                self.all_content.append(self._body())
 
-        for tags in pair:
-            self.all_content.append('[' + tags.split('...')[1] + ']: ' + self.compare + tags + '\n')
+            pair = list(['{}...{}'.format(a, b) for a, b in zip(temp_l, ['master'] + temp_l[:-1])])
 
-        return tuple(self.all_content)
+            self.all_content.append('\n')
+
+            for tags in pair:
+                self.all_content.append('[' + tags.split('...')[1] + ']: ' + self.compare + tags + '\n')
+
+            return tuple(self.all_content)
 
 
 gitlab = GitLabFormat

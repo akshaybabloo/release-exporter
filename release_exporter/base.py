@@ -46,7 +46,7 @@ class FormatBase(RequestBase):
         self.tag_name = None
         self.date = None
         self.description = None
-        self.compare = None
+        self.compare_url = None
         self.total_number_tags = None
         self.iter_count = None
 

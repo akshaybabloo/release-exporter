@@ -10,7 +10,7 @@ class GitHubFormat(GitHubRequest):
     def __init__(self, *args, **kwargs):
         super(GitHubFormat, self).__init__(*args, **kwargs)
 
-        self.compare = 'https://' + self.info.resource + '/' + self.info.owner + '/' + self.info.name + '/compare/'
+        self.compare_url = 'https://' + self.info.resource + '/' + self.info.owner + '/' + self.info.name + '/compare/'
 
     def write_json(self):
         """
@@ -60,7 +60,7 @@ class GitHubFormat(GitHubRequest):
             pair = list(['{}...{}'.format(a, b) for a, b in zip(temp_l, ['master'] + temp_l[:-1])])
 
             for tags in pair:
-                self.all_content.append('[' + tags.split('...')[1] + ']: ' + self.compare + tags + '\n')
+                self.all_content.append('[' + tags.split('...')[1] + ']: ' + self.compare_url + tags + '\n')
 
             return tuple(self.all_content)
 
@@ -79,7 +79,7 @@ class GitLabFormat(GitLabRequest):
     def __init__(self, *args, **kwargs):
         super(GitLabFormat, self).__init__(*args, **kwargs)
 
-        self.compare = 'https://' + self.info.resource + '/' + self.info.owner + '/' + self.info.name + '/compare/'
+        self.compare_url = 'https://' + self.info.resource + '/' + self.info.owner + '/' + self.info.name + '/compare/'
 
     def write_json(self):
         pass
@@ -127,7 +127,7 @@ class GitLabFormat(GitLabRequest):
             self.all_content.append('\n')
 
             for tags in pair:
-                self.all_content.append('[' + tags.split('...')[1] + ']: ' + self.compare + tags + '\n')
+                self.all_content.append('[' + tags.split('...')[1] + ']: ' + self.compare_url + tags + '\n')
 
             return tuple(self.all_content)
 

@@ -65,9 +65,7 @@ class GitHubFormat(GitHubRequest):
             return tuple(self.all_content)
 
         elif self.file_type == 'json':
-
-            for edge in temp:
-                self.all_content.append(self._dict_template(tag_name=edge['node']['tag']['name'], repo_name=))
+            pass
 
 
 github = GitHubFormat
@@ -132,6 +130,9 @@ class GitLabFormat(GitLabRequest):
                 self.all_content.append('[' + tags.split('...')[1] + ']: ' + self.compare + tags + '\n')
 
             return tuple(self.all_content)
+
+        elif self.file_type == 'json':
+            pass
 
 
 gitlab = GitLabFormat

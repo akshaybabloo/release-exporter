@@ -121,15 +121,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
         return repo
 
     @classmethod
-    def _dict_repo_template(cls, tag_name=None, repo_name=None, description=None, created_at=None, compare_url=None, provider=None):
+    def _dict_data_template(cls, tag_name=None, description=None, date=None, compare_url=None):
 
         data = {
             "tagName": tag_name,
-            "repositoryName": repo_name,
             "description": description,
-            "createdAt": created_at,
-            "compareUrl": compare_url,
-            "provider": provider
+            "createdAt": date,
+            "compareUrl": compare_url
         }
 
         return data

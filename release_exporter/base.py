@@ -107,6 +107,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     def _converter(self):
         pass
 
+    def _dict_repo_template(self):
+
+        repo = {
+            "repositoryName": self.info.name,
+            "provider": self.info.resource,
+            "owner": self.info.owner,
+            "repoUrl": self.info.href,
+            "totalTags": self.total_number_tags,
+            "data": []
+        }
+
+        return repo
+
     @classmethod
     def _dict_repo_template(cls, tag_name=None, repo_name=None, description=None, created_at=None, compare_url=None, provider=None):
 

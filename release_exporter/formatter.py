@@ -52,7 +52,7 @@ class GitHubFormat(GitHubRequest):
             for count, edge in enumerate(temp):
                 self.iter_count = count
                 temp_l.append(edge['node']['tag']['name'])
-                self.tag = edge['node']['tag']['name']
+                self.tag_name = edge['node']['tag']['name']
                 self.content = edge['node']['description'].replace('\r\n', '\n')
                 self.date = date_convert(edge['node']['createdAt'])
                 self.all_content.append(self._body())
@@ -114,7 +114,7 @@ class GitLabFormat(GitLabRequest):
 
         for content in temp:
             temp_l.append(content['name'])
-            self.tag = content['name']
+            self.tag_name = content['name']
             self.content = content['release']['description'].replace('\r\n', '\n')
             self.date = date_convert(content['commit']['created_at'])
             self.all_content.append(self._body())

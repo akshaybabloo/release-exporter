@@ -40,6 +40,8 @@ class FormatBase(RequestBase):
         self.date = None
         self.content = None
         self.compare = None
+        self.total_number_tags = None
+        self.iter_count = None
 
         self.location = location
         self.file_name = file_name
@@ -79,9 +81,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 """
 
     def _body(self):
-        return """\
 
+        if self.iter_count < self.total_number_tags - 1:
+
+            return """\
+    
 ## [{tag}] - {date}
+
+{content}
+""".format(tag=self.tag, date=self.date, content=self.content)
+        else:
+            return """\
+
+## {tag} - {date}
 
 {content}
 """.format(tag=self.tag, date=self.date, content=self.content)

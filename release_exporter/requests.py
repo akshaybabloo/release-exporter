@@ -16,8 +16,8 @@ class GitHubRequest(FormatBase):
         self.request_headers = {'Authorization': 'token %s' % self.token}
         self.api_url = 'https://api.github.com/graphql'
 
-        if self.url is not None:
-            self.info = get_repo_url_info(self.location, url=self.url)
+        if self.repo_url is not None:
+            self.info = get_repo_url_info(self.location, url=self.repo_url)
         else:
             self.info = get_repo_url_info(self.location)
 
@@ -88,8 +88,8 @@ class GitLabRequest(FormatBase):
         self.request_headers = {'Private-Token': '%s' % self.token}
         self.api_url = 'https://gitlab.com/api/v4/'
 
-        if self.url is not None:
-            self.info = get_repo_url_info(self.location, url=self.url)
+        if self.repo_url is not None:
+            self.info = get_repo_url_info(self.location, url=self.repo_url)
         else:
             self.info = get_repo_url_info(self.location)
 

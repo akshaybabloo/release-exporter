@@ -20,7 +20,7 @@ def cli(ctx, provider, repo, token, tags, url, location):
     ctx.obj['repo'] = repo
     ctx.obj['token'] = token
     ctx.obj['tags'] = tags
-    ctx.obj['url'] = url
+    ctx.obj['repo_url'] = url
     ctx.obj['location'] = location
 
 

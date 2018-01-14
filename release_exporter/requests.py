@@ -17,7 +17,7 @@ class GitHubRequest(FormatBase):
         self.api_url = 'https://api.github.com/graphql'
 
         if self.repo_url is not None:
-            self.info = get_repo_url_info(self.location, url=self.repo_url)
+            self.info = get_repo_url_info(self.location, repo_url=self.repo_url)
         else:
             self.info = get_repo_url_info(self.location)
 
@@ -89,7 +89,7 @@ class GitLabRequest(FormatBase):
         self.api_url = 'https://gitlab.com/api/v4/'
 
         if self.repo_url is not None:
-            self.info = get_repo_url_info(self.location, url=self.repo_url)
+            self.info = get_repo_url_info(self.location, repo_url=self.repo_url)
         else:
             self.info = get_repo_url_info(self.location)
 

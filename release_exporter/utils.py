@@ -14,7 +14,7 @@ def check_provider():
     pass
 
 
-def get_repo_url_info(location=os.getcwd(), url=None):
+def get_repo_url_info(location=os.getcwd(), repo_url=None):
     """
     Returns the parsed URL.
 
@@ -22,7 +22,7 @@ def get_repo_url_info(location=os.getcwd(), url=None):
     ----------
     location: str
         Absolute location of the current directory.
-    url: str
+    repo_url: str
         URL of the repository.
 
     Returns
@@ -31,7 +31,7 @@ def get_repo_url_info(location=os.getcwd(), url=None):
         A named tuple.
 
     """
-    if url is None:
+    if repo_url is None:
         config = configparser.ConfigParser()
         config.read(location + os.sep + '.git' + os.sep + 'config')
         if 'remote "origin"' in config.sections():
@@ -39,7 +39,7 @@ def get_repo_url_info(location=os.getcwd(), url=None):
         else:
             raise ParserError('Git config file does not exist please provide the repository url by using --url.')
     else:
-        return parse(url + '.git')
+        return parse(repo_url + '.git')
 
 
 def date_convert(date):

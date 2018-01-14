@@ -45,7 +45,7 @@ class FormatBase(RequestBase):
 
         self.tag_name = None
         self.date = None
-        self.content = None
+        self.description = None
         self.compare = None
         self.total_number_tags = None
         self.iter_count = None
@@ -89,15 +89,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     
 ## [{tag_name}] - {date}
 
-{content}
-""".format(tag_name=self.tag_name, date=self.date, content=self.content)
+{description}
+""".format(tag_name=self.tag_name, date=self.date, description=self.description)
         else:
             return """\
 
 ## {tag_name} - {date}
 
-{content}
-""".format(tag_name=self.tag_name, date=self.date, content=self.content)
+{description}
+""".format(tag_name=self.tag_name, date=self.date, description=self.description)
 
     def _footer(self):
         return """\

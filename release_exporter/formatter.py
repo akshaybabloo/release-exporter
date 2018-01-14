@@ -108,7 +108,7 @@ class GitLabFormat(GitLabRequest):
         temp = self.releases()
         temp_l = []
 
-        self.total_number_tags = um(1 for k in temp if k['name'])
+        self.total_number_tags = sum(1 for k in temp if k['name'])
 
         description(provider=self.info.resource, repo_name=self.info.name, tags_number=self.total_number_tags)
 

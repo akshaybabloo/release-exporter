@@ -17,19 +17,15 @@ def print_version(ctx, param, value):
 
 
 @click.group()
-@click.option('--repo', help='Your repository name.')
 @click.option('--token', help='Token number if its a private repository.', default=None)
-@click.option('--tags', help='Range of tags.', default='all')
 @click.option('--url',
               help="URL of your repository. This is optional if your current directory has .git folder with remote url.",
               default=None)
 @click.option('--location', help='Local location of your repository.', default=os.getcwd())
 @click.option('--version', is_flag=True, callback=print_version, expose_value=False, is_eager=True)
 @click.pass_context
-def cli(ctx, repo, token, tags, url, location):
-    ctx.obj['repo'] = repo
+def cli(ctx, token, url, location):
     ctx.obj['token'] = token
-    ctx.obj['tags'] = tags
     ctx.obj['repo_url'] = url
     ctx.obj['location'] = location
 
@@ -43,7 +39,6 @@ def cli(ctx, repo, token, tags, url, location):
 @cli.command(help='Creates markdown file.')
 @click.pass_context
 def markdown(ctx):
-
     if os.name == 'nt':
         ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
 

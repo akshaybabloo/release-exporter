@@ -7,7 +7,7 @@ from release_exporter.formatter import gitlab
 
 
 @click.group()
-@click.option('--provider', help='github, gitlab or bitbucket.')
+@click.option('--provider', help='github or gitlab.')
 @click.option('--repo', help='Your repository name.')
 @click.option('--token', help='Token number if its a private repository.', default=None)
 @click.option('--tags', help='Range of tags.', default='all')

@@ -10,10 +10,6 @@ from tabulate import tabulate
 from .exceptions import ParserError
 
 
-def check_provider():
-    pass
-
-
 def get_repo_url_info(location=os.getcwd(), repo_url=None):
     """
     Returns the parsed URL.

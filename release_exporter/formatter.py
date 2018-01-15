@@ -111,7 +111,12 @@ class GitLabFormat(GitLabRequest):
         self.compare_url = 'https://' + self.info.resource + '/' + self.info.owner + '/' + self.info.name + '/compare/'
 
     def write_json(self):
-        pass
+        self._converter()
+
+        with open(self.file_name + '.' + self.file_type, 'w') as json_file:
+            json.dump(self._dict_repo_template(), json_file, indent=4)
+
+        print('\n' + 'Done ' + u"\U0001F44D")
 
     def write_markdown(self):
         """
@@ -161,7 +166,28 @@ class GitLabFormat(GitLabRequest):
             return tuple(self.all_content)
 
         elif self.file_type == 'json':
-            pass
+
+            temp_l2 = []
+            tag_comp_url_temp = []
+
+            for count, content in enumerate(temp):
+                self.iter_count = count
+                temp_l2.append(content['name'])
+
+                self.list_descriptions.append(self._dict_data_template(tag_name=content['name'],
+                                                                       description=content['release'][
+                                                                           'description'].replace('\r\n', '\n'),
+                                                                       date=date_convert(
+                                                                           content['commit']['created_at'])))
+
+            pair = list(['{}...{}'.format(a, b) for a, b in zip(temp_l2, ['master'] + temp_l2[:-1])])
+
+            for tags in pair:
+                tag_comp_url_temp.append(self.compare_url + tags)
+
+            for count, urls in enumerate(tag_comp_url_temp):
+                if count < self.total_number_tags - 1:
+                    self.list_descriptions[count]['compareUrl'] = urls
 
 
 gitlab = GitLabFormat

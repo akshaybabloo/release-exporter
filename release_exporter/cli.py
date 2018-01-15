@@ -5,6 +5,7 @@ import click
 from release_exporter.exceptions import UnknownRepo
 from release_exporter.formatter import github
 from release_exporter.formatter import gitlab
+from release_exporter.utils import get_repo_url_info
 
 
 @click.group()
@@ -13,7 +14,8 @@ from release_exporter.formatter import gitlab
 @click.option('--token', help='Token number if its a private repository.', default=None)
 @click.option('--tags', help='Range of tags.', default='all')
 @click.option('--url',
-              help="URL of your repository. This is optional if your current directory has .git folder with remote url.")
+              help="URL of your repository. This is optional if your current directory has .git folder with remote url.",
+              default=None)
 @click.option('--location', help='Where do you want to save your file.', default=os.getcwd())
 @click.pass_context
 def cli(ctx, provider, repo, token, tags, url, location):
@@ -34,9 +36,16 @@ def cli(ctx, provider, repo, token, tags, url, location):
 @cli.command(help='Creates markdown file.')
 @click.pass_context
 def markdown(ctx):
-    github_format(force=True, token="c7933996ed553368b1928d1d1c4d78a5c850675f", location=ctx.obj['location'], url='github.com:akshaybabloo/gollahalli-com').process()
     if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+
+        github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+               file_type='markdown').write_markdown()
+
     elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+
+        gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+               file_type='markdown').write_markdown()
+
     else:
         raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")
 
@@ -44,14 +53,15 @@ def markdown(ctx):
 @cli.command(help='Creates JSON file.')
 @click.pass_context
 def json(ctx):
-    pass
     if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
 
-        pass
+        github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+               file_type='json').write_json()
 
     elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
 
-        pass
+        gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+               file_type='json').write_json()
 
     else:
         raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")

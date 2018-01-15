@@ -61,7 +61,7 @@ def date_convert(date):
         date = datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%Sz')
         date = date.strftime('%Y-%m-%d')
     except ValueError:
-        date = dateutil.parser.parse(date).date()
+        date = dateutil.parser.parse(date).date().strftime('%Y-%m-%d')
     return date
 
 

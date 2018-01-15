@@ -27,16 +27,14 @@ Release exporter has the following options
 Usage: rex [OPTIONS] COMMAND [ARGS]...
 
 Options:
-  --repo TEXT      Your repository name.
   --token TEXT     Token number if its a private repository.
-  --tags TEXT      Range of tags.
   --url TEXT       URL of your repository. This is optional if your current
                    directory has .git folder with remote url.
-  --location TEXT  Where do you want to save your file.
+  --location TEXT  Local location of your repository.
+  --version
   --help           Show this message and exit.
 
 Commands:
-  init      Creates .rex file.
   json      Creates JSON file.
   markdown  Creates markdown file.
 ```

@@ -9,7 +9,6 @@ from release_exporter.utils import get_repo_url_info
 
 
 @click.group()
-@click.option('--provider', help='github or gitlab.')
 @click.option('--repo', help='Your repository name.')
 @click.option('--token', help='Token number if its a private repository.', default=None)
 @click.option('--tags', help='Range of tags.', default='all')
@@ -18,8 +17,7 @@ from release_exporter.utils import get_repo_url_info
               default=None)
 @click.option('--location', help='Where do you want to save your file.', default=os.getcwd())
 @click.pass_context
-def cli(ctx, provider, repo, token, tags, url, location):
-    ctx.obj['provider'] = provider
+def cli(ctx, repo, token, tags, url, location):
     ctx.obj['repo'] = repo
     ctx.obj['token'] = token
     ctx.obj['tags'] = tags

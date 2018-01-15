@@ -15,7 +15,7 @@ from release_exporter.utils import get_repo_url_info
 @click.option('--url',
               help="URL of your repository. This is optional if your current directory has .git folder with remote url.",
               default=None)
-@click.option('--location', help='Where do you want to save your file.', default=os.getcwd())
+@click.option('--location', help='Local location of your repository.', default=os.getcwd())
 @click.pass_context
 def cli(ctx, repo, token, tags, url, location):
     ctx.obj['repo'] = repo

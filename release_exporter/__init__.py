@@ -25,9 +25,5 @@ SOFTWARE.
 from release_exporter.cli import cli
 
 
-def version():
-    return '1.0'
-
-
 def main():
     cli(obj={})

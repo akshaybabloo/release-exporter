@@ -6,6 +6,14 @@ from release_exporter.exceptions import UnknownRepo
 from release_exporter.formatter import github
 from release_exporter.formatter import gitlab
 from release_exporter.utils import get_repo_url_info
+from release_exporter._version import version
+
+
+def print_version(ctx, param, value):
+    if not value or ctx.resilient_parsing:
+        return
+    click.echo(version())
+    ctx.exit()
 
 
 @click.group()
@@ -16,6 +24,7 @@ from release_exporter.utils import get_repo_url_info
               help="URL of your repository. This is optional if your current directory has .git folder with remote url.",
               default=None)
 @click.option('--location', help='Local location of your repository.', default=os.getcwd())
+@click.option('--version', is_flag=True, callback=print_version, expose_value=False, is_eager=True)
 @click.pass_context
 def cli(ctx, repo, token, tags, url, location):
     ctx.obj['repo'] = repo

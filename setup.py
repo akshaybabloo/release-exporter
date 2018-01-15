@@ -2,7 +2,7 @@ import codecs
 import os
 from setuptools import setup
 
-from release_exporter import version
+from release_exporter._version import version
 
 here = os.path.abspath(os.path.dirname(__file__))
 

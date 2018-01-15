@@ -35,11 +35,13 @@ def cli(ctx, repo, token, tags, url, location):
 @click.pass_context
 def markdown(ctx):
     if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+        print('GitHub detected. \n')
 
         github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
                file_type='markdown').write_markdown()
 
     elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+        print('GitLab detected. \n')
 
         gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
                file_type='markdown').write_markdown()
@@ -52,11 +54,13 @@ def markdown(ctx):
 @click.pass_context
 def json(ctx):
     if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+        print('GitHub detected. \n')
 
         github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
                file_type='json').write_json()
 
     elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+        print('GitLab detected. \n')
 
         gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
                file_type='json').write_json()

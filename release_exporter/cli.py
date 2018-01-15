@@ -34,6 +34,10 @@ def cli(ctx, repo, token, tags, url, location):
 @cli.command(help='Creates markdown file.')
 @click.pass_context
 def markdown(ctx):
+
+    if os.name == 'nt':
+        ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
+
     if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
         print('GitHub detected. \n')
 
@@ -53,6 +57,9 @@ def markdown(ctx):
 @cli.command(help='Creates JSON file.')
 @click.pass_context
 def json(ctx):
+    if os.name == 'nt':
+        ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
+
     if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
         print('GitHub detected. \n')
 

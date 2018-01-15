@@ -27,7 +27,6 @@ Release exporter has the following options
 Usage: rex [OPTIONS] COMMAND [ARGS]...
 
 Options:
-  --provider TEXT  github, gitlab or bitbucket.
   --repo TEXT      Your repository name.
   --token TEXT     Token number if its a private repository.
   --tags TEXT      Range of tags.

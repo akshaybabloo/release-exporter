@@ -2,6 +2,7 @@ import os
 
 import click
 
+from release_exporter.exceptions import UnknownRepo
 from release_exporter.formatter import github
 from release_exporter.formatter import gitlab
 
@@ -33,9 +34,23 @@ def init():
 @click.pass_context
 def markdown(ctx):
     github_format(force=True, token="c7933996ed553368b1928d1d1c4d78a5c850675f", location=ctx.obj['location'], url='github.com:akshaybabloo/gollahalli-com').process()
+    if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+    elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+    else:
+        raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")
 
 
 @cli.command(help='Creates JSON file.')
 @click.pass_context
 def json(ctx):
     pass
+    if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+
+        pass
+
+    elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+
+        pass
+
+    else:
+        raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")

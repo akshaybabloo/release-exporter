@@ -18,3 +18,14 @@ class ParserError(Exception):
         super(ParserError, self).__init__(message)
 
         self.errors = errors
+
+
+class UnknownRepo(Exception):
+    """
+    This exception is raised Git config file does not exist.
+    """
+
+    def __init__(self, message, errors=None):
+        super(UnknownRepo, self).__init__(message)
+
+        self.errors = errors

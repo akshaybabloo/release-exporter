@@ -37,5 +37,4 @@ setup(
             'rex = release_exporter:main'
         ]
     },
-    tests_require=['pytest']
 )

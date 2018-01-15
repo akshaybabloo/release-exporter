@@ -53,7 +53,7 @@ class GitHubRequest(FormatBase):
         try:
             return int(json.loads(r.text)['data']['repository']['releases']['totalCount'])
         except KeyError:
-            print('Wrong credentials give. Please check if you have the right token.')
+            print('Wrong credentials given. Please check if you have the correct token.')
             sys.exit(1)
 
     def releases(self):
@@ -100,6 +100,13 @@ class GitLabRequest(FormatBase):
         self.request_headers = {'Private-Token': '%s' % self.token}
         self.api_url = 'https://gitlab.com/api/v4/'
 
+        if self.token is None:
+            print(
+                "Oops! GitLab requires you to generate a private token to get the details. See "
+                "https://docs.gitlab.com/ce/user/profile/personal_access_tokens.html "
+                "for more information.")
+            sys.exit(1)
+
         if self.repo_url is not None:
             self.info = get_repo_url_info(self.location, repo_url=self.repo_url)
         else:
@@ -133,7 +140,11 @@ class GitLabRequest(FormatBase):
             id_number = input('ID > ')
             return id_number
 
-        return id_number[0]['id']
+        try:
+            return id_number[0]['id']
+        except KeyError:
+            print('Wrong credentials given. Please check if you have the correct token.')
+            sys.exit(1)
 
     def releases(self):
         """

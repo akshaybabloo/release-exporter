@@ -13,7 +13,7 @@ pip install release-exporter
 In your terminal/cmd, change to the folder where you repository is located and do the following:
 
 ```cmd
-rex markdown --token <your token>
+rex --token <your token> markdown
 ```
 
 That's it. You should see a `CHANGELOG.md` in your folder.

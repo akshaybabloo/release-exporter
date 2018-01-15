@@ -20,7 +20,7 @@ setup(
     license='MIT',
     author='Akshay Raj Gollahalli',
     author_email='akshay@gollahalli.com',
-    description='Release exporter for GitHub, GitLab and Bitbucket.',
+    description='Release exporter for GitHub and GitLab.',
     keywords=['changelog', 'releases'],
     classifiers=[
         'License :: OSI Approved :: MIT License',

@@ -51,11 +51,11 @@ class FormatBase(RequestBase):
         self.list_descriptions = []
 
         if not force:
-            if pathlib.Path(location + os.sep + file_name + self._get_file_type()).is_file():
+            if pathlib.Path(location + os.sep + file_name + self._get_file_ext()).is_file():
                 raise FileExists(
-                    file_name + self._get_file_type() + ' already exists at ' + location + '. Use --force to override.')
+                    file_name + self._get_file_ext() + ' already exists at ' + location + '. Use --force to override.')
 
-    def _get_file_type(self):
+    def _get_file_ext(self):
         try:
             return FILE_TYPE[self.file_type]
         except KeyError as e:

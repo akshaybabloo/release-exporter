@@ -49,6 +49,7 @@ class FormatBase(RequestBase):
         self.compare_url = None
         self.total_number_tags = None
         self.iter_count = None
+        self.list_descriptions = []
 
         if not force:
             if pathlib.Path(location + os.sep + file_name + self._get_file_type()).is_file():
@@ -115,7 +116,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
             "owner": self.info.owner,
             "repoUrl": 'https://' + self.info.resource + '/' + self.info.owner + '/' + self.info.name,
             "totalTags": self.total_number_tags,
-            "data": []
+            "data": self.list_descriptions
         }
 
         return repo

@@ -1,3 +1,5 @@
+import json
+
 from release_exporter.requests import GitHubRequest, GitLabRequest
 from release_exporter.utils import date_convert, description
 
@@ -16,6 +18,11 @@ class GitHubFormat(GitHubRequest):
         """
         Writes down a CHANGELOG.json file.
         """
+
+        self._converter()
+
+        with open(self.file_name + '.' + self.file_type, 'w') as json_file:
+            json.dump(self._dict_repo_template(), json_file, indent=4)
 
         print('\n' + 'Done ' + u"\U0001F44D")
 
@@ -65,7 +72,29 @@ class GitHubFormat(GitHubRequest):
             return tuple(self.all_content)
 
         elif self.file_type == 'json':
-            pass
+
+            temp_l2 = []
+            tag_comp_url_temp = []
+
+            for count, edge in enumerate(temp):
+                self.iter_count = count
+                temp_l2.append(edge['node']['tag']['name'])
+
+                self.list_descriptions.append(self._dict_data_template(tag_name=edge['node']['tag']['name'],
+                                                                       description=edge['node'][
+                                                                           'description'].replace('\r\n',
+                                                                                                  '\n'),
+                                                                       date=date_convert(
+                                                                           edge['node']['createdAt'])))
+
+            pair = list(['{}...{}'.format(a, b) for a, b in zip(temp_l2, ['master'] + temp_l2[:-1])])
+
+            for tags in pair:
+                tag_comp_url_temp.append(self.compare_url + tags)
+
+            for count, urls in enumerate(tag_comp_url_temp):
+                if count < self.total_number_tags - 1:
+                    self.list_descriptions[count]['compareUrl'] = urls
 
 
 github = GitHubFormat

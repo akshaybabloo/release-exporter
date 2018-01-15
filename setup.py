@@ -21,6 +21,17 @@ setup(
     author='Akshay Raj Gollahalli',
     author_email='akshay@gollahalli.com',
     description='Release exporter for GitHub, GitLab and Bitbucket.',
+    keywords=['changelog', 'releases'],
+    classifiers=[
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3 :: Only',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Intended Audience :: Developers',
+        'Environment :: Console',
+        'Development Status :: 5 - Production/Stable',
+        'Topic :: Utilities'
+    ],
     entry_points={
         'console_scripts': [
             'rex = release_exporter:main'

@@ -25,9 +25,10 @@ def cli(ctx, provider, repo, token, tags, url, location):
     ctx.obj['location'] = location
 
 
-@cli.command(help='Creates .rex file.')
-def init():
-    pass
+# TODO: Implement init as a go to token area.
+# @cli.command(help='Creates .rex file.')
+# def init():
+#     pass
 
 
 @cli.command(help='Creates markdown file.')

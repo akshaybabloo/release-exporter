@@ -8,6 +8,12 @@ Exports your releases to a markdown based on [keep a changelog](http://keepachan
 pip install release-exporter
 ```
 
+Or download this repository and type in the following in your terminal/cmd
+
+```cmd
+python setup.py install
+```
+
 ## Usage
 
 In your terminal/cmd, change to the folder where you repository is located and do the following:

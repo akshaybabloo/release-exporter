@@ -6,7 +6,6 @@ from .exceptions import FileExists
 FILE_TYPE = {
     'markdown': '.md',
     'json': '.json',
-    'yaml': '.yaml'
 }
 
 
@@ -66,9 +65,6 @@ class FormatBase(RequestBase):
         raise NotImplementedError('Coming soon.')
 
     def write_json(self):
-        raise NotImplementedError('Coming soon.')
-
-    def write_yaml(self):
         raise NotImplementedError('Coming soon.')
 
     @classmethod

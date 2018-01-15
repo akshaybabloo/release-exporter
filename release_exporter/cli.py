@@ -39,9 +39,3 @@ def markdown(ctx):
 @click.pass_context
 def json(ctx):
     pass
-
-
-@cli.command(help='Creates YAML file.')
-@click.pass_context
-def yaml(ctx):
-    pass

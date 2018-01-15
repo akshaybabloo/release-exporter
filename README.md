@@ -40,7 +40,6 @@ Commands:
   init      Creates .rex file.
   json      Creates JSON file.
   markdown  Creates markdown file.
-  yaml      Creates YAML file.
 ```
 
 If you don't have a repository on your computer but you still want to generate a change log you can manually add your repository URL as following:
@@ -51,7 +50,7 @@ rex markdown --token <your token> --url <your url>
 
 if you want to save it in a custom location you can use `--location <location>`.
 
-You can also export your releases to JSON and YAML file by just replacing `markdown` with either `json` or `yaml`.
+You can also export your releases to JSON file by just replacing `markdown` with `json`.
 
 ### Customising the Output
 

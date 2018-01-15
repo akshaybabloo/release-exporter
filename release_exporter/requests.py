@@ -1,4 +1,5 @@
 import json
+import sys
 
 import requests
 
@@ -15,6 +16,13 @@ class GitHubRequest(FormatBase):
         super(GitHubRequest, self).__init__(*args, **kwargs)
         self.request_headers = {'Authorization': 'token %s' % self.token}
         self.api_url = 'https://api.github.com/graphql'
+
+        if self.token is None:
+            print(
+                "Oops! GitHub requires you to generate a private token to get the details. See "
+                "https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/ "
+                "for more information.")
+            sys.exit(1)
 
         if self.repo_url is not None:
             self.info = get_repo_url_info(self.location, repo_url=self.repo_url)
@@ -42,7 +50,11 @@ class GitHubRequest(FormatBase):
         """}
 
         r = requests.post(url=self.api_url, json=_json, headers=self.request_headers)
-        return int(json.loads(r.text)['data']['repository']['releases']['totalCount'])
+        try:
+            return int(json.loads(r.text)['data']['repository']['releases']['totalCount'])
+        except KeyError:
+            print('Wrong credentials give. Please check if you have the right token.')
+            sys.exit(1)
 
     def releases(self):
         """

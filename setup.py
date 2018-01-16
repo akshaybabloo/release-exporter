@@ -9,7 +9,7 @@ here = os.path.abspath(os.path.dirname(__file__)) + os.sep
 with open(here + 'README.rst') as f:
     long_description = f.read()
 
-with open(here + 'CHANGELOG.rst', encoding="utf-8") as f:
+with open(here + 'CHANGELOG.rst') as f:
     changelog = f.read()
 
 

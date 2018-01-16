@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - `v` removed from the version number
 - pypandoc usage removed and *.rst format added
+- Unwanted encoding removed
     
 ## [1.0.2] - 2018-01-16
 

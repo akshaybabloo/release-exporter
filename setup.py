@@ -6,24 +6,11 @@ from release_exporter._version import version
 
 here = os.path.abspath(os.path.dirname(__file__)) + os.sep
 
-try:
-    import pypandoc
+with open(here + 'README.rst') as f:
+    long_description = f.read()
 
-    long_description = pypandoc.convert(here + 'README.md', 'rst')
-    long_description = long_description.replace("\r", "")  # Do not forget this line
-
-    changelog = pypandoc.convert(here + 'CHANGELOG.md', 'rst')
-    changelog = changelog.replace('\r', "")
-except ImportError:
-    print("Pandoc not found. Long_description conversion failure.")
-    import io
-
-    # pandoc is not installed, fallback to using raw contents
-    with io.open(here + 'README.md', encoding="utf-8") as f:
-        long_description = f.read()
-
-    with io.open(here + 'CHANGELOG.md', encoding="utf-8") as f:
-        changelog = f.read()
+with open(here + 'CHANGELOG.rst', encoding="utf-8") as f:
+    changelog = f.read()
 
 
 def get_requirements(*parts):

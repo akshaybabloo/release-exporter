@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 - Unreleased tag added to the template and GitHub
+- Tag missing in GitHub JSON fixed
 
 ## 1.0 - 2017-01-15
 

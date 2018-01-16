@@ -14,7 +14,7 @@ try:
 
     changelog = pypandoc.convert(here + 'CHANGELOG.md', 'rst')
     changelog = changelog.replace('\r', "")
-except OSError:
+except ImportError:
     print("Pandoc not found. Long_description conversion failure.")
     import io
 

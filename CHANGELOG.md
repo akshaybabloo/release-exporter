@@ -9,9 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Added
 - Long description and changelog added to setup.py
 
-## Changed
-- Moved version to __init__.py
-
 ## Fixed
 - Typo
 - Version imports fixed

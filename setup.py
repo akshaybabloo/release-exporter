@@ -6,13 +6,6 @@ from release_exporter._version import version
 
 here = os.path.abspath(os.path.dirname(__file__)) + os.sep
 
-with open(here + 'README.rst') as f:
-    long_description = f.read()
-
-with open(here + 'CHANGELOG.rst') as f:
-    changelog = f.read()
-
-
 def get_requirements(*parts):
     return codecs.open(os.path.join(here, *parts), 'r').read().splitlines()
 
@@ -27,7 +20,6 @@ setup(
     author='Akshay Raj Gollahalli',
     author_email='akshay@gollahalli.com',
     description='Release exporter for GitHub and GitLab.',
-    long_description=long_description + '\n\n' + changelog,
     keywords=['changelog', 'releases'],
     classifiers=[
         'License :: OSI Approved :: MIT License',

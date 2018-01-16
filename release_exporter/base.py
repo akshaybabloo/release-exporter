@@ -97,6 +97,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## {tag_name} - {date}
 
 {description}
+
 """.format(tag_name=self.tag_name, date=self.date, description=self.description)
 
     def _footer(self):

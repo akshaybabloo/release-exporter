@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## v1.0 - 2018-01-15
 
 Initial release.
+
 [Unreleased]: https://github.com/akshaybabloo/release-exporter/compare/1.0.2...HEAD
 [1.0.2]: https://github.com/akshaybabloo/release-exporter/compare/v1.0.1...1.0.2
 [v1.0.1]: https://github.com/akshaybabloo/release-exporter/compare/v1.0...v1.0.1

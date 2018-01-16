@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Tag missing in GitHub JSON fixed
+- Tag missing in GitLab JSON fixed
 
 ## 1.0 - 2017-01-15
 

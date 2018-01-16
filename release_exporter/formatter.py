@@ -175,6 +175,7 @@ class GitLabFormat(GitLabRequest):
 
             temp_l2 = []
             tag_comp_url_temp = []
+            self.list_descriptions.insert(0, self._dict_data_template(tag_name='Unreleased', description='', date=''))
 
             for count, content in enumerate(temp):
                 self.iter_count = count
@@ -186,13 +187,12 @@ class GitLabFormat(GitLabRequest):
                                                                        date=date_convert(
                                                                            content['commit']['created_at'])))
 
-            pair = list(['{}...{}'.format(a, b) for a, b in zip(temp_l2, ['master'] + temp_l2[:-1])])
+            pair = list(['{}...{}'.format(a, b) for a, b in zip(temp_l2, ['HEAD'] + temp_l2[:-1])])
 
             for tags in pair:
                 tag_comp_url_temp.append(self.compare_url + tags)
 
             for count, urls in enumerate(tag_comp_url_temp):
-                if count < self.total_number_tags - 1:
                     self.list_descriptions[count]['compareUrl'] = urls
 
 

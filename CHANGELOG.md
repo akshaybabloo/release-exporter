@@ -14,7 +14,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Tag missing in GitHub JSON fixed
 - Tag missing in GitLab JSON fixed
 
-## 1.0 - 2017-01-15
+## [v1.0.1] - 2018-01-18
+### Added
+- Unreleased tag added to the template and GitHub
+- Unreleased tag added to GitHub
+
+### Fixed
+- Tag missing in GitHub JSON fixed
+- Tag missing in GitLab JSON fixed
+
+## v1.0 - 2018-01-15
 
 ### Added
 

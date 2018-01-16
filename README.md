@@ -4,13 +4,13 @@ Exports your releases to a markdown based on [keep a changelog](http://keepachan
 
 ## Install
 
-```cmd
+```bash
 pip install release-exporter
 ```
 
 Or download this repository and type in the following in your terminal/cmd
 
-```cmd
+```bash
 python setup.py install
 ```
 
@@ -18,7 +18,7 @@ python setup.py install
 
 In your terminal/cmd, change to the folder where you repository is located and do the following:
 
-```cmd
+```bash
 rex --token <your token> markdown
 ```
 
@@ -29,7 +29,7 @@ That's it. You should see a `CHANGELOG.md` in your folder.
 
 Release exporter has the following options
 
-```cmd
+```bash
 Usage: rex [OPTIONS] COMMAND [ARGS]...
 
 Options:
@@ -47,7 +47,7 @@ Commands:
 
 If you don't have a repository on your computer but you still want to generate a change log you can manually add your repository URL as following:
 
-```cmd
+```bash
 rex markdown --token <your token> --url <your url>
 ```
 

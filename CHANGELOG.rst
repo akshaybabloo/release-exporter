@@ -7,13 +7,18 @@ The format is based on `Keep a
 Changelog <http://keepachangelog.com/en/1.0.0/>`__ and this project
 adheres to `Semantic Versioning <http://semver.org/spec/v2.0.0.html>`__.
 
-`Unreleased <https://github.com/akshaybabloo/release-exporter/compare/1.0.2...HEAD>`__
+`Unreleased <https://github.com/akshaybabloo/release-exporter/compare/1.0.3...HEAD>`__
 --------------------------------------------------------------------------------------
+
+`1.0.3 <https://github.com/akshaybabloo/release-exporter/compare/1.0.2...1.0.3>`__ - 2018-01-16
+-----------------------------------------------------------------------------------------------
 
 Changed
 ~~~~~~~
 
 -  ``v`` removed from the version number
+-  pypandoc usage removed and \*.rst format added
+-  Unwanted encoding removed
 
 `1.0.2 <https://github.com/akshaybabloo/release-exporter/compare/v1.0.1...1.0.2>`__ - 2018-01-16
 ------------------------------------------------------------------------------------------------

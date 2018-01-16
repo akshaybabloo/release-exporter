@@ -6,13 +6,13 @@ from release_exporter.exceptions import UnknownRepo
 from release_exporter.formatter import github
 from release_exporter.formatter import gitlab
 from release_exporter.utils import get_repo_url_info
-from release_exporter import __version__
+from release_exporter._version import version
 
 
 def print_version(ctx, param, value):
     if not value or ctx.resilient_parsing:
         return
-    click.echo(__version__)
+    click.echo(version())
     ctx.exit()
 
 

@@ -159,12 +159,15 @@ class GitLabFormat(GitLabRequest):
                 self.date = date_convert(content['commit']['created_at'])
                 self.all_content.append(self._body())
 
-            pair = list(['{}...{}'.format(a, b) for a, b in zip(temp_l, ['master'] + temp_l[:-1])])
+            pair = list(['{}...{}'.format(a, b) for a, b in zip(temp_l, ['HEAD'] + temp_l[:-1])])
 
             self.all_content.append('\n')
 
-            for tags in pair:
-                self.all_content.append('[' + tags.split('...')[1] + ']: ' + self.compare_url + tags + '\n')
+            for count, tags in enumerate(pair):
+                if count < 1:
+                    self.all_content.append('[Unreleased]: ' + self.compare_url + tags + '\n')
+                else:
+                    self.all_content.append('[' + tags.split('...')[1] + ']: ' + self.compare_url + tags + '\n')
 
             return tuple(self.all_content)
 

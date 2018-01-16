@@ -59,6 +59,5 @@ setup(
         'console_scripts': [
             'rex = release_exporter:main'
         ]
-    },
-    cha
+    }
 )

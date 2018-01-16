@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Changed
 - Moved version to __init__.py
 
+## Fixed
+- Typo
+
     
 ## [v1.0.1] - 2018-01-16
 

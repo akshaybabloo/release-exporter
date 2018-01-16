@@ -4,7 +4,7 @@ from setuptools import setup
 
 from release_exporter._version import version
 
-here = os.path.abspath(os.path.dirname(__file__))
+here = os.path.abspath(os.path.dirname(__file__)) + os.sep
 
 try:
     import pypandoc

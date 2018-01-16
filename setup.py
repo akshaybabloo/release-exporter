@@ -2,10 +2,9 @@ import codecs
 import os
 from setuptools import setup
 
-from release_exporter import __version__
+from release_exporter._version import version
 
 here = os.path.abspath(os.path.dirname(__file__))
-
 
 try:
     import pypandoc
@@ -27,15 +26,13 @@ except OSError:
         changelog = f.read()
 
 
-
-
 def get_requirements(*parts):
     return codecs.open(os.path.join(here, *parts), 'r').read().splitlines()
 
 
 setup(
     name='release-exporter',
-    version=__version__,
+    version=version(),
     install_requires=get_requirements('requirements.txt'),
     packages=['tests', 'release_exporter'],
     url='https://github.com/akshaybabloo/release-exporter',
@@ -43,7 +40,7 @@ setup(
     author='Akshay Raj Gollahalli',
     author_email='akshay@gollahalli.com',
     description='Release exporter for GitHub and GitLab.',
-    long_description= long_description + '\n\n' + changelog,
+    long_description=long_description + '\n\n' + changelog,
     keywords=['changelog', 'releases'],
     classifiers=[
         'License :: OSI Approved :: MIT License',

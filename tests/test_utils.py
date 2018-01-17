@@ -1,7 +1,9 @@
-from release_exporter.utils import get_repo_url_info, date_convert, multi_key_gitlab
+from release_exporter.utils import get_repo_url_info, date_convert, multi_key_gitlab, description
 from release_exporter.exceptions import ParserError
 from giturlparse import parse
 import pytest
+import io
+import sys
 
 
 def test_get_repo_url_info_args():
@@ -56,3 +58,40 @@ def test_multi_key_gitlab_pass_except():
 
     content = multi_key_gitlab(data)
     assert content == None
+
+
+# ------------- description ------------
+
+def test_description_pass():
+    provider = "some provider"
+    repo_name = "some repo name"
+    tags_number = 22
+
+    expected = '\n'.join(['+-----------------+----------------+',
+                        '| Provider        | some provider  |',
+                        '+-----------------+----------------+',
+                        '| Repository Name | some repo name |',
+                        '+-----------------+----------------+',
+                        '| Number of Tags  | 22             |',
+                        '+-----------------+----------------+'])
+    
+    actual = description(provider, repo_name, tags_number)
+
+    assert actual == expected
+
+
+def test_description_fail():
+    provider = "some provider"
+    repo_name = "some repo name"
+
+    expected = '\n'.join(['+-----------------+----------------+',
+                        '| Provider        | some provider  |',
+                        '+-----------------+----------------+',
+                        '| Repository Name | some repo name |',
+                        '+-----------------+----------------+',
+                        '| Number of Tags  | 22             |',
+                        '+-----------------+----------------+'])
+    
+    actual = description(provider, repo_name)
+
+    assert actual != expected

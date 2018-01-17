@@ -91,6 +91,8 @@ You can also export your releases to JSON file by just replacing `markdown` with
 }
 ```
 
+> Note that the `Unreleased` tag is not counted in `totalTags`.
+
 #### Problems you might encounter
 
 If you are using `rex` on your repository folder or if you are using `--location` you might get an error saying that there are duplicate keys, this is because sometimes the file `.git/config` has more than one `[remote "origin"]`. In such case, it is best to give the URL of your repository by giving `--url <repo URL>`.

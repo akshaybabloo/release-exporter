@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Tests added - `date_convert`, `multi_key_gitlab` and `description`
 - `Problems you might encounter` added to `README.md` and typos corrected
 - JSON output example added to `README.md`
+- `release-exporter.png` added to `README.md`
 
 ### Removed
 

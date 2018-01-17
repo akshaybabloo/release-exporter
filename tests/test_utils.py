@@ -5,9 +5,11 @@ import pytest
 
 
 def test_get_repo_url_info_args():
-    content = get_repo_url_info(repo_url='https://github.com/akshaybabloo/release-exporter.git')
+    content = get_repo_url_info(
+        repo_url='https://github.com/akshaybabloo/release-exporter.git')
 
-    assert parse('https://github.com/akshaybabloo/release-exporter.git').owner == content.owner
+    assert parse(
+        'https://github.com/akshaybabloo/release-exporter.git').owner == content.owner
 
 
 def test_get_repo_url_info_fail():

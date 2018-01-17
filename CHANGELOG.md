@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `.tox/*` and `*tests*` to ignore list for codecov
 - Codecov and build status badges added
+- Tests added - `date_convert` and `multi_key_gitlab`
 
     
 ## [1.0.3] - 2018-01-16

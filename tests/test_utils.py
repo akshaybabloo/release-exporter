@@ -37,6 +37,11 @@ def test_date_convert_pass():
     content = date_convert('10-10-2019')
     assert content == '2019-10-10'
 
+
+def test_date_convert_pass2():
+    content = date_convert('2008-01-14T04:33:35Z')
+    assert content == '2008-01-14'
+
 # ----------------- multi_key_gitlab ------------------
 
 

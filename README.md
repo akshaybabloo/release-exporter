@@ -1,5 +1,7 @@
 # Release Exporter
 
+[![codecov](https://codecov.io/gh/akshaybabloo/release-exporter/branch/master/graph/badge.svg)](https://codecov.io/gh/akshaybabloo/release-exporter) [![Build Status](https://travis-ci.org/akshaybabloo/release-exporter.svg?branch=master)](https://travis-ci.org/akshaybabloo/release-exporter)
+
 Exports your releases to a markdown based on [keep a changelog](http://keepachangelog.com/en/1.0.0/) and [markdownlint](https://github.com/DavidAnson/markdownlint). This CLI application currently supports GitHub and GitLab.
 
 ## Install

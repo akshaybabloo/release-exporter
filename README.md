@@ -2,7 +2,7 @@
 
 [![codecov](https://codecov.io/gh/akshaybabloo/release-exporter/branch/master/graph/badge.svg)](https://codecov.io/gh/akshaybabloo/release-exporter) [![Build Status](https://travis-ci.org/akshaybabloo/release-exporter.svg?branch=master)](https://travis-ci.org/akshaybabloo/release-exporter)
 
-Exports your releases to a markdown based on [keep a changelog](http://keepachangelog.com/en/1.0.0/) and [markdownlint](https://github.com/DavidAnson/markdownlint). This CLI application currently supports GitHub and GitLab.
+This CLI exports your project releases to a markdown based on [keep a changelog](http://keepachangelog.com/en/1.0.0/) and [markdownlint](https://github.com/DavidAnson/markdownlint) and JSON, it currently supports GitHub and GitLab.
 
 ## Install
 
@@ -18,7 +18,7 @@ python setup.py install
 
 ## Usage
 
-In your terminal/cmd, change to the folder where you repository is located and do the following:
+In your terminal/cmd, change to the folder where your repository is located and do the following:
 
 ```bash
 rex --token <your token> markdown
@@ -47,13 +47,13 @@ Commands:
   markdown  Creates markdown file.
 ```
 
-If you don't have a repository on your computer but you still want to generate a change log you can manually add your repository URL as following:
+If you don't have a repository on your computer, but you still want to generate a change log you can manually add your repository URL as follows:
 
 ```bash
 rex markdown --token <your token> --url <your url>
 ```
 
-If you have your repository in a different location and you are lazy (like me) to change into that directory, get the absolute path of you repository add it to the `--location <location>`.
+If you have your repository in a different location and you are lazy (like me) to change into that directory, get the absolute path of your repository add it to the `--location <location>`.
 
 ```bash
 rex --token <your token> --location <absolute path>

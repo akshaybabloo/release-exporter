@@ -91,7 +91,7 @@ def multi_key_gitlab(value):
 
     try:
         return value['owner']['username']
-    except KeyError:
+    except (KeyError, TypeError):
         return None
 
 

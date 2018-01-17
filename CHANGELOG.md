@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `.tox/*` and `*tests*` to ignore list for codecov
 - Codecov and build status badges added
 - Tests added - `date_convert`, `multi_key_gitlab` and `description`
+- `Problems you might encounter` added to `README.md` and typos corrected
 
 ### Removed
 

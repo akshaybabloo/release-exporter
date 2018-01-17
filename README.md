@@ -59,7 +59,25 @@ If you have your repository in a different location and you are lazy (like me) t
 rex --token <your token> --location <absolute path>
 ```
 
-You can also export your releases to JSON file by just replacing `markdown` with `json`.
+You can also export your releases to JSON file by just replacing `markdown` with `json`. The output looks something like this:
+
+```json
+{
+    "repositoryName": "release-exporter",
+    "provider": "github.com",
+    "owner": "akshaybabloo",
+    "repoUrl": "https://github.com/akshaybabloo/release-exporter",
+    "totalTags": 4,
+    "data": [
+        {
+            "tagName": "Unreleased",
+            "description": "",
+            "createdAt": "",
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.0.3...HEAD"
+        }
+    ]
+}
+```
 
 #### Problems you might encounter
 

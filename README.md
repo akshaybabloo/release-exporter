@@ -53,7 +53,11 @@ If you don't have a repository on your computer but you still want to generate a
 rex markdown --token <your token> --url <your url>
 ```
 
-if you want to save it in a custom location you can use `--location <location>`.
+If you have your repo in a different location and you are lazy (like me) to change into that directory, get the absolute path of you repository add it to the `--location <location>`.
+
+```bash
+rex --token <your token> --location <absoulute path>
+```
 
 You can also export your releases to JSON file by just replacing `markdown` with `json`.
 

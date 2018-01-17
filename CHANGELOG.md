@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - CHANGELOG.rst and README.rst removed
 - `description` now returns a string instead of just printing when the function is called
+- Usage of `--location` clearly explained.
 
 ### Added
 

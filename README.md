@@ -67,13 +67,25 @@ You can also export your releases to JSON file by just replacing `markdown` with
     "provider": "github.com",
     "owner": "akshaybabloo",
     "repoUrl": "https://github.com/akshaybabloo/release-exporter",
-    "totalTags": 4,
+    "totalTags": 2,
     "data": [
         {
             "tagName": "Unreleased",
             "description": "",
             "createdAt": "",
-            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.0.3...HEAD"
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.0.1...HEAD"
+        },
+        {
+            "tagName": "v1.0.1",
+            "description": "### Added\n- Unreleased tag added to the template and GitHub\n- Unreleased tag added to GitHub\n\n### Fixed\n- Tag missing in GitHub JSON fixed\n- Tag missing in GitLab JSON fixed",
+            "createdAt": "2018-01-16",
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/v1.0...v1.0.1"
+        },
+        {
+            "tagName": "v1.0",
+            "description": "Initial release.",
+            "createdAt": "2018-01-15",
+            "compareUrl": null
         }
     ]
 }

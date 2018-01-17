@@ -61,19 +61,6 @@ def date_convert(date):
     return date
 
 
-def pairwise(iterable):
-    """Iterate in pairs
-
-    >>> list(pairwise([0, 1, 2, 3]))
-    [(0, 1), (1, 2), (2, 3)]
-    >>> tuple(pairwise([])) == tuple(pairwise('x')) == ()
-    True
-    """
-    a, b = tee(iterable)
-    next(b, 'master')
-    return zip(a, b)
-
-
 def multi_key_gitlab(value):
     """
     Returns the username, if an exception occurs None is returned.

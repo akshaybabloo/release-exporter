@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Codecov and build status badges added
 - Tests added - `date_convert`, `multi_key_gitlab` and `description`
 
+### Removed
+
+- `pairwise` removed
     
 ## [1.0.3] - 2018-01-16
 

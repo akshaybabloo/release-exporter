@@ -1,2 +1,5 @@
 [run]
 source=release-exporter
+omit = 
+    .tox/*
+    *tests*

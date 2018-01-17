@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - CHANGELOG.rst and README.rst removed
 
+### Added
+
+- `.tox/*` and `*tests*` to ignore list for codecov
+
     
 ## [1.0.3] - 2018-01-16
 

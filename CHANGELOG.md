@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 
 - CHANGELOG.rst and README.rst removed
+- `description` now returns a string instead of just printing when the function is called
 
 ### Added
 

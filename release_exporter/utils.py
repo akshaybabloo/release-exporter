@@ -107,6 +107,11 @@ def description(provider=None, repo_name=None, tags_number=None):
         Repository name.
     tags_number: str or int
         Number of tags.
+    
+    Return
+    ------
+    tabulate: str
+        A tabulated structure of the input.
     """
     table = [
         ['Provider', provider],
@@ -114,4 +119,4 @@ def description(provider=None, repo_name=None, tags_number=None):
         ['Number of Tags', tags_number]
     ]
 
-    print(tabulate(table, tablefmt="grid"))
+    return tabulate(table, tablefmt="grid")

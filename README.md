@@ -2,7 +2,7 @@
 
 [![codecov](https://codecov.io/gh/akshaybabloo/release-exporter/branch/master/graph/badge.svg)](https://codecov.io/gh/akshaybabloo/release-exporter) [![Build Status](https://travis-ci.org/akshaybabloo/release-exporter.svg?branch=master)](https://travis-ci.org/akshaybabloo/release-exporter)
 
-![logo-I-Guess](http://https://raw.githubusercontent.com/akshaybabloo/release-exporter/release-exporter.png)
+![logo-I-Guess](https://raw.githubusercontent.com/akshaybabloo/release-exporter/master/release-exporter.png)
 
 This CLI exports your project releases to a markdown based on [keep a changelog](http://keepachangelog.com/en/1.0.0/) and [markdownlint](https://github.com/DavidAnson/markdownlint) and JSON, it currently supports GitHub and GitLab.
 

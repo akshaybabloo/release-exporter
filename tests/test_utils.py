@@ -1,9 +1,8 @@
-from release_exporter.utils import get_repo_url_info, date_convert, multi_key_gitlab, description
-from release_exporter.exceptions import ParserError
-from giturlparse import parse
 import pytest
-import io
-import sys
+from giturlparse import parse
+
+from release_exporter.exceptions import ParserError
+from release_exporter.utils import get_repo_url_info, date_convert, multi_key_gitlab, description
 
 
 def test_get_repo_url_info_args():
@@ -25,6 +24,7 @@ def test_get_repo_url_info_pass():
 
     assert content.owner == 'akshaybabloo'
 
+
 # ---------------- date_convert -----------------------
 
 
@@ -41,6 +41,7 @@ def test_date_convert_pass():
 def test_date_convert_pass2():
     content = date_convert('2008-01-14T04:33:35Z')
     assert content == '2008-01-14'
+
 
 # ----------------- multi_key_gitlab ------------------
 
@@ -73,13 +74,13 @@ def test_description_pass():
     tags_number = 22
 
     expected = '\n'.join(['+-----------------+----------------+',
-                        '| Provider        | some provider  |',
-                        '+-----------------+----------------+',
-                        '| Repository Name | some repo name |',
-                        '+-----------------+----------------+',
-                        '| Number of Tags  | 22             |',
-                        '+-----------------+----------------+'])
-    
+                          '| Provider        | some provider  |',
+                          '+-----------------+----------------+',
+                          '| Repository Name | some repo name |',
+                          '+-----------------+----------------+',
+                          '| Number of Tags  | 22             |',
+                          '+-----------------+----------------+'])
+
     actual = description(provider, repo_name, tags_number)
 
     assert actual == expected
@@ -90,13 +91,13 @@ def test_description_fail():
     repo_name = "some repo name"
 
     expected = '\n'.join(['+-----------------+----------------+',
-                        '| Provider        | some provider  |',
-                        '+-----------------+----------------+',
-                        '| Repository Name | some repo name |',
-                        '+-----------------+----------------+',
-                        '| Number of Tags  | 22             |',
-                        '+-----------------+----------------+'])
-    
+                          '| Provider        | some provider  |',
+                          '+-----------------+----------------+',
+                          '| Repository Name | some repo name |',
+                          '+-----------------+----------------+',
+                          '| Number of Tags  | 22             |',
+                          '+-----------------+----------------+'])
+
     actual = description(provider, repo_name)
 
     assert actual != expected

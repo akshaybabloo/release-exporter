@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - JSON output example added to `README.md`
 - `release-exporter.png` added to `README.md`
 - `test_date_convert_pass2` added
+- `CHANGELOG.json` added
 
 ### Removed
 

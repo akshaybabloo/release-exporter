@@ -1,0 +1,39 @@
+{
+    "repositoryName": "release-exporter",
+    "provider": "github.com",
+    "owner": "akshaybabloo",
+    "repoUrl": "https://github.com/akshaybabloo/release-exporter",
+    "totalTags": 4,
+    "data": [
+        {
+            "tagName": "Unreleased",
+            "description": "",
+            "createdAt": "",
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.0.3...HEAD"
+        },
+        {
+            "tagName": "1.0.3",
+            "description": "### Changed\n- `v` removed from the version number\n- pypandoc usage removed and *.rst format added\n- Unwanted encoding removed",
+            "createdAt": "2018-01-16",
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.0.2...1.0.3"
+        },
+        {
+            "tagName": "1.0.2",
+            "description": "## Added\n- Long description and changelog added to setup.py\n\n## Fixed\n- Typo\n- Exception error type changed to ImportError",
+            "createdAt": "2018-01-16",
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/v1.0.1...1.0.2"
+        },
+        {
+            "tagName": "v1.0.1",
+            "description": "### Added\n- Unreleased tag added to the template and GitHub\n- Unreleased tag added to GitHub\n\n### Fixed\n- Tag missing in GitHub JSON fixed\n- Tag missing in GitLab JSON fixed",
+            "createdAt": "2018-01-16",
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/v1.0...v1.0.1"
+        },
+        {
+            "tagName": "v1.0",
+            "description": "Initial release.",
+            "createdAt": "2018-01-15",
+            "compareUrl": null
+        }
+    ]
+}

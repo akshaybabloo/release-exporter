@@ -27,15 +27,18 @@ def get_repo_url_info(location=os.getcwd(), repo_url=None):
         A named tuple.
 
     """
-    if repo_url is None:
-        config = configparser.ConfigParser()
-        config.read(location + os.sep + '.git' + os.sep + 'config')
-        if 'remote "origin"' in config.sections():
-            return parse(config['remote "origin"']['url'])
+    try:
+        if repo_url is None:
+            config = configparser.ConfigParser()
+            config.read(location + os.sep + '.git' + os.sep + 'config')
+            if 'remote "origin"' in config.sections():
+                return parse(config['remote "origin"']['url'])
+            else:
+                raise ParserError('Git config file does not exist please provide the repository url by using --url.')
         else:
-            raise ParserError('Git config file does not exist please provide the repository url by using --url.')
-    else:
-        return parse(repo_url + '.git')
+            return parse(repo_url + '.git')
+    except configparser.DuplicateSectionError:
+        print('There seems to be a duplicate section in your config. Try giving the repository URL by using --url.')
 
 
 def date_convert(date):

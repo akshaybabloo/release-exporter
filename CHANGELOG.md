@@ -24,6 +24,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `test_date_convert_pass2` added
 - `CHANGELOG.json` added
 
+### Fixed
+
+- `configparser` raises `configparser.DuplicateSectionError` if more than one section is found.
+
 ### Removed
 
 - `pairwise` removed

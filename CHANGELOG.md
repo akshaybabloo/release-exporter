@@ -31,6 +31,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 
 - `pairwise` removed
+
+### Changed
+
+- `url` changed in `setup.py`
     
 ## [1.0.3] - 2018-01-16
 

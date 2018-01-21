@@ -10,8 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 
 - CHANGELOG.rst and README.rst removed
-- `description` now returns a string instead of just printing when the function is called
-- Usage of `--location` clearly explained.
+- `pairwise` removed
 
 ### Added
 
@@ -23,18 +22,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `release-exporter.png` added to `README.md`
 - `test_date_convert_pass2` added
 - `CHANGELOG.json` added
+- Usage of `--location` clearly explained.
 
 ### Fixed
 
 - `configparser` raises `configparser.DuplicateSectionError` if more than one section is found.
 
-### Removed
-
-- `pairwise` removed
-
 ### Changed
 
 - `url` changed in `setup.py`
+- `description` now returns a string instead of just printing when the function is called
     
 ## [1.0.3] - 2018-01-16
 

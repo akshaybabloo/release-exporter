@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `test_date_convert_pass2` added
 - `CHANGELOG.json` added
 - Usage of `--location` clearly explained.
+- Blog URL added to `README.md`
 
 ### Fixed
 

@@ -32,6 +32,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `url` changed in `setup.py`
 - `description` now returns a string instead of just printing when the function is called
+- `_version.py` -> `version.py`
+- `version()` -> `__version__`
     
 ## [1.0.3] - 2018-01-16
 

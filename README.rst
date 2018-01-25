@@ -109,7 +109,8 @@ You can also export your releases to JSON file by just replacing
         ]
     }
 
-    Note that the ``Unreleased`` tag is not counted in ``totalTags``.
+
+Note that the ``Unreleased`` tag is not counted in ``totalTags``.
 
 Problems you might encounter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^

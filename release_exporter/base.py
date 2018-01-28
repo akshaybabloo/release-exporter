@@ -9,38 +9,24 @@ FILE_TYPE = {
 }
 
 
-class RequestBase:
-    """
-    Base class for requests.
-    """
-
-    def __init__(self, token=None, request_header=None, api_url=None, info=None, repo_url=None, *args, **kwargs):
-        self.token = token
-        self.request_header = request_header
-        self.api_url = api_url
-        self.info = info
-        self.repo_url = repo_url
-
-    def _total_number_releases(self):
-        pass
-
-    def releases(self):
-        pass
-
-
-class FormatBase(RequestBase):
+class FormatBase:
     """
     Base formatter for logs.
     """
 
-    def __init__(self, location=os.getcwd(), file_name='CHANGELOG', force=False, file_type='markdown', *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, token=None, request_header=None, api_url=None, info=None, repo_url=None, location=os.getcwd(),
+                 file_name='CHANGELOG', force=False, file_type='markdown'):
 
         self.location = location
         self.file_name = file_name
         self.force = force
         self.file_type = file_type
         self.all_content = []
+        self.token = token
+        self.request_header = request_header
+        self.api_url = api_url
+        self.info = info
+        self.repo_url = repo_url
 
         self.tag_name = None
         self.date = None
@@ -132,3 +118,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
         }
 
         return data
+
+    def _total_number_releases(self):
+        pass
+
+    def releases(self):
+        pass

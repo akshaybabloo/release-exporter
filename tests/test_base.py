@@ -3,26 +3,8 @@ import unittest
 
 import pytest
 
-from release_exporter.base import RequestBase, FormatBase, FILE_TYPE
+from release_exporter.base import FormatBase, FILE_TYPE
 from release_exporter.exceptions import FileExists
-
-
-class TestRequestBase(unittest.TestCase):
-    def setUp(self):
-        self.request_base = RequestBase()
-
-    def test_class_args(self):
-        self.assertIsNone(self.request_base.token)
-        self.assertIsNone(self.request_base.request_header)
-        self.assertIsNone(self.request_base.api_url)
-        self.assertIsNone(self.request_base.info)
-        self.assertIsNone(self.request_base.repo_url)
-
-    def test_total_number_releases(self):
-        self.assertIsNone(self.request_base._total_number_releases())
-
-    def test_releases(self):
-        self.assertIsNone(self.request_base.releases())
 
 
 class TestFormatBase(unittest.TestCase):

@@ -1,15 +1,15 @@
+import configparser
+import os
+import shutil
+import tempfile
+import time
+from pathlib import Path
+
 import pytest
 from giturlparse import parse
-import configparser
-import tempfile
-import os
-from pathlib import Path
-import shutil
-import time
 
 from release_exporter.exceptions import ParserError
 from release_exporter.utils import get_repo_url_info, date_convert, multi_key_gitlab, description
-
 
 DUP_SECTION = """\
 [branch "v3"]

@@ -47,6 +47,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `version()` -> `__version__`
 - `RequestBase` merged into `FormatBase`
 - `sys.exit(1)` -> `raise`
+- `main` removed from `__init__.py` and `cli` is used
     
 ## [1.0.3] - 2018-01-16
 

@@ -35,7 +35,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'rex = release_exporter:main'
+            'rex = release_exporter.cli:cli'
         ]
     }
 )

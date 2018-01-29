@@ -48,6 +48,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `RequestBase` merged into `FormatBase`
 - `sys.exit(1)` -> `raise`
 - `main` removed from `__init__.py` and `cli` is used
+- `DuplicateSectionError` raised instead of using `print` it
     
 ## [1.0.3] - 2018-01-16
 

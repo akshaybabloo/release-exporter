@@ -37,7 +37,8 @@ def get_repo_url_info(location=os.getcwd(), repo_url=None):
         else:
             return parse(repo_url + '.git')
     except configparser.DuplicateSectionError:
-        print('There seems to be a duplicate section in your config. Try giving the repository URL by using --url.')
+        raise configparser.DuplicateSectionError(
+            'There seems to be a duplicate section in your config. Try giving the repository URL by using --url.')
 
 
 def date_convert(date):

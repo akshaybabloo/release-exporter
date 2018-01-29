@@ -4,6 +4,7 @@ import sys
 import requests
 
 from release_exporter.base import FormatBase
+from release_exporter.exceptions import InvalidToken
 from release_exporter.utils import get_repo_url_info, multi_key_gitlab
 
 
@@ -18,11 +19,10 @@ class GitHubRequest(FormatBase):
         self.api_url = 'https://api.github.com/graphql'
 
         if self.token is None:
-            print(
+            raise InvalidToken(
                 "Oops! GitHub requires you to generate a private token to get the details. See "
                 "https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/ "
                 "for more information.")
-            sys.exit(1)
 
         if self.repo_url is not None:
             self.info = get_repo_url_info(self.location, repo_url=self.repo_url)

@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `CHANGELOG.json` added
 - Usage of `--location` clearly explained.
 - Blog URL added to `README.md`
+- invalid token added as exception in `exceptions.py`
 
 ### Fixed
 

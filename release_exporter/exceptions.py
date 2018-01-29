@@ -29,3 +29,14 @@ class UnknownRepo(Exception):
         super(UnknownRepo, self).__init__(message)
 
         self.errors = errors
+
+
+class InvalidToken(Exception):
+    """
+    This exception is raised when an invalid token is given or the token is empty (None).
+    """
+
+    def __init__(self, message, errors=None):
+        super(InvalidToken, self).__init__(message)
+
+        self.errors = errors

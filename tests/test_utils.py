@@ -1,8 +1,52 @@
 import pytest
 from giturlparse import parse
+import configparser
+import tempfile
+import os
+from pathlib import Path
+import shutil
+import time
 
 from release_exporter.exceptions import ParserError
 from release_exporter.utils import get_repo_url_info, date_convert, multi_key_gitlab, description
+
+
+DUP_SECTION = """\
+[branch "v3"]
+[travis]
+    slug = akshaybabloo/gollahalli-me
+[branch "v3"]
+    remote = origin
+    merge = refs/heads/v3
+"""
+
+PASS_SECTION = """\
+[remote "origin"]
+    url = git@github.com:akshaybabloo/release-exporter.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+    remote = origin
+    merge = refs/heads/master
+"""
+
+
+def temp_file(value):
+    temp_location = tempfile.gettempdir()
+    os.chdir(temp_location)
+
+    p = Path('.git/')
+
+    if p.is_dir():
+        shutil.rmtree(temp_location + os.sep + '.git')
+
+    time.sleep(1)
+
+    os.mkdir('.git/')
+
+    with open(temp_location + os.sep + '.git' + os.sep + 'config', 'w') as config_file:
+        config_file.write(value)
+
+# ---------------------- get_repo_url_info ------------------
 
 
 def test_get_repo_url_info_args():
@@ -20,9 +64,21 @@ def test_get_repo_url_info_fail():
 
 
 def test_get_repo_url_info_pass():
-    content = get_repo_url_info()
+    t = tempfile.gettempdir()
+    temp_file(PASS_SECTION)
+
+    content = get_repo_url_info(location=t)
 
     assert content.owner == 'akshaybabloo'
+
+
+def test_get_repo_url_info_fail_2():
+    t = tempfile.gettempdir()
+    temp_file(DUP_SECTION)
+
+    with pytest.raises(configparser.DuplicateSectionError,
+                       message='There seems to be a duplicate section in your config. Try giving the repository URL by using --url.'):
+        content = get_repo_url_info(location=t)
 
 
 # ---------------- date_convert -----------------------

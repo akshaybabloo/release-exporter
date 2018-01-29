@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - `TestGitHubRequestFail`
     - `TestGitHubRequest`, `test_GitLabRequest_fail`, `test_GitLabRequest_fail_2`, `TestGitLabRequestInit`, `TestGitLabRequestFail`, `TestGitLabRequest`
     - `test_GitLab_repo_id`
+    - `test_get_repo_url_info_fail_2`
 - `Problems you might encounter` added to `README.md` and typos corrected
 - JSON output example added to `README.md`
 - `release-exporter.png` added to `README.md`
@@ -34,6 +35,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Usage of `--location` clearly explained.
 - Blog URL added to `README.md`
 - invalid token added as exception in `exceptions.py`
+- Create temp files for testing `get_repo_url_info()`
 
 ### Fixed
 

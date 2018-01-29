@@ -1,5 +1,4 @@
 import json
-import sys
 
 import requests
 
@@ -100,11 +99,10 @@ class GitLabRequest(FormatBase):
         self.api_url = 'https://gitlab.com/api/v4/'
 
         if self.token is None:
-            print(
+            raise InvalidToken(
                 "Oops! GitLab requires you to generate a private token to get the details. See "
                 "https://docs.gitlab.com/ce/user/profile/personal_access_tokens.html "
                 "for more information.")
-            sys.exit(1)
 
         if self.repo_url is not None:
             self.info = get_repo_url_info(self.location, repo_url=self.repo_url)
@@ -142,8 +140,7 @@ class GitLabRequest(FormatBase):
         try:
             return id_number[0]['id']
         except KeyError:
-            print('Wrong credentials given. Please check if you have the correct token.')
-            sys.exit(1)
+            raise KeyError('Wrong credentials given. Please check if you have the correct token.')
 
     def releases(self):
         """

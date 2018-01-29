@@ -1,7 +1,6 @@
 import configparser
 import datetime
 import os
-from itertools import tee
 
 import dateutil.parser
 from giturlparse import parse

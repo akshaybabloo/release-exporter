@@ -9,9 +9,6 @@ from release_exporter.exceptions import FileExists, InvalidToken
 from release_exporter.requests import GitHubRequest, GitLabRequest
 
 
-def get_input(text):
-    return input(text)
-
 # ---------------------------------- GitHub -----------------------------------------
 
 

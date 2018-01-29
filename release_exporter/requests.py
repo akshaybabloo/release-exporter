@@ -53,8 +53,7 @@ class GitHubRequest(FormatBase):
         try:
             return int(json.loads(r.text)['data']['repository']['releases']['totalCount'])
         except KeyError:
-            print('Wrong credentials given. Please check if you have the correct token.')
-            sys.exit(1)
+            raise KeyError('Wrong credentials given. Please check if you have the correct token.')
 
     def releases(self):
         """

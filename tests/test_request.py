@@ -7,6 +7,9 @@ from release_exporter.exceptions import FileExists, InvalidToken
 from release_exporter.requests import GitHubRequest
 
 
+# ---------------------------------- GitHub -----------------------------------------
+
+
 def test_GitHubRequest_fail():
     with pytest.raises(FileExists,
                        message='CHANGELOG.md already exists at ' + os.getcwd() + '. Use --force to override.'):
@@ -34,3 +37,7 @@ class TestGitHubRequestInit(unittest.TestCase):
     def test_init_condition(self):
         self.github_request_class.repo_url = 'not none'
         self.assertEqual(str(type(self.github_request_class.info)), "<class 'giturlparse.parser.Parsed'>")
+
+
+# ---------------------------------- GitLab -----------------------------------------
+

@@ -1,5 +1,6 @@
 import os
 import unittest
+import json
 
 import pytest
 
@@ -35,7 +36,8 @@ class TestGitHubRequestInit(unittest.TestCase):
         self.assertEqual(str(type(self.github_request_class.info)), "<class 'giturlparse.parser.Parsed'>")
 
     def test_init_condition(self):
-        local_car = GitHubRequest(force=True, token='hello', repo_url='https://github.com/akshaybabloo/release-exporter')
+        local_car = GitHubRequest(force=True, token='hello',
+                                  repo_url='https://github.com/akshaybabloo/release-exporter')
         self.assertEqual(local_car.info.name, 'release-exporter')
 
 
@@ -52,5 +54,20 @@ class TestGitHubRequestFail(unittest.TestCase):
         with pytest.raises(KeyError, message='Wrong credentials given. Please check if you have the correct token.'):
             response = self.github_request_class.releases()
 
-# ---------------------------------- GitLab -----------------------------------------
 
+class TestGitHubRequest(unittest.TestCase):
+
+    def setUp(self):
+        self.github_request_class = GitHubRequest(force=True, token=os.environ['GITHUB_TOKEN'],
+                                                  repo_url='https://github.com/akshaybabloo/release-exporter')
+
+    def test_total_number_releases(self):
+        response = self.github_request_class._total_number_releases()
+
+        self.assertIsInstance(response, int)
+
+    def test_release(self):
+        response = self.github_request_class.releases()
+        self.assertIn('tag', json.dumps(response))
+
+# ---------------------------------- GitLab -----------------------------------------

@@ -39,5 +39,18 @@ class TestGitHubRequestInit(unittest.TestCase):
         self.assertEqual(local_car.info.name, 'release-exporter')
 
 
+class TestGitHubRequestFail(unittest.TestCase):
+
+    def setUp(self):
+        self.github_request_class = GitHubRequest(force=True, token='hello')
+
+    def test_total_number_releases(self):
+        with pytest.raises(KeyError, message='Wrong credentials given. Please check if you have the correct token.'):
+            response = self.github_request_class._total_number_releases()
+
+    def test_releases(self):
+        with pytest.raises(KeyError, message='Wrong credentials given. Please check if you have the correct token.'):
+            response = self.github_request_class.releases()
+
 # ---------------------------------- GitLab -----------------------------------------
 

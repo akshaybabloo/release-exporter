@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - `test_GitHubRequest_fail`, `test_GitHubRequest_fail_2` and `TestGitHubRequestInit`
     - `TestGitHubRequestFail`
     - `TestGitHubRequest`, `test_GitLabRequest_fail`, `test_GitLabRequest_fail_2`, `TestGitLabRequestInit`, `TestGitLabRequestFail`, `TestGitLabRequest`
+    - `test_GitLab_repo_id`
 - `Problems you might encounter` added to `README.md` and typos corrected
 - JSON output example added to `README.md`
 - `release-exporter.png` added to `README.md`

@@ -1,12 +1,16 @@
 import json
 import os
 import unittest
+from unittest.mock import patch
 
 import pytest
 
 from release_exporter.exceptions import FileExists, InvalidToken
 from release_exporter.requests import GitHubRequest, GitLabRequest
 
+
+def get_input(text):
+    return input(text)
 
 # ---------------------------------- GitHub -----------------------------------------
 
@@ -107,11 +111,11 @@ class TestGitLabRequestInit(unittest.TestCase):
 class TestGitLabRequestFail(unittest.TestCase):
 
     def setUp(self):
-        self.gitlab_request_class = GitHubRequest(force=True, token='hello')
+        self.gitlab_request_class = GitLabRequest(force=True, token='hello')
 
-    def test_total_number_releases(self):
+    def test_repo_id(self):
         with pytest.raises(KeyError, message='Wrong credentials given. Please check if you have the correct token.'):
-            response = self.gitlab_request_class._total_number_releases()
+            response = self.gitlab_request_class._repo_id()
 
     def test_releases(self):
         with pytest.raises(KeyError, message='Wrong credentials given. Please check if you have the correct token.'):
@@ -124,7 +128,7 @@ class TestGitLabRequest(unittest.TestCase):
         self.gitlab_request_class = GitLabRequest(force=True, token=os.environ['GITLAB_TOKEN'],
                                                   repo_url='https://gitlab.com/akshaybabloo/test-releases')
 
-    def test_total_number_releases(self):
+    def test_repo_id(self):
         response = self.gitlab_request_class._repo_id()
 
         self.assertIsInstance(response, int)
@@ -132,3 +136,11 @@ class TestGitLabRequest(unittest.TestCase):
     def test_release(self):
         response = self.gitlab_request_class.releases()
         self.assertIn('tag_name', json.dumps(response))
+
+
+def test_GitLab_repo_id():
+    gitlab_request_class = GitLabRequest(force=True, token=os.environ['GITLAB_TOKEN'],
+                                         repo_url='https://gitlab.com/akshaybabloo/public')
+
+    with patch('builtins.input', return_value='12345'):
+        assert gitlab_request_class._repo_id() == '12345'

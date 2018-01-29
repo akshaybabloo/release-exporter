@@ -35,8 +35,8 @@ class TestGitHubRequestInit(unittest.TestCase):
         self.assertEqual(str(type(self.github_request_class.info)), "<class 'giturlparse.parser.Parsed'>")
 
     def test_init_condition(self):
-        self.github_request_class.repo_url = 'not none'
-        self.assertEqual(str(type(self.github_request_class.info)), "<class 'giturlparse.parser.Parsed'>")
+        local_car = GitHubRequest(force=True, token='hello', repo_url='https://github.com/akshaybabloo/release-exporter')
+        self.assertEqual(local_car.info.name, 'release-exporter')
 
 
 # ---------------------------------- GitLab -----------------------------------------

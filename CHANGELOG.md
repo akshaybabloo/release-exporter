@@ -16,11 +16,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `.tox/*` and `*tests*` to ignore list for codecov
 - Codecov and build status badges added
-- Tests added - `date_convert`, `multi_key_gitlab`, `description` and `base.py`
+- Tests added -
+    - `date_convert`,
+    - `multi_key_gitlab`,
+    - `description`
+    - `base.py`,
+    - `version`
+    - `test_date_convert_pass2`
+    - `test_GitHubRequest_fail`, `test_GitHubRequest_fail_2` and `TestGitHubRequestInit`
 - `Problems you might encounter` added to `README.md` and typos corrected
 - JSON output example added to `README.md`
 - `release-exporter.png` added to `README.md`
-- `test_date_convert_pass2` added
 - `CHANGELOG.json` added
 - Usage of `--location` clearly explained.
 - Blog URL added to `README.md`

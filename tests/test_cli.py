@@ -37,7 +37,7 @@ SECTION = """\
 
 GITLAB_SECTION = """\
 [remote "origin"]
-    url = git@github.com:akshaybabloo/release-exporter.git
+    url = git@gitlab.com:akshaybabloo/release-exporter.git
     fetch = +refs/heads/*:refs/remotes/origin/*
 [branch "master"]
     remote = origin
@@ -143,6 +143,7 @@ def test_markdown_fail_3():
 
     assert result.exit_code == -1
     assert isinstance(result.exception, KeyError)
+    assert 'GitLab' in result.output
 
 
 def test_json_fail_3():
@@ -154,3 +155,4 @@ def test_json_fail_3():
 
     assert result.exit_code == -1
     assert isinstance(result.exception, KeyError)
+    assert 'GitLab' in result.output

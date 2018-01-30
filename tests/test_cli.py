@@ -134,22 +134,22 @@ def test_json_fail_exception():
 
 
 def test_markdown_fail_3():
-    t = tempfile.gettempdir()
+    t1 = tempfile.gettempdir()
     temp_file(GITLAB_SECTION)
 
     runner = CliRunner()
-    result = runner.invoke(cli, ['--token', 'some_token', '--location', t, 'markdown'], obj=Values())
+    result = runner.invoke(cli, ['--token', 'some_token', '--location', t1, 'markdown'], obj=Values())
 
     assert result.exit_code == -1
     assert isinstance(result.exception, KeyError)
 
 
 def test_json_fail_3():
-    t = tempfile.gettempdir()
+    t1 = tempfile.gettempdir()
     temp_file(GITLAB_SECTION)
 
     runner = CliRunner()
-    result = runner.invoke(cli, ['--token', 'some_token', '--location', t, 'json'], obj=Values())
+    result = runner.invoke(cli, ['--token', 'some_token', '--location', t1, 'json'], obj=Values())
 
     assert result.exit_code == -1
     assert isinstance(result.exception, KeyError)

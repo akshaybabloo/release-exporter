@@ -112,7 +112,7 @@ def test_json_fail_2():
     assert isinstance(result.exception, KeyError)
 
 t = tempfile.gettempdir()
-    temp_file(SECTION)
+temp_file(SECTION)
 
 @patch('os.name', 'nt')
 def test_markdown_exception():

@@ -65,13 +65,13 @@ def json(ctx):
         ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
 
     if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
-        print('GitHub detected. \n')
+        click.echo('GitHub detected. \n')
 
         github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
                file_type='json').write_json()
 
     elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
-        print('GitLab detected. \n')
+        click.echo('GitLab detected. \n')
 
         gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
                file_type='json').write_json()

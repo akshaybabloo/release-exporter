@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - `test_get_repo_url_info_fail_2`
     - `test_cli_help`, `test_print_version`
     - `test_markdown_fail`, `test_json_fail`
+    - `test_markdown_fail_2`, `test_json_fail_2`
 - `Problems you might encounter` added to `README.md` and typos corrected
 - JSON output example added to `README.md`
 - `release-exporter.png` added to `README.md`

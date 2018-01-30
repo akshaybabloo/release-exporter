@@ -1,5 +1,6 @@
 from click.testing import CliRunner
 from release_exporter.cli import cli, json, markdown, print_version
+import os
 
 
 class Values:
@@ -41,7 +42,7 @@ def test_markdown_fail():
     assert isinstance(result.exception, KeyError)
 
 
-def test_json_markdown_fail():
+def test_json_fail():
     runner = CliRunner()
     result = runner.invoke(cli, ['--token', 'some_token', 'json'], obj=Values())
 
@@ -49,5 +50,17 @@ def test_json_markdown_fail():
     assert isinstance(result.exception, KeyError)
 
 
-if __name__ == '__main__':
-    test_markdown_fail()
+def test_markdown_fail_2():
+    runner = CliRunner()
+    result = runner.invoke(cli, ['--token', 'some_token', '--location', os.getcwd(), 'markdown'], obj=Values())
+
+    assert result.exit_code == -1
+    assert isinstance(result.exception, KeyError)
+
+
+def test_json_fail_2():
+    runner = CliRunner()
+    result = runner.invoke(cli, ['--token', 'some_token', '--location', os.getcwd(), 'json'], obj=Values())
+
+    assert result.exit_code == -1
+    assert isinstance(result.exception, KeyError)

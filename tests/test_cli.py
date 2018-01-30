@@ -111,11 +111,11 @@ def test_json_fail_2():
     assert result.exit_code == -1
     assert isinstance(result.exception, KeyError)
 
+t = tempfile.gettempdir()
+    temp_file(SECTION)
 
 @patch('os.name', 'nt')
 def test_markdown_exception():
-    t = tempfile.gettempdir()
-    temp_file(SECTION)
 
     runner = CliRunner()
     result = runner.invoke(cli, ['--token', 'some_token', '--location', t, 'markdown'], obj=Values())
@@ -125,8 +125,6 @@ def test_markdown_exception():
 
 
 def test_json_fail_exception():
-    t = tempfile.gettempdir()
-    temp_file(SECTION)
 
     runner = CliRunner()
     result = runner.invoke(cli, ['--token', 'some_token', '--location', t, 'json'], obj=Values())

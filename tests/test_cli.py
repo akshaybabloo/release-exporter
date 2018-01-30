@@ -1,6 +1,9 @@
-from click.testing import CliRunner
-from release_exporter.cli import cli, json, markdown, print_version
 import os
+from unittest.mock import patch
+
+from click.testing import CliRunner
+
+from release_exporter.cli import cli
 
 
 class Values:
@@ -50,6 +53,7 @@ def test_json_fail():
     assert isinstance(result.exception, KeyError)
 
 
+@patch('os.name', 'nt')
 def test_markdown_fail_2():
     runner = CliRunner()
     result = runner.invoke(cli, ['--token', 'some_token', '--location', os.getcwd(), 'markdown'], obj=Values())
@@ -58,6 +62,7 @@ def test_markdown_fail_2():
     assert isinstance(result.exception, KeyError)
 
 
+@patch('os.name', 'nt')
 def test_json_fail_2():
     runner = CliRunner()
     result = runner.invoke(cli, ['--token', 'some_token', '--location', os.getcwd(), 'json'], obj=Values())

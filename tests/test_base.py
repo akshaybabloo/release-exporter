@@ -55,6 +55,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     def test_converter(self):
         self.assertIsNone(self.format_base._converter())
 
+    @unittest.skip('Pass method - _total_number_releases')
+    def test_total_number_releases(self):
+        pass
+
+    @unittest.skip('Pass method - release')
+    def test_releases(self):
+        pass
+
 
 class FormatRequestBaseBody(unittest.TestCase):
     def setUp(self):

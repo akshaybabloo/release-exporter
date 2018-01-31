@@ -127,6 +127,7 @@ def test_file_type_constant():
     actual = {
         'markdown': '.md',
         'json': '.json',
+        'rest': '.rst'
     }
     assert FILE_TYPE == actual
 

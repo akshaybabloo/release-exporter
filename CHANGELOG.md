@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `rest` command added to README.rst
+
 ### Changed
 
 - Header image updated with reStructuredText text

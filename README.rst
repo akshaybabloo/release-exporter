@@ -4,7 +4,7 @@ Release Exporter
 |codecov| |Build Status|
 
 .. figure:: https://raw.githubusercontent.com/akshaybabloo/release-exporter/master/release-exporter.png
-   :alt: logo-I-Guess
+    :alt: logo-I-Guess
 
 **Blog:** https://blog.gollahalli.com/export-your-github-and-gitlab-releases-as-a-changelog/
 
@@ -46,19 +46,20 @@ Release exporter has the following options
 
 .. code:: bash
 
-    Usage: rex [OPTIONS] COMMAND [ARGS]...
+   Usage: rex [OPTIONS] COMMAND [ARGS]...
 
-    Options:
-      --token TEXT     Token number if its a private repository.
-      --url TEXT       URL of your repository. This is optional if your current
-                       directory has .git folder with remote url.
-      --location TEXT  Local location of your repository.
-      --version
-      --help           Show this message and exit.
+   Options:
+     --token TEXT     Token number if its a private repository.
+     --url TEXT       URL of your repository. This is optional if your current
+                      directory has .git folder with remote url.
+     --location TEXT  Local location of your repository.
+     --version
+     --help           Show this message and exit.
 
-    Commands:
-      json      Creates JSON file.
-      markdown  Creates markdown file.
+   Commands:
+     json      Creates JSON file.
+     markdown  Creates markdown file.
+     rest      Creates reStructuredText file.
 
 If you don't have a repository on your computer, but you still want to
 generate a change log you can manually add your repository URL as
@@ -132,6 +133,6 @@ Reference
 -  Markdown logo from https://github.com/dcurtis/markdown-mark/
 
 .. |codecov| image:: https://codecov.io/gh/akshaybabloo/release-exporter/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/akshaybabloo/release-exporter
+    :target: https://codecov.io/gh/akshaybabloo/release-exporter
 .. |Build Status| image:: https://travis-ci.org/akshaybabloo/release-exporter.svg?branch=master
-   :target: https://travis-ci.org/akshaybabloo/release-exporter
+    :target: https://travis-ci.org/akshaybabloo/release-exporter

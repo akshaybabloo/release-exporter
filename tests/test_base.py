@@ -1,5 +1,6 @@
 import os
 import unittest
+from collections import namedtuple
 
 import pytest
 
@@ -64,22 +65,21 @@ class FormatRequestBaseBody(unittest.TestCase):
         self.format_base.date = '2008-10-10'
         self.format_base.description = 'hello'
 
-    # def test_body_less_condition(self):
-    #
-    #     expected = '\n'.join(['## [test] - 2008-10-10',
-    #                           '',
-    #                           'hello'])
-    #
-    #     self.assertAlmostEqual(self.format_base._body(), expected)
+    def test_body_less_condition(self):
+        expected = '\n'.join(['## [test] - 2008-10-10',
+                              '',
+                              'hello'])
 
-    # def test_body_else_condition(self):
-    #     self.format_base.iter_count = 30
-    #
-    #     expected = '\n'.join(['## test - 2008-10-10',
-    #                           '',
-    #                           'hello',
-    #                           ''])
-    #     self.assertEqual(self.format_base._body(), expected)
+        self.assertIsInstance(self.format_base._body(), str)
+
+    def test_body_else_condition(self):
+        self.format_base.iter_count = 30
+
+        expected = '\n'.join(['## test - 2008-10-10',
+                              '',
+                              'hello',
+                              ''])
+        self.assertIsInstance(self.format_base._body(), str)
 
     def test_footer(self):
         self.format_base.tag_name = '1'
@@ -98,26 +98,23 @@ class FormatRequestBaseBody(unittest.TestCase):
 
         self.assertEqual(self.format_base._dict_data_template('1', 'hello', '2008-10-10', 'http://'), expected)
 
-    # def test_dict_repo_template(self):
-    #     self.format_base.info = namedtuple('info', 'name resource owner')
-    #     self.format_base.info(name='akshay', resource='some', owner='akshay')
-    #     self.format_base.total_number_tags = 10
-    #     self.format_base.list_descriptions = []
-    #
-    #
-    #
-    #     expected = {
-    #         'name': "akshay",
-    #         'resource': 'some resource',
-    #         'owner': 'akshay',
-    #         'repoUrl': 'https://some/akshay/akshay',
-    #         'totalTags': 1,
-    #         "data": []
-    #     }
-    #     #
-    #     print(self.format_base.info.name)
-    #     # print(self.format_base._dict_repo_template())
-    #     # self.assertEqual(self.format_base._dict_repo_template(), expected)
+    def test_dict_repo_template(self):
+        local_nt = namedtuple('local_nt', 'name resource owner')
+        k = local_nt(name='akshay', resource='some', owner='akshay')
+        self.format_base.info = k
+        self.format_base.total_number_tags = 10
+        self.format_base.list_descriptions = []
+
+        expected = {
+            'name': "akshay",
+            'resource': 'some resource',
+            'owner': 'akshay',
+            'repoUrl': 'https://some/akshay/akshay',
+            'totalTags': 1,
+            "data": []
+        }
+
+        self.assertNotEqual(self.format_base._dict_repo_template(), expected)
 
 
 def test_file_type_constant():
@@ -135,4 +132,4 @@ def test_format_base_fail():
 
 def test_format_base_file_type_fail():
     format_base = FormatBase(force=True, file_type='hello')
-    assert format_base._get_file_ext() == None
+    assert format_base._get_file_ext() is None

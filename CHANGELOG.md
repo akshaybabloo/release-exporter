@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - `test_markdown_fail`, `test_json_fail`
     - `test_markdown_fail_2`, `test_json_fail_2`
     - `test_markdown_exception`, `test_json_exception`, `test_markdown_fail_3`, `test_json_fail_3`
+    - `TestGitHubFormatMarkdown`
 - `Problems you might encounter` added to `README.md` and typos corrected
 - JSON output example added to `README.md`
 - `release-exporter.png` added to `README.md`

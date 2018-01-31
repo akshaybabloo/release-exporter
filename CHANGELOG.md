@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+
+## [1.0.4] - 2018-01-31
+
 ### Removed
 
 - CHANGELOG.rst and README.rst removed
@@ -88,7 +92,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Initial release.
 
-[Unreleased]: https://github.com/akshaybabloo/release-exporter/compare/1.0.3...HEAD
+[Unreleased]: https://github.com/akshaybabloo/release-exporter/compare/1.0.4...HEAD
+[1.0.4]: https://github.com/akshaybabloo/release-exporter/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/akshaybabloo/release-exporter/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/akshaybabloo/release-exporter/compare/v1.0.1...1.0.2
 [v1.0.1]: https://github.com/akshaybabloo/release-exporter/compare/v1.0...v1.0.1

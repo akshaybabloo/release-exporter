@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `rest` command added to README.rst
 - `rest` command added to cli.py
+- `FormatRstBase` added to `base.py`
 
 ### Changed
 

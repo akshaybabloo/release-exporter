@@ -6,6 +6,7 @@ from .exceptions import FileExists
 FILE_TYPE = {
     'markdown': '.md',
     'json': '.json',
+    'rest': '.rst'
 }
 
 
@@ -124,3 +125,50 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
     def releases(self):
         pass
+
+
+class FormatRstBase(FormatBase):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    @classmethod
+    def _header_rst(cls):
+        return """\
+Changelog
+=========
+
+All notable changes to this project will be documented in this file.
+
+The format is based on `Keep a Changelog <http://keepachangelog.com/en/1.0.0/>`__
+and this project adheres to `Semantic Versioning <http://semver.org/spec/v2.0.0.html>`__.
+
+Unreleased_
+-----------
+
+"""
+
+    def _body_rst(self):
+
+        if self.iter_count < self.total_number_tags - 1:
+
+            return """\
+
+## [{tag_name}] - {date}
+
+{description}
+""".format(tag_name=self.tag_name, date=self.date, description=self.description)
+        else:
+            return """\
+
+{tag_name}_ - {date}
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+{description}
+
+""".format(tag_name=self.tag_name, date=self.date, description=self.description)
+
+    def _footer_rst(self):
+        return """\
+.. _{tag_name}: {url}
+""".format(tag_name=self.tag_name, url=self.repo_url)

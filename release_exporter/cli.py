@@ -100,3 +100,7 @@ def rest(ctx):
 
     else:
         raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")
+
+
+def main():
+    cli(obj={})

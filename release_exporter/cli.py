@@ -80,7 +80,7 @@ def json(ctx):
         raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")
 
 
-@cli.command(help='Creates reStructuredText file.')
+@cli.command(help='Creates reStructuredText file. Coming soon.')
 @click.pass_context
 def rest(ctx):
     if os.name == 'nt':

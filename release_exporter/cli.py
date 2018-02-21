@@ -83,23 +83,24 @@ def json(ctx):
 @cli.command(help='Creates reStructuredText file. Coming soon.')
 @click.pass_context
 def rest(ctx):
-    if os.name == 'nt':
-        ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
-
-    if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
-        click.echo('GitHub detected. \n')
-
-        github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-               file_type='rest').write_json()
-
-    elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
-        click.echo('GitLab detected. \n')
-
-        gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-               file_type='rest').write_json()
-
-    else:
-        raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")
+    # if os.name == 'nt':
+    #     ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
+    #
+    # if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+    #     click.echo('GitHub detected. \n')
+    #
+    #     github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+    #            file_type='rest').write_json()
+    #
+    # elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+    #     click.echo('GitLab detected. \n')
+    #
+    #     gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+    #            file_type='rest').write_json()
+    #
+    # else:
+    #     raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")
+    raise NotImplementedError("Coming soon.")
 
 
 def main():

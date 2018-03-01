@@ -103,5 +103,33 @@ def rest(ctx):
     raise NotImplementedError("Coming soon.")
 
 
+@cli.command('all', help='Creates change log for all formats.')
+@click.pass_context
+def all_format(ctx):
+    if os.name == 'nt':
+        ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
+
+    # Creates JSON format
+
+    github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+           file_type='json').write_json()
+    gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+           file_type='json').write_json()
+
+    # Creates Markdown format
+
+    github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+           file_type='markdown').write_markdown()
+    gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+           file_type='markdown').write_markdown()
+
+    # Creates RST format
+
+    # github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+    #        file_type='rst').write_rst()
+    # gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+    #        file_type='rst').write_rst()
+
+
 def main():
     cli(obj={})

@@ -3,13 +3,31 @@
     "provider": "github.com",
     "owner": "akshaybabloo",
     "repoUrl": "https://github.com/akshaybabloo/release-exporter",
-    "totalTags": 4,
+    "totalTags": 7,
     "data": [
         {
             "tagName": "Unreleased",
             "description": "",
             "createdAt": "",
-            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.0.3...HEAD"
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.0.6...HEAD"
+        },
+        {
+            "tagName": "1.0.6",
+            "description": "### Updated\n\n- Blog URL updated",
+            "createdAt": "2018-03-01",
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.0.5...1.0.6"
+        },
+        {
+            "tagName": "1.0.5",
+            "description": "### Added\n\n- `rest` command added to README.rst\n- `rest` command added to cli.py\n- `FormatRstBase` added to `base.py`\n\n### Changed\n\n- Header image updated with reStructuredText text\n\n### Fixed\n\n- cli fixed - see #2",
+            "createdAt": "2018-02-21",
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.0.4...1.0.5"
+        },
+        {
+            "tagName": "1.0.4",
+            "description": "### Removed\n\n- CHANGELOG.rst and README.rst removed\n- `pairwise` removed\n\n### Added\n\n- `.tox/*` and `*tests*` to ignore list for codecov\n- Codecov and build status badges added\n- Tests added -\n    - `date_convert`,\n    - `multi_key_gitlab`,\n    - `description`\n    - `base.py`,\n    - `version`\n    - `test_date_convert_pass2`\n    - `test_GitHubRequest_fail`, `test_GitHubRequest_fail_2` and `TestGitHubRequestInit`\n    - `TestGitHubRequestFail`\n    - `TestGitHubRequest`, `test_GitLabRequest_fail`, `test_GitLabRequest_fail_2`, `TestGitLabRequestInit`, `TestGitLabRequestFail`, `TestGitLabRequest`\n    - `test_GitLab_repo_id`\n    - `test_get_repo_url_info_fail_2`\n    - `test_cli_help`, `test_print_version`\n    - `test_markdown_fail`, `test_json_fail`\n    - `test_markdown_fail_2`, `test_json_fail_2`\n    - `test_markdown_exception`, `test_json_exception`, `test_markdown_fail_3`, `test_json_fail_3`\n    - `TestGitHubFormatMarkdown` and `TestGitHubFormatJson`\n    - `TestGitLabFormatMarkdown` and `TestGitLabFormatJson`\n- `Problems you might encounter` added to `README.md` and typos corrected\n- JSON output example added to `README.md`\n- `release-exporter.png` added to `README.md`\n- `CHANGELOG.json` added\n- Usage of `--location` clearly explained.\n- Blog URL added to `README.md`\n- invalid token added as exception in `exceptions.py`\n- Create temp files for testing `get_repo_url_info()`\n\n### Fixed\n\n- `configparser` raises `configparser.DuplicateSectionError` if more than one section is found.\n\n### Changed\n\n- `url` changed in `setup.py`\n- `description` now returns a string instead of just printing when the function is called\n- `_version.py` -> `version.py`\n- `version()` -> `__version__`\n- `RequestBase` merged into `FormatBase`\n- `sys.exit(1)` -> `raise`\n- `main` removed from `__init__.py` and `cli` is used\n- `DuplicateSectionError` raised instead of using `print` it",
+            "createdAt": "2018-01-31",
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.0.3...1.0.4"
         },
         {
             "tagName": "1.0.3",

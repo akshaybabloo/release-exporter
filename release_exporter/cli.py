@@ -82,7 +82,7 @@ def json(ctx):
 
 @cli.command(help='Creates reStructuredText file. Coming soon.')
 @click.pass_context
-def rest(ctx):
+def rst(ctx):
     # if os.name == 'nt':
     #     ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
     #

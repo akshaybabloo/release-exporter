@@ -6,7 +6,7 @@ import dateutil.parser
 from giturlparse import parse
 from tabulate import tabulate
 
-from .exceptions import ParserError
+from release_exporter.exceptions import ParserError
 
 
 def get_repo_url_info(location=os.getcwd(), repo_url=None):

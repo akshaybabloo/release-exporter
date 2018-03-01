@@ -109,26 +109,24 @@ def all_format(ctx):
     if os.name == 'nt':
         ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
 
-    # Creates JSON format
-
-    github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-           file_type='json').write_json()
-    gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-           file_type='json').write_json()
-
-    # Creates Markdown format
-
-    github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-           file_type='markdown').write_markdown()
-    gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-           file_type='markdown').write_markdown()
-
-    # Creates RST format
-
-    # github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-    #        file_type='rst').write_rst()
-    # gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-    #        file_type='rst').write_rst()
+    if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+        # Creates for GitHub
+        print("Creating change logs for GitHub.")
+        github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+               file_type='json').write_json()
+        github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+               file_type='markdown').write_markdown()
+        # github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+        #        file_type='rst').write_rst()
+    else:
+        # Creates for GitLab
+        print("Creating change logs for GitLab.")
+        gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+               file_type='json').write_json()
+        gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+               file_type='markdown').write_markdown()
+        # gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+        #        file_type='rst').write_rst()
 
 
 def main():

@@ -6,7 +6,7 @@ Release Exporter
 .. figure:: https://raw.githubusercontent.com/akshaybabloo/release-exporter/master/release-exporter.png
     :alt: logo-I-Guess
 
-**Blog:** https://blog.gollahalli.com/export-your-github-and-gitlab-releases-as-a-changelog/
+**Blog:** https://www.gollahalli.com/blog/export-your-github-and-gitlab-releases-as-a-changelog/
 
 This CLI exports your project releases to a markdown based on `keep a
 changelog <http://keepachangelog.com/en/1.0.0/>`__ and

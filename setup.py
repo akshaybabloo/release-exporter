@@ -16,7 +16,7 @@ setup(
     version=__version__,
     install_requires=get_requirements('requirements.txt'),
     packages=['tests', 'release_exporter'],
-    url='https://blog.gollahalli.com/export-your-github-and-gitlab-releases-as-a-changelog/',
+    url='https://www.gollahalli.com/blog/export-your-github-and-gitlab-releases-as-a-changelog/',
     license='MIT',
     author='Akshay Raj Gollahalli',
     author_email='akshay@gollahalli.com',

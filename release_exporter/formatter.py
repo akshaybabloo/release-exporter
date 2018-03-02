@@ -39,10 +39,8 @@ class GitHubFormat(GitHubRequest):
         """
         A tuple of formatted tag name, description, created at and the compare links.
 
-        Returns
-        -------
-        tuple: tuple
-            A tuple of list.
+        :return:
+        :type: tuple -- A tuple of list.
         """
 
         temp = self.releases()['data']['repository']['releases']['edges']
@@ -134,10 +132,8 @@ class GitLabFormat(GitLabRequest):
         """
         A tuple of formatted tag name, description, created at and the compare links.
 
-        Returns
-        -------
-        tuple: tuple
-            A tuple of list.
+        :return:
+        :type: tuple -- A tuple of list.
         """
 
         temp = self.releases()

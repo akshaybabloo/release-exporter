@@ -32,10 +32,8 @@ class GitHubRequest(FormatBase):
         """
         Queries total number of releases.
 
-        Returns
-        -------
-        int: int
-            Number of releases.
+        :returns: Number of releases.
+        :rtype: int
         """
         _json = {"query": """
             {
@@ -58,10 +56,8 @@ class GitHubRequest(FormatBase):
         """
         A JSON object with name of the repository, tag name, description and the created date and time.
 
-        Returns
-        -------
-        JSON: dict
-            A JSON object.
+        :returns: A dict object
+        :rtype: dict
         """
         _json = {
             "query": """
@@ -114,10 +110,9 @@ class GitLabRequest(FormatBase):
         Searches and returns the repository ID based on the repository name. If the repository is not found then a table
         of repository is shown so that the user can manually enter the ID of their repository.
 
-        Returns
-        -------
-        id_number: int
-            Repository ID.
+        :returns: Repository ID
+        :return: id_number
+        :rtype: int
 
         """
         url = self.api_url + 'projects?search={}'.format(self.info.name)
@@ -146,10 +141,8 @@ class GitLabRequest(FormatBase):
         """
         A JSON object containing name of the repository, tag name, description and the created date and time
 
-        Returns
-        -------
-        JSON: dict
-            A dict object.
+        :returns: A dict object
+        :rtype: dict
         """
         url = 'https://gitlab.com/api/v4/projects/{id}/repository/tags'.format(id=self._repo_id())
 

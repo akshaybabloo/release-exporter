@@ -10,7 +10,9 @@ Welcome to Release Exporter's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   api/index.rst
+   cli/index.rst
+   gui/index.rst
 
 Indices and tables
 ==================

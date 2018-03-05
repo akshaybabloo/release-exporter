@@ -24,7 +24,7 @@ class GitHubFormat(GitHubRequest):
         with open(self.file_name + '.' + self.file_type, 'w') as json_file:
             json.dump(self._dict_repo_template(), json_file, indent=4)
 
-        print('\n' + 'Done ' + u"\U0001F44D")
+        print('\n' + 'Done!')
 
     def write_markdown(self):
         """
@@ -33,7 +33,7 @@ class GitHubFormat(GitHubRequest):
         with open('CHANGELOG.md', 'w') as md_file:
             md_file.writelines(self._converter())
 
-        print('\n' + 'Done ' + u"\U0001F44D")
+        print('\n' + 'Done!')
 
     def _converter(self):
         """
@@ -117,7 +117,7 @@ class GitLabFormat(GitLabRequest):
         with open(self.file_name + '.' + self.file_type, 'w') as json_file:
             json.dump(self._dict_repo_template(), json_file, indent=4)
 
-        print('\n' + 'Done ' + u"\U0001F44D")
+        print('\n' + 'Done!')
 
     def write_markdown(self):
         """
@@ -126,7 +126,7 @@ class GitLabFormat(GitLabRequest):
         with open('CHANGELOG.md', 'w') as md_file:
             md_file.writelines(self._converter())
 
-        print('\n' + 'Done ' + u"\U0001F44D")
+        print('\n' + 'Done!')
 
     def _converter(self):
         """

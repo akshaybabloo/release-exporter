@@ -3,7 +3,6 @@ import datetime
 import os
 from pathlib import Path
 import warnings
-import functools
 
 import dateutil.parser
 from giturlparse import parse
@@ -212,7 +211,6 @@ class _Deprecate(object):
         new_name = self.new_name
         message = self.message
 
-        import warnings
         if old_name is None:
             try:
                 old_name = func.__name__

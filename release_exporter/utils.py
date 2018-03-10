@@ -2,6 +2,8 @@ import configparser
 import datetime
 import os
 from pathlib import Path
+import warnings
+import functools
 
 import dateutil.parser
 from giturlparse import parse
@@ -184,6 +186,85 @@ class Init:
 
         return exists, config, dict_key
 
+
+# Taken from NumPy
+def _set_function_name(func, name):
+    func.__name__ = name
+    return func
+
+
+class _Deprecate(object):
+    """
+    Decorator class to deprecate old functions.
+    Refer to `deprecate` for details.
+    """
+
+    def __init__(self, old_name=None, new_name=None, message=None):
+        self.old_name = old_name
+        self.new_name = new_name
+        self.message = message
+
+    def __call__(self, func, *args, **kwargs):
+        """
+        Decorator call.  Refer to ``decorate``.
+        """
+        old_name = self.old_name
+        new_name = self.new_name
+        message = self.message
+
+        import warnings
+        if old_name is None:
+            try:
+                old_name = func.__name__
+            except AttributeError:
+                old_name = func.__name__
+        if new_name is None:
+            depdoc = "`%s` is deprecated!" % old_name
+        else:
+            depdoc = "`%s` is deprecated, use `%s` instead!" % \
+                     (old_name, new_name)
+
+        if message is not None:
+            depdoc += "\n" + message
+
+        def newfunc(*args, **kwds):
+            """``arrayrange`` is deprecated, use `arange` instead!"""
+            warnings.warn(depdoc, DeprecationWarning, stacklevel=2)
+            return func(*args, **kwds)
+
+        newfunc = _set_function_name(newfunc, old_name)
+        doc = func.__doc__
+        if doc is None:
+            doc = depdoc
+        else:
+            doc = '\n\n'.join([depdoc, doc])
+        newfunc.__doc__ = doc
+        try:
+            d = func.__dict__
+        except AttributeError:
+            pass
+        else:
+            newfunc.__dict__.update(d)
+        return newfunc
+
+
+def deprecate(*args, **kwargs):
+
+    if args:
+        fn = args[0]
+        args = args[1:]
+
+        if 'newname' in kwargs:
+            kwargs['new_name'] = kwargs.pop('newname')
+        if 'oldname' in kwargs:
+            kwargs['old_name'] = kwargs.pop('oldname')
+
+        return _Deprecate(*args, **kwargs)(fn)
+    else:
+        return _Deprecate(*args, **kwargs)
+
+
+deprecate_with_doc = lambda msg: _Deprecate(message=msg)
 
 if __name__ == '__main__':
     a = Init()

@@ -9,7 +9,7 @@ import pytest
 from giturlparse import parse
 
 from release_exporter.exceptions import ParserError
-from release_exporter.utils import get_repo_url_info, date_convert, multi_key_gitlab, description
+from release_exporter.utils import get_repo_url_info, date_convert, multi_key_gitlab, description, deprecate
 
 DUP_SECTION = """\
 [branch "v3"]
@@ -157,3 +157,36 @@ def test_description_fail():
     actual = description(provider, repo_name)
 
     assert actual != expected
+
+
+# ---------- deprecation -----------
+# Taken from NumPy tests
+
+@deprecate
+def old_func(self, x):
+    return x
+
+
+@deprecate(message="Rather use new_func2")
+def old_func2(self, x):
+    return x
+
+
+def old_func3(self, x):
+    return x
+
+
+new_func3 = deprecate(old_func3, old_name="old_func3", new_name="new_func3")
+
+
+def test_deprecate_decorator():
+    assert 'deprecated' in old_func.__doc__
+
+
+def test_deprecate_decorator_message():
+    assert 'Rather use new_func2' in old_func2.__doc__
+
+
+def test_deprecate_fn():
+    assert 'old_func3' in new_func3.__doc__
+    assert 'new_func3' in new_func3.__doc__

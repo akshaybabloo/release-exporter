@@ -6,7 +6,7 @@ from unittest.mock import patch
 import pytest
 
 from release_exporter.exceptions import FileExists, InvalidToken
-from release_exporter.requests import GitHubRequest, GitLabRequest
+from release_exporter.request import GitHubRequest, GitLabRequest
 
 
 # ---------------------------------- GitHub -----------------------------------------

@@ -1,6 +1,6 @@
 import json
 
-from release_exporter.requests import GitHubRequest, GitLabRequest
+from release_exporter.request import GitHubRequest, GitLabRequest
 from release_exporter.utils import date_convert, description, deprecate
 
 

@@ -25,6 +25,11 @@ class TestGitHubFormatMarkdown(unittest.TestCase):
         request = self.github_format.write_markdown()
         self.assertIn(expected_output, mock_stdout.getvalue())
 
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def assert_stdout_3(self, n, expected_output, mock_stdout):
+        request = self.github_format.write()
+        self.assertIn(expected_output, mock_stdout.getvalue())
+
     def test_convert(self):
         request = self.github_format._converter()
 
@@ -36,6 +41,9 @@ class TestGitHubFormatMarkdown(unittest.TestCase):
 
     def test_write_markdown(self):
         self.assert_stdout_2('', 'Done')
+
+    def test_write(self):
+        self.assert_stdout_3('', 'Done')
 
 
 class TestGitHubFormatJson(unittest.TestCase):
@@ -54,6 +62,11 @@ class TestGitHubFormatJson(unittest.TestCase):
         request = self.github_format.write_json()
         self.assertIn(expected_output, mock_stdout.getvalue())
 
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def assert_stdout_3(self, n, expected_output, mock_stdout):
+        request = self.github_format.write()
+        self.assertIn(expected_output, mock_stdout.getvalue())
+
     def test_convert(self):
         request = self.github_format._converter()
 
@@ -65,6 +78,9 @@ class TestGitHubFormatJson(unittest.TestCase):
 
     def test_write_markdown(self):
         self.assert_stdout_2('', 'Done')
+
+    def test_write(self):
+        self.assert_stdout_3('', 'Done')
 
 
 # ------------------------- GitLab --------------------------
@@ -86,6 +102,11 @@ class TestGitLabFormatMarkdown(unittest.TestCase):
         request = self.gitlab_format.write_markdown()
         self.assertIn(expected_output, mock_stdout.getvalue())
 
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def assert_stdout_3(self, n, expected_output, mock_stdout):
+        request = self.gitlab_format.write()
+        self.assertIn(expected_output, mock_stdout.getvalue())
+
     def test_convert(self):
         request = self.gitlab_format._converter()
 
@@ -97,6 +118,9 @@ class TestGitLabFormatMarkdown(unittest.TestCase):
 
     def test_write_markdown(self):
         self.assert_stdout_2('', 'Done')
+
+    def test_write(self):
+        self.assert_stdout_3('', 'Done')
 
 
 class TestGitLabFormatJson(unittest.TestCase):
@@ -115,6 +139,11 @@ class TestGitLabFormatJson(unittest.TestCase):
         request = self.gitlab_format.write_json()
         self.assertIn(expected_output, mock_stdout.getvalue())
 
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def assert_stdout_3(self, n, expected_output, mock_stdout):
+        request = self.gitlab_format.write()
+        self.assertIn(expected_output, mock_stdout.getvalue())
+
     def test_convert(self):
         request = self.gitlab_format._converter()
 
@@ -126,3 +155,6 @@ class TestGitLabFormatJson(unittest.TestCase):
 
     def test_write_markdown(self):
         self.assert_stdout_2('', 'Done')
+
+    def test_write(self):
+        self.assert_stdout_3('', 'Done')

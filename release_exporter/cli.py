@@ -46,13 +46,13 @@ def markdown(ctx):
         print('GitHub detected. \n')
 
         github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-               file_type='markdown').write_markdown()
+               file_type='markdown').write()
 
     elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
         print('GitLab detected. \n')
 
         gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-               file_type='markdown').write_markdown()
+               file_type='markdown').write()
 
     else:
         raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")
@@ -68,13 +68,13 @@ def json(ctx):
         click.echo('GitHub detected. \n')
 
         github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-               file_type='json').write_json()
+               file_type='json').write()
 
     elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
         click.echo('GitLab detected. \n')
 
         gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-               file_type='json').write_json()
+               file_type='json').write()
 
     else:
         raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")
@@ -90,13 +90,13 @@ def rst(ctx):
     #     click.echo('GitHub detected. \n')
     #
     #     github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-    #            file_type='rst').write_rst()
+    #            file_type='rst').write()
     #
     # elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
     #     click.echo('GitLab detected. \n')
     #
     #     gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-    #            file_type='rst').write_rst()
+    #            file_type='rst').write()
     #
     # else:
     #     raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")
@@ -113,20 +113,20 @@ def all_format(ctx):
         # Creates for GitHub
         print("Creating change logs for GitHub.")
         github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-               file_type='json').write_json()
+               file_type='json').write()
         github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-               file_type='markdown').write_markdown()
+               file_type='markdown').write()
         # github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-        #        file_type='rst').write_rst()
+        #        file_type='rst').write()
     else:
         # Creates for GitLab
         print("Creating change logs for GitLab.")
         gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-               file_type='json').write_json()
+               file_type='json').write()
         gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-               file_type='markdown').write_markdown()
+               file_type='markdown').write()
         # gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-        #        file_type='rst').write_rst()
+        #        file_type='rst').write()
 
 
 def main():

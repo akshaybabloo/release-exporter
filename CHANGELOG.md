@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `all` command added - Creates changelog for markdown, rst and json at the same time.
 - `deprecate` added in `utils.py`.
 
+
+### Changed
+
+- `write_*()` -> `write()`. `write_*` will be deprecated in version 1.2
     
 ## [1.0.6] - 2018-03-01
 

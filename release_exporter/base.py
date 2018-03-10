@@ -54,6 +54,9 @@ class FormatBase:
     def write_json(self):
         raise NotImplementedError('Coming soon.')
 
+    def write(self):
+        raise NotImplementedError('Coming soon.')
+
     @classmethod
     def _header(cls):
         return """\

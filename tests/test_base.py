@@ -38,6 +38,10 @@ class TestFormatBase(unittest.TestCase):
         with pytest.raises(NotImplementedError):
             self.format_base.write_json()
 
+    def test_write(self):
+        with pytest.raises(NotImplementedError):
+            self.format_base.write()
+
     def test_header(self):
         actual = """\
 # Changelog

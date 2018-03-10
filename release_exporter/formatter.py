@@ -1,7 +1,7 @@
 import json
 
 from release_exporter.requests import GitHubRequest, GitLabRequest
-from release_exporter.utils import date_convert, description
+from release_exporter.utils import date_convert, description, deprecate
 
 
 class GitHubFormat(GitHubRequest):
@@ -14,6 +14,7 @@ class GitHubFormat(GitHubRequest):
 
         self.compare_url = 'https://' + self.info.resource + '/' + self.info.owner + '/' + self.info.name + '/compare/'
 
+    @deprecate(message="This method will be removed in version 1.2. Use write() method instead.")
     def write_json(self):
         """
         Writes down a CHANGELOG.json file.
@@ -26,6 +27,7 @@ class GitHubFormat(GitHubRequest):
 
         print('\n' + 'Done!')
 
+    @deprecate(message="This method will be removed in version 1.2. Use write() method instead.")
     def write_markdown(self):
         """
         Writes down a CHANGELOG.md file.
@@ -34,6 +36,31 @@ class GitHubFormat(GitHubRequest):
             md_file.writelines(self._converter())
 
         print('\n' + 'Done!')
+
+    def write(self):
+        """
+        Write files according to the file type chosen. This method support ``markdown``, ``json`` and ``rst``.
+
+        :raises: ValueError
+        """
+
+        if self.file_type == 'markdown':
+            with open('CHANGELOG.md', 'w') as md_file:
+                md_file.writelines(self._converter())
+
+            print('\n' + 'Done!')
+
+        elif self.file_type == 'json':
+            self._converter()
+
+            with open(self.file_name + '.' + self.file_type, 'w') as json_file:
+                json.dump(self._dict_repo_template(), json_file, indent=4)
+
+            print('\n' + 'Done!')
+        elif self.file_type == 'rst':
+            raise NotImplementedError("Coming soon")
+        else:
+            raise ValueError("Unknown file format specified.")
 
     def _converter(self):
         """
@@ -111,6 +138,7 @@ class GitLabFormat(GitLabRequest):
 
         self.compare_url = 'https://' + self.info.resource + '/' + self.info.owner + '/' + self.info.name + '/compare/'
 
+    @deprecate(message="This method will be removed in version 1.2. Use write() method instead.")
     def write_json(self):
         self._converter()
 
@@ -119,6 +147,7 @@ class GitLabFormat(GitLabRequest):
 
         print('\n' + 'Done!')
 
+    @deprecate(message="This method will be removed in version 1.2. Use write() method instead.")
     def write_markdown(self):
         """
         Writes down a CHANGELOG.md file.
@@ -127,6 +156,31 @@ class GitLabFormat(GitLabRequest):
             md_file.writelines(self._converter())
 
         print('\n' + 'Done!')
+
+    def write(self):
+        """
+        Write files according to the file type chosen. This method support ``markdown``, ``json`` and ``rst``.
+
+        :raises: ValueError
+        """
+
+        if self.file_type == 'markdown':
+            with open('CHANGELOG.md', 'w') as md_file:
+                md_file.writelines(self._converter())
+
+            print('\n' + 'Done!')
+
+        elif self.file_type == 'json':
+            self._converter()
+
+            with open(self.file_name + '.' + self.file_type, 'w') as json_file:
+                json.dump(self._dict_repo_template(), json_file, indent=4)
+
+            print('\n' + 'Done!')
+        elif self.file_type == 'rst':
+            raise NotImplementedError("Coming soon")
+        else:
+            raise ValueError("Unknown file format specified.")
 
     def _converter(self):
         """

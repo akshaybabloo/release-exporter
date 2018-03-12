@@ -124,6 +124,9 @@ class GitHubFormat(GitHubRequest):
             for count, urls in enumerate(tag_comp_url_temp):
                 self.list_descriptions[count]['compareUrl'] = urls
 
+        elif self.file_type == 'rst':
+            raise NotImplementedError("Coming soon")
+
 
 github = GitHubFormat
 
@@ -244,6 +247,9 @@ class GitLabFormat(GitLabRequest):
 
             for count, urls in enumerate(tag_comp_url_temp):
                     self.list_descriptions[count]['compareUrl'] = urls
+
+        elif self.file_type == 'rst':
+            raise NotImplementedError("Coming soon")
 
 
 gitlab = GitLabFormat

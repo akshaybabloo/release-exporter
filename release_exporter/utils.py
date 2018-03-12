@@ -199,7 +199,9 @@ def check_version():
     :rtype: str
     :raises: ConnectionError
     """
+    from colorama import init, Fore, Style
 
+    init(autoreset=True)
     try:
         r = requests.get(VERSION_API_URL)
 
@@ -208,10 +210,10 @@ def check_version():
         if len(versions) > 1:
             versions = sorted(versions, key=StrictVersion)
 
-            if versions[-1] == version.__version__:
+            if versions[-1] != version.__version__:
                 table = [["New version " + versions[-1] + " available. To update type in"],
                          ["pip install -U release-exporter"]]
-                print(tabulate(table))
+                print(Fore.RED + tabulate(table, stralign="center"))
         else:
             pass
 

@@ -151,14 +151,15 @@ Unreleased_
 
             return """\
 
-## [{tag_name}] - {date}
+{tag_name}_ - {date}
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 {description}
 """.format(tag_name=self.tag_name, date=self.date, description=self.description)
         else:
             return """\
 
-{tag_name}_ - {date}
+{tag_name} - {date}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 {description}

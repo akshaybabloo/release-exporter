@@ -43,7 +43,7 @@ class TestGitHubFormatMarkdown(unittest.TestCase):
         self.assert_stdout_2('', 'Done')
 
     def test_write(self):
-        self.assert_stdout_3('', 'Done')
+        self.assert_stdout_3('', 'created')
 
 
 class TestGitHubFormatJson(unittest.TestCase):
@@ -80,7 +80,7 @@ class TestGitHubFormatJson(unittest.TestCase):
         self.assert_stdout_2('', 'Done')
 
     def test_write(self):
-        self.assert_stdout_3('', 'Done')
+        self.assert_stdout_3('', 'created')
 
 
 # ------------------------- GitLab --------------------------
@@ -120,7 +120,7 @@ class TestGitLabFormatMarkdown(unittest.TestCase):
         self.assert_stdout_2('', 'Done')
 
     def test_write(self):
-        self.assert_stdout_3('', 'Done')
+        self.assert_stdout_3('', 'created')
 
 
 class TestGitLabFormatJson(unittest.TestCase):
@@ -157,4 +157,4 @@ class TestGitLabFormatJson(unittest.TestCase):
         self.assert_stdout_2('', 'Done')
 
     def test_write(self):
-        self.assert_stdout_3('', 'Done')
+        self.assert_stdout_3('', 'created')

@@ -1,12 +1,18 @@
 import os
+from threading import Thread
 
 import click
 
 from release_exporter.exceptions import UnknownRepo
 from release_exporter.formatter import github
 from release_exporter.formatter import gitlab
-from release_exporter.utils import get_repo_url_info
+from release_exporter.utils import get_repo_url_info, check_version
 from release_exporter.version import __version__
+
+
+def thread_caller():
+    th = Thread(target=check_version)
+    th.start()
 
 
 def print_version(ctx, param, value):
@@ -130,4 +136,5 @@ def all_format(ctx):
 
 
 def main():
+    thread_caller()
     cli(obj={})

@@ -123,11 +123,6 @@ keys, this is because sometimes the file ``.git/config`` has more than
 one ``[remote "origin"]``. In such case, it is best to give the URL of
 your repository by giving ``--url <repo URL>``.
 
-Customising the Output
-~~~~~~~~~~~~~~~~~~~~~~
-
-Coming soon.
-
 Reference
 ~~~~~~~~~
 

@@ -48,7 +48,7 @@ class GitHubFormat(GitHubRequest):
             with open('CHANGELOG.md', 'w') as md_file:
                 md_file.writelines(self._converter())
 
-            print('\n' + 'Done!')
+            print('\n' + 'Markdown file created!')
 
         elif self.file_type == 'json':
             self._converter()
@@ -56,7 +56,7 @@ class GitHubFormat(GitHubRequest):
             with open(self.file_name + '.' + self.file_type, 'w') as json_file:
                 json.dump(self._dict_repo_template(), json_file, indent=4)
 
-            print('\n' + 'Done!')
+            print('\n' + 'JSON file created!')
         elif self.file_type == 'rst':
             raise NotImplementedError("Coming soon")
         else:
@@ -168,7 +168,7 @@ class GitLabFormat(GitLabRequest):
             with open('CHANGELOG.md', 'w') as md_file:
                 md_file.writelines(self._converter())
 
-            print('\n' + 'Done!')
+            print('\n' + 'Markdown file created!')
 
         elif self.file_type == 'json':
             self._converter()
@@ -176,7 +176,7 @@ class GitLabFormat(GitLabRequest):
             with open(self.file_name + '.' + self.file_type, 'w') as json_file:
                 json.dump(self._dict_repo_template(), json_file, indent=4)
 
-            print('\n' + 'Done!')
+            print('\n' + 'JSON file created!')
         elif self.file_type == 'rst':
             raise NotImplementedError("Coming soon")
         else:

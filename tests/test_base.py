@@ -56,6 +56,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 """
         self.assertEqual(self.format_base._header(), actual)
 
+    def test_header_rst(self):
+        actual = """\
+Changelog
+=========
+
+All notable changes to this project will be documented in this file.
+
+The format is based on `Keep a Changelog <http://keepachangelog.com/en/1.0.0/>`__
+and this project adheres to `Semantic Versioning <http://semver.org/spec/v2.0.0.html>`__.
+
+Unreleased_
+-----------
+
+"""
+        self.assertEqual(self.format_base._header_rst(), actual)
+
     def test_converter(self):
         self.assertIsNone(self.format_base._converter())
 
@@ -125,6 +141,29 @@ class FormatRequestBaseBody(unittest.TestCase):
         }
 
         self.assertNotEqual(self.format_base._dict_repo_template(), expected)
+
+    def test_footer_rst(self):
+        self.format_base.tag_name = '1'
+        self.format_base.repo_url = "http://"
+
+        expected = '.. _1: http://\n'
+        self.assertEqual(self.format_base._footer_rst(), expected)
+
+    def test_body_rst_less_condition(self):
+        expected = '\n'.join(['test_ - 2008-10-10',
+                              '',
+                              'hello'])
+
+        self.assertIsInstance(self.format_base._body_rst(), str)
+
+    def test_body_rst_else_condition(self):
+        self.format_base.iter_count = 30
+
+        expected = '\n'.join(['test_ - 2008-10-10',
+                              '',
+                              'hello',
+                              ''])
+        self.assertIsInstance(self.format_base._body_rst(), str)
 
 
 def test_file_type_constant():

@@ -129,12 +129,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     def releases(self):
         pass
 
-
-class FormatRstBase(FormatBase):
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
     @classmethod
     def _header_rst(cls):
         return """\

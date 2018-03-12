@@ -156,7 +156,8 @@ class Init:
             'Version': version.__version__,
             'CheckCycle': 10,
             'GitHubKey': '',
-            'GitLabKey': ''
+            'GitLabKey': '',
+            'LastChecked': datetime.date.today()
         }
 
         with open(self.config_file_path, 'w') as configfile:

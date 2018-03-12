@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `all` command added - Creates changelog for markdown, rst and json at the same time.
 - `deprecate` added in `utils.py`.
+- `check_version` added in `utils.py`
 
 
 ### Changed

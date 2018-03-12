@@ -1,17 +1,22 @@
 import configparser
 import datetime
+import json
 import os
-from pathlib import Path
 import warnings
+from distutils.version import StrictVersion
+from pathlib import Path
 
 import dateutil.parser
+import requests
 from giturlparse import parse
+from requests.exceptions import ConnectionError
 from tabulate import tabulate
 
 from release_exporter import version
 from release_exporter.exceptions import ParserError
 
 CONFIG_FILE_NAME = '.rex'
+VERSION_API_URL = 'https://pypi.python.org/pypi/release-exporter/json'
 
 
 def get_repo_url_info(location=os.getcwd(), repo_url=None):
@@ -184,6 +189,34 @@ class Init:
         exists = dict_key in config.sections()
 
         return exists, config, dict_key
+
+
+def check_version():
+    """
+    Checks for latest update.
+
+    :return: version
+    :rtype: str
+    :raises: ConnectionError
+    """
+
+    try:
+        r = requests.get(VERSION_API_URL)
+
+        versions = list(json.loads(r.text)['releases'].keys())
+
+        if len(versions) > 1:
+            versions = sorted(versions, key=StrictVersion)
+
+            if versions[-1] == version.__version__:
+                table = [["New version " + versions[-1] + " available. To update type in"],
+                         ["pip install -U release-exporter"]]
+                print(tabulate(table))
+        else:
+            pass
+
+    except ConnectionError as e:
+        pass
 
 
 # Taken from NumPy

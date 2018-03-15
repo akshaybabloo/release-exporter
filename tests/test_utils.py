@@ -198,6 +198,9 @@ def test_deprecate_fn():
     assert 'new_func3' in new_func3.__doc__
 
 
+# ------------------- check_version ------------------
+
+
 class TestCheckVersion(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
@@ -207,5 +210,4 @@ class TestCheckVersion(unittest.TestCase):
 
     @patch.object(version, '__version__', return_value='1')
     def test_check_version_pass(self, n):
-
         self.assert_stdout_1('', 'New version')

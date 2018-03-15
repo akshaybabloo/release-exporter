@@ -1,14 +1,18 @@
+import io
 import os
 import shutil
 import tempfile
 import time
+import unittest
 from pathlib import Path
 from unittest.mock import patch
 
 from click.testing import CliRunner
 
-from release_exporter.cli import cli
+from release_exporter import version
+from release_exporter.cli import cli, thread_caller
 from release_exporter.exceptions import UnknownRepo
+from release_exporter.utils import check_version
 
 
 class Values:
@@ -165,3 +169,16 @@ def test_all_fail():
 
     assert result.exit_code == -1
     assert isinstance(result.exception, KeyError)
+
+
+class TestThreadCaller(unittest.TestCase):
+
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def assert_stdout_1(self, n, expected_output, mock_stdout):
+        request = check_version()
+        thread_caller()
+        self.assertIn(expected_output, mock_stdout.getvalue())
+
+    @patch.object(version, '__version__', return_value='1')
+    def test_thread_caller(self, n):
+        self.assert_stdout_1('', 'New version')

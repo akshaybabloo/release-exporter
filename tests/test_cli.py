@@ -156,3 +156,12 @@ def test_json_fail_3():
     assert result.exit_code == -1
     assert isinstance(result.exception, KeyError)
     assert 'GitLab' in result.output
+
+
+@patch('os.name', 'nt')
+def test_all_fail():
+    runner = CliRunner()
+    result = runner.invoke(cli, ['--token', 'some_token', 'all'], obj=Values())
+
+    assert result.exit_code == -1
+    assert isinstance(result.exception, KeyError)

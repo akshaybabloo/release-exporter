@@ -1,15 +1,20 @@
 import configparser
+import io
 import os
 import shutil
 import tempfile
 import time
+import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import pytest
 from giturlparse import parse
 
+from release_exporter import version
 from release_exporter.exceptions import ParserError
-from release_exporter.utils import get_repo_url_info, date_convert, multi_key_gitlab, description, deprecate
+from release_exporter.utils import get_repo_url_info, date_convert, multi_key_gitlab, description, deprecate, \
+    check_version
 
 DUP_SECTION = """\
 [branch "v3"]
@@ -45,6 +50,7 @@ def temp_file(value):
 
     with open(temp_location + os.sep + '.git' + os.sep + 'config', 'w') as config_file:
         config_file.write(value)
+
 
 # ---------------------- get_repo_url_info ------------------
 
@@ -190,3 +196,17 @@ def test_deprecate_decorator_message():
 def test_deprecate_fn():
     assert 'old_func3' in new_func3.__doc__
     assert 'new_func3' in new_func3.__doc__
+
+
+class TestCheckVersion(unittest.TestCase):
+
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def assert_stdout_1(self, n, expected_output, mock_stdout):
+        request = check_version()
+        self.assertIn(expected_output, mock_stdout.getvalue())
+
+    # @patch('release_exporter.version.__version__', return_value='1')
+    def test_check_version_pass(self):
+        version.__version__ = '1'
+
+        self.assert_stdout_1('', 'New version')

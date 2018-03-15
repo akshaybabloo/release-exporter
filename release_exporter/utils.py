@@ -283,7 +283,14 @@ class _Deprecate(object):
 
 
 def deprecate(*args, **kwargs):
+    """
+    Deprecation warning. It can be used as an decorator or as a method.
 
+    :param message: Warning message.
+    :param newname: New method name.
+    :param oldname: Old method name.
+    :return: object.
+    """
     if args:
         fn = args[0]
         args = args[1:]

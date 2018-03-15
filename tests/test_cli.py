@@ -10,7 +10,7 @@ from unittest.mock import patch
 from click.testing import CliRunner
 
 from release_exporter import version
-from release_exporter.cli import cli, thread_caller
+from release_exporter.cli import cli, thread_caller, main
 from release_exporter.exceptions import UnknownRepo
 from release_exporter.utils import check_version
 
@@ -182,3 +182,10 @@ class TestThreadCaller(unittest.TestCase):
     @patch.object(version, '__version__', return_value='1')
     def test_thread_caller(self, n):
         self.assert_stdout_1('', 'New version')
+
+
+def test_cli_main():
+    runner = CliRunner()
+    result = runner.invoke(main)
+
+    assert result.exit_code == -1

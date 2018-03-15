@@ -16,7 +16,7 @@ from release_exporter import version
 from release_exporter.exceptions import ParserError
 
 CONFIG_FILE_NAME = '.rex'
-VERSION_API_URL = 'https://pypi.python.org/pypi/release-exporter/json'
+VERSION_API_URL = 'https://pypi.org/pypi/release-exporter/json'
 
 
 def get_repo_url_info(location=os.getcwd(), repo_url=None):

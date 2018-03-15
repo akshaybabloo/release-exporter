@@ -205,8 +205,7 @@ class TestCheckVersion(unittest.TestCase):
         request = check_version()
         self.assertIn(expected_output, mock_stdout.getvalue())
 
-    # @patch('release_exporter.version.__version__', return_value='1')
-    def test_check_version_pass(self):
-        version.__version__ = '1'
+    @patch.object(version, '__version__', return_value='1')
+    def test_check_version_pass(self, n):
 
         self.assert_stdout_1('', 'New version')

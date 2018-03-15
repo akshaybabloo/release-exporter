@@ -171,6 +171,29 @@ def test_all_fail():
     assert isinstance(result.exception, KeyError)
 
 
+def test_all_fail_1():
+    t1 = tempfile.gettempdir()
+    temp_file(GITLAB_SECTION)
+
+    runner = CliRunner()
+    result = runner.invoke(cli, ['--token', 'some_token', '--location', t1, 'all'], obj=Values())
+
+    assert result.exit_code == -1
+    assert isinstance(result.exception, KeyError)
+    assert 'GitLab' in result.output
+
+
+def test_all_fail_2():
+    t = tempfile.gettempdir()
+    temp_file(SECTION)
+
+    runner = CliRunner()
+    result = runner.invoke(cli, ['--token', 'some_token', '--location', t, 'all'], obj=Values())
+
+    assert result.exit_code == -1
+    # assert isinstance(result.exception, UnknownRepo)
+
+
 class TestThreadCaller(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)

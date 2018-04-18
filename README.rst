@@ -46,20 +46,23 @@ Release exporter has the following options
 
 .. code:: bash
 
-   Usage: rex [OPTIONS] COMMAND [ARGS]...
+    Usage: rex [OPTIONS] COMMAND [ARGS]...
 
-   Options:
-     --token TEXT     Token number if its a private repository.
-     --url TEXT       URL of your repository. This is optional if your current
-                      directory has .git folder with remote url.
-     --location TEXT  Local location of your repository.
-     --version
-     --help           Show this message and exit.
+    Options:
+      --token TEXT      Token number if its a private repository.
+      --url TEXT        URL of your repository. This is optional if your current
+                        directory has .git folder with remote url.
+      --location TEXT   Local location of your repository.
+      --version
+      --universal TEXT  Create a global settings file. Defaults to True.
+      --help            Show this message and exit.
 
-   Commands:
-     json      Creates JSON file.
-     markdown  Creates markdown file.
-     rest      Creates reStructuredText file.
+    Commands:
+      all       Creates change log for all formats.
+      init      Creates .rex file.
+      json      Creates JSON file.
+      markdown  Creates markdown file.
+      rst       Creates reStructuredText file.
 
 If you don't have a repository on your computer, but you still want to
 generate a change log you can manually add your repository URL as

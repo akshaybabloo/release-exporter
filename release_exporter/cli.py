@@ -6,7 +6,7 @@ import click
 from release_exporter.exceptions import UnknownRepo
 from release_exporter.formatter import github
 from release_exporter.formatter import gitlab
-from release_exporter.utils import get_repo_url_info, check_version
+from release_exporter.utils import get_repo_url_info, check_version, Init
 from release_exporter.version import __version__
 
 
@@ -29,17 +29,21 @@ def print_version(ctx, param, value):
               default=None)
 @click.option('--location', help='Local location of your repository.', default=os.getcwd())
 @click.option('--version', is_flag=True, callback=print_version, expose_value=False, is_eager=True)
+@click.option('--universal', help="Create a global settings file. Defaults to True.", default=True)
 @click.pass_context
-def cli(ctx, token, url, location):
+def cli(ctx, token, url, location, universal):
     ctx.obj['token'] = token
     ctx.obj['repo_url'] = url
     ctx.obj['location'] = location
+    ctx.obj['universal'] = universal
 
 
-# TODO: Implement init as a go to token area.
-# @cli.command(help='Creates .rex file.')
-# def init():
-#     pass
+@cli.command(help='Creates .rex file.')
+def init(ctx):
+    if ctx.obj['universal']:
+        Init().config()
+    else:
+        Init(os.getcwd()).config()
 
 
 @cli.command(help='Creates markdown file.')

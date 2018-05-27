@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fakshaybabloo%2Frelease-exporter.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fakshaybabloo%2Frelease-exporter?ref=badge_shield)
+
 Release Exporter
 ================
 
@@ -135,3 +137,7 @@ Reference
     :target: https://codecov.io/gh/akshaybabloo/release-exporter
 .. |Build Status| image:: https://travis-ci.org/akshaybabloo/release-exporter.svg?branch=master
     :target: https://travis-ci.org/akshaybabloo/release-exporter
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fakshaybabloo%2Frelease-exporter.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fakshaybabloo%2Frelease-exporter?ref=badge_large)

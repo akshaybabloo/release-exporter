@@ -1,5 +1,5 @@
 colorama==0.3.9
-tabulate
+tabulate==0.8.2
 click==6.7
 requests==2.18.4
 python-dateutil

@@ -2,5 +2,5 @@ colorama==0.3.9
 tabulate==0.8.2
 click==6.7
 requests==2.19.1
-python-dateutil
+python-dateutil==2.7.3
 git-url-parse==1.0.2

@@ -14,5 +14,7 @@ steps:
       pip install -r requirements.txt
       pip install codecov coverage pytest pytest-cov pytest-runner
     displayName: Installing Python Dependencies
+  - script: pytest --cov-config .coveragerc --cov=release_exporter -vv
+    displayName: Testing release-exporter
   - script: codecov
     displayName: Uploading Code Coverage

@@ -50,7 +50,7 @@ def init(ctx):
 @click.pass_context
 def markdown(ctx):
     if os.name == 'nt':
-        ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
+        ctx.obj['location'] = rf"{ctx.obj['location']}"
 
     if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
         print('GitHub detected. \n')
@@ -72,7 +72,7 @@ def markdown(ctx):
 @click.pass_context
 def json(ctx):
     if os.name == 'nt':
-        ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
+        ctx.obj['location'] = rf"{ctx.obj['location']}"
 
     if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
         click.echo('GitHub detected. \n')
@@ -117,7 +117,7 @@ def rst(ctx):
 @click.pass_context
 def all_format(ctx):
     if os.name == 'nt':
-        ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
+        ctx.obj['location'] = rf"{ctx.obj['location']}"
 
     if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
         # Creates for GitHub

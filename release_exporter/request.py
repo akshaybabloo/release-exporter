@@ -35,15 +35,14 @@ class GitHubRequest(FormatBase):
         :returns: Number of releases.
         :rtype: int
         """
-        _json = {"query": """
-            {
-              repository(owner: """ + """\"{}\",""".format(self.info.owner) + """ name: """ + """\"{}\")""".format(
-            self.info.name) + """ {
-                releases {
+        _json = {"query": f"""
+            {{
+              repository(owner: \"{self.info.owner}\", name: \"{self.info.name}\") {{
+                releases {{
                   totalCount
-                }
-              }
-            }
+                }}
+              }}
+            }}
         """}
 
         r = requests.post(url=self.api_url, json=_json, headers=self.request_headers)
@@ -60,23 +59,23 @@ class GitHubRequest(FormatBase):
         :rtype: dict
         """
         _json = {
-            "query": """
-                query {""" +
-                     """repository(owner: \"{}\", name: \"{}\") """.format(self.info.owner, self.info.name) + """{
-                    releases(""" + """first:{}""".format(self._total_number_releases()) + """, orderBy: {field: CREATED_AT, direction: DESC}){
-                      edges{
-                        node{
+            "query": f"""
+                query {{
+                     repository(owner: \"{self.info.owner}\", name: \"{self.info.name}\") {{
+                    releases(first:{self._total_number_releases()}, orderBy: {{field: CREATED_AT, direction: DESC}}){{
+                      edges{{
+                        node{{
                           name
-                          tag{
+                          tag{{
                             name
-                          }
+                          }}
                           description
                           createdAt
-                        }
-                      }
-                    }
-                  }
-                }
+                        }}
+                      }}
+                    }}
+                  }}
+                }}
             """
         }
 
@@ -115,7 +114,7 @@ class GitLabRequest(FormatBase):
         :rtype: int
 
         """
-        url = self.api_url + 'projects?search={}'.format(self.info.name)
+        url = self.api_url + f'projects?search={self.info.name}'
 
         r = requests.get(url=url, headers=self.request_headers)
         id_number = json.loads(r.text)
@@ -126,8 +125,7 @@ class GitLabRequest(FormatBase):
             print('ID - Repository Name - Username')
 
             for content in id_number:
-                print('{id} - {repo_name} - {user_name}'.format(id=content['id'], repo_name=content['name'],
-                                                                user_name=multi_key_gitlab(content)))
+                print(f"{content['id']} - {content['name']} - {multi_key_gitlab(content)}")
 
             id_number = input('ID > ')
             return id_number
@@ -144,7 +142,7 @@ class GitLabRequest(FormatBase):
         :returns: A dict object
         :rtype: dict
         """
-        url = 'https://gitlab.com/api/v4/projects/{id}/repository/tags'.format(id=self._repo_id())
+        url = f'https://gitlab.com/api/v4/projects/{self._repo_id()}/repository/tags'
 
         r = requests.get(url=url, headers=self.request_headers)
         return json.loads(r.text)

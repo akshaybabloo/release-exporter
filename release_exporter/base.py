@@ -75,20 +75,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
         if self.iter_count < self.total_number_tags - 1:
 
-            return """\
+            return f"""\
     
-## [{tag_name}] - {date}
+## [{self.tag_name}] - {self.date}
 
-{description}
-""".format(tag_name=self.tag_name, date=self.date, description=self.description)
+{self.description}
+"""
         else:
-            return """\
+            return f"""\
 
-## {tag_name} - {date}
+## {self.tag_name} - {self.date}
 
-{description}
+{self.description}
 
-""".format(tag_name=self.tag_name, date=self.date, description=self.description)
+"""
 
     def _footer(self):
         return """\
@@ -149,24 +149,24 @@ Unreleased_
 
         if self.iter_count < self.total_number_tags - 1:
 
-            return """\
+            return f"""\
 
-{tag_name}_ - {date}
+{self.tag_name}_ - {self.date}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-{description}
-""".format(tag_name=self.tag_name, date=self.date, description=self.description)
+{self.description}
+"""
         else:
-            return """\
+            return f"""\
 
-{tag_name} - {date}
+{self.tag_name} - {self.date}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-{description}
+{self.description}
 
-""".format(tag_name=self.tag_name, date=self.date, description=self.description)
+"""
 
     def _footer_rst(self):
-        return """\
-.. _{tag_name}: {url}
-""".format(tag_name=self.tag_name, url=self.repo_url)
+        return f"""\
+.. _{self.tag_name}: {self.url}
+"""

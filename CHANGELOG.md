@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `write_*()` -> `write()`. `write_*` will be deprecated in version 1.2
 - `requests.py` -> `request.py`
 - `README.rst` -> `README.md`
+- `.format()` -> f-strings
 
 ### Removed
 

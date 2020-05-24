@@ -48,12 +48,6 @@ class FormatBase:
         except KeyError as e:
             print(e)
 
-    def write_markdown(self):
-        raise NotImplementedError('Coming soon.')
-
-    def write_json(self):
-        raise NotImplementedError('Coming soon.')
-
     def write(self):
         raise NotImplementedError('Coming soon.')
 

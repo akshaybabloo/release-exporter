@@ -21,7 +21,8 @@ setup(
     author='Akshay Raj Gollahalli',
     author_email='akshay@gollahalli.com',
     description='Release exporter for GitHub and GitLab.',
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown'
     keywords=['changelog', 'releases'],
     classifiers=[
         'License :: OSI Approved :: MIT License',

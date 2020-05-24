@@ -10,19 +10,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `all` command added - Creates changelog for markdown, rst and json at the same time.
-- `deprecate` added in `utils.py`.
 - `check_version` added in `utils.py` and added as thread call to CLI
 
 ### Changed
 
-- `write_*()` -> `write()`. `write_*` will be deprecated in version 1.2
+- `write_*()` -> `write()`.
 - `requests.py` -> `request.py`
-- `README.rst` -> `README.md`
-- `.format()` -> f-strings
+- `README.rst` -> `README.md` - f2e26d87113e6fc5f837036077fb92c58c564f09
+- `.format()` -> f-strings - 96e70ea00706c424a557c5079889e4d709e3e481
 
 ### Removed
 
 - `FormatRstBase` removed and merged with `FormatBase`.
+
+### Breaking
+
+- `write_markdown()` and `write_json()` removed - bd69bbfb1906f6e13d84312464ed9e8f32382b30
     
 ## [1.0.6] - 2018-03-01
 

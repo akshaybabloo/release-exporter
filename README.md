@@ -2,7 +2,7 @@
 
 # Release Exporter
 
-![Banner](https://raw.githubusercontent.com/akshaybabloo/release-exporter/master/release-exporter.png)
+![Banner](https://raw.githubusercontent.com/akshaybabloo/release-exporter-old/master/release-exporter.png)
 
 **Blog:** [https://www.gollahalli.com/blog/export-your-github-and-gitlab-releases-as-a-changelog/](https://www.gollahalli.com/blog/export-your-github-and-gitlab-releases-as-a-changelog/)
 

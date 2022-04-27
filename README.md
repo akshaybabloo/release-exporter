@@ -1,5 +1,3 @@
-> This project will soon be inactive. I am working on a new project that does this and more.
-
 # Release Exporter
 
 ![Banner](https://raw.githubusercontent.com/akshaybabloo/release-exporter-old/master/release-exporter.png)

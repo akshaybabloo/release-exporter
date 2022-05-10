@@ -174,8 +174,7 @@ class Init:
 
         if not exists:
             if config_dict[dict_key]['Key']:
-                value = config['DEFAULT']['githubkey'] if config_dict[dict_key]['Provider'] is 'github' else \
-                    config['DEFAULT']['gitlabkey']
+                value = config['DEFAULT']['githubkey'] if config_dict[dict_key]['Provider'] == 'github' else config['DEFAULT']['gitlabkey']
                 config_dict[dict_key]['Key'] = value
 
             config.read_dict(config_dict)

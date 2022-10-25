@@ -1,4 +1,4 @@
-colorama==0.4.5
+colorama==0.4.6
 tabulate==0.8.10
 click==7.1.2
 requests==2.28.1

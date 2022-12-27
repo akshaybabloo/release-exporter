@@ -39,8 +39,7 @@ class FormatBase:
 
         if not force:
             if pathlib.Path(location + os.sep + file_name + self._get_file_ext()).is_file():
-                raise FileExists(
-                    file_name + self._get_file_ext() + ' already exists at ' + location + '. Use --force to override.')
+                raise FileExists(f"{file_name} {self._get_file_ext()} already exists at {location}. Use --force to override or force=True.'")
 
     def _get_file_ext(self):
         try:
@@ -162,5 +161,5 @@ Unreleased_
 
     def _footer_rst(self):
         return f"""\
-.. _{self.tag_name}: {self.url}
+.. _{self.tag_name}: {self.repo_url}
 """

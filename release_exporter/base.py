@@ -39,7 +39,8 @@ class FormatBase:
 
         if not force:
             if pathlib.Path(location + os.sep + file_name + self._get_file_ext()).is_file():
-                raise FileExists(f"{file_name} {self._get_file_ext()} already exists at {location}. Use --force to override or force=True.'")
+                raise FileExists(
+                    f"{file_name} {self._get_file_ext()} already exists at {location}. Use --force to override or force=True.'")
 
     def _get_file_ext(self):
         try:

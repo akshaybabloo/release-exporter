@@ -1,7 +1,7 @@
 import json
 
 from release_exporter.request import GitHubRequest, GitLabRequest
-from release_exporter.utils import date_convert, description, deprecate
+from release_exporter.utils import date_convert, description
 
 
 class GitHubFormat(GitHubRequest):
@@ -204,7 +204,7 @@ class GitLabFormat(GitLabRequest):
                 tag_comp_url_temp.append(self.compare_url + tags)
 
             for count, urls in enumerate(tag_comp_url_temp):
-                    self.list_descriptions[count]['compareUrl'] = urls
+                self.list_descriptions[count]['compareUrl'] = urls
 
         elif self.file_type == 'rst':
             raise NotImplementedError("Coming soon")

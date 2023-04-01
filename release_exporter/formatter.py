@@ -48,6 +48,8 @@ class GitHubFormat(GitHubRequest):
         """
 
         temp = self.releases()['data']['repository']['releases']['edges']
+        # Ignore draft releases
+        temp = [i for i in temp if i['node']['tag']]
         temp_l = []
 
         self.total_number_tags = sum(1 for k in temp if k['node']['tag']['name'])

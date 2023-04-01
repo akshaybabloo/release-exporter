@@ -3,13 +3,19 @@
     "provider": "github.com",
     "owner": "akshaybabloo",
     "repoUrl": "https://github.com/akshaybabloo/release-exporter",
-    "totalTags": 7,
+    "totalTags": 8,
     "data": [
         {
             "tagName": "Unreleased",
             "description": "",
             "createdAt": "",
-            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.0.6...HEAD"
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/v1.0.7...HEAD"
+        },
+        {
+            "tagName": "v1.0.7",
+            "description": "### Added\n\n- `all` command added - Creates changelog for markdown, rst and json at the same time.\n- `check_version` added in `utils.py` and added as thread call to CLI\n\n### Changed\n\n- `write_*()` -> `write()`.\n- `requests.py` -> `request.py`\n- `README.rst` -> `README.md` - f2e26d87113e6fc5f837036077fb92c58c564f09\n- `.format()` -> f-strings - 96e70ea00706c424a557c5079889e4d709e3e481\n\n### Removed\n\n- `FormatRstBase` removed and merged with `FormatBase`.\n\n### Breaking\n\n- `write_markdown()` and `write_json()` removed - bd69bbfb1906f6e13d84312464ed9e8f32382b30",
+            "createdAt": "2022-12-27",
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.0.6...v1.0.7"
         },
         {
             "tagName": "1.0.6",

@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [1.0.7] - 2022-12-27
+    
+## [v1.0.7] - 2022-12-27
 
 ### Added
 
@@ -134,8 +135,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Initial release.
 
-[Unreleased]: https://github.com/akshaybabloo/release-exporter/compare/1.0.7...HEAD
-[1.0.7]: https://github.com/akshaybabloo/release-exporter/compare/1.0.6...1.0.7
+[Unreleased]: https://github.com/akshaybabloo/release-exporter/compare/v1.0.7...HEAD
+[v1.0.7]: https://github.com/akshaybabloo/release-exporter/compare/1.0.6...v1.0.7
 [1.0.6]: https://github.com/akshaybabloo/release-exporter/compare/1.0.5...1.0.6
 [1.0.5]: https://github.com/akshaybabloo/release-exporter/compare/1.0.4...1.0.5
 [1.0.4]: https://github.com/akshaybabloo/release-exporter/compare/1.0.3...1.0.4

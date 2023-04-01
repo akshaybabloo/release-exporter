@@ -3,13 +3,25 @@
     "provider": "github.com",
     "owner": "akshaybabloo",
     "repoUrl": "https://github.com/akshaybabloo/release-exporter",
-    "totalTags": 8,
+    "totalTags": 10,
     "data": [
         {
             "tagName": "Unreleased",
             "description": "",
             "createdAt": "",
-            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/v1.0.7...HEAD"
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.1.1...HEAD"
+        },
+        {
+            "tagName": "1.1.1",
+            "description": "### Fixes\n\n* Error when using rex CLI (None type) by @akshaybabloo in https://github.com/akshaybabloo/release-exporter/pull/83\n",
+            "createdAt": "2023-04-01",
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.1.0...1.1.1"
+        },
+        {
+            "tagName": "1.1.0",
+            "description": "### Added\n\n- Updated requirements",
+            "createdAt": "2023-04-01",
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/v1.0.7...1.1.0"
         },
         {
             "tagName": "v1.0.7",

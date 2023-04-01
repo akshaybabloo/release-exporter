@@ -8,6 +8,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
     
+## [1.1.1] - 2023-04-01
+
+### Fixes
+
+* Error when using rex CLI (None type) by @akshaybabloo in https://github.com/akshaybabloo/release-exporter/pull/83
+
+    
+## [1.1.0] - 2023-04-01
+
+### Added
+
+- Updated requirements
+    
 ## [v1.0.7] - 2022-12-27
 
 ### Added
@@ -135,7 +148,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Initial release.
 
-[Unreleased]: https://github.com/akshaybabloo/release-exporter/compare/v1.0.7...HEAD
+[Unreleased]: https://github.com/akshaybabloo/release-exporter/compare/1.1.1...HEAD
+[1.1.1]: https://github.com/akshaybabloo/release-exporter/compare/1.1.0...1.1.1
+[1.1.0]: https://github.com/akshaybabloo/release-exporter/compare/v1.0.7...1.1.0
 [v1.0.7]: https://github.com/akshaybabloo/release-exporter/compare/1.0.6...v1.0.7
 [1.0.6]: https://github.com/akshaybabloo/release-exporter/compare/1.0.5...1.0.6
 [1.0.5]: https://github.com/akshaybabloo/release-exporter/compare/1.0.4...1.0.5

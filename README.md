@@ -1,6 +1,6 @@
 # Release Exporter
 
-![Banner](https://raw.githubusercontent.com/akshaybabloo/release-exporter-old/master/release-exporter.png)
+![Logo](https://raw.githubusercontent.com/akshaybabloo/release-exporter-old/master/assets/logo/logo.png)
 
 **Blog:** [https://www.gollahalli.com/blog/export-your-github-and-gitlab-releases-as-a-changelog/](https://www.gollahalli.com/blog/export-your-github-and-gitlab-releases-as-a-changelog/)
 
@@ -119,3 +119,4 @@ your repository by giving `--url <repo URL>`.
 ## Reference
 
 - Markdown logo from [https://github.com/dcurtis/markdown-mark/](https://github.com/dcurtis/markdown-mark/)
+- Logo by [New release icons created by berkahicon - Flaticon](https://www.flaticon.com/free-icons/new-release)

@@ -1,0 +1,7 @@
+name = "rex-api"
+main = "src/index.ts"
+compatibility_date = "2023-04-02"
+
+kv_namespaces = [
+    { binding = "GOLLAHALLI_KV", id = "86e204e85d954eb4af1fddc6d4937081", preview_id = "86e204e85d954eb4af1fddc6d4937081" },
+]

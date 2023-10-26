@@ -3,6 +3,12 @@ updates:
 - package-ecosystem: pip
   directory: "/"
   schedule:
-    interval: daily
+    interval: weekly
+    time: "17:00"
+  open-pull-requests-limit: 10
+- package-ecosystem: npm
+  directory: "rex-api/"
+  schedule:
+    interval: weekly
     time: "17:00"
   open-pull-requests-limit: 10

@@ -22,15 +22,19 @@ classifiers = [
 python = "^3.9"
 colorama = "^0.4.6"
 tabulate = "^0.9.0"
-click-uwescience = "^7.0.1"
 requests = "^2.31.0"
 python-dateutil = "^2.8.2"
 git-url-parse = "^1.2.2"
+click = "^8.1.7"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.3"
 codecov = "^2.1.13"
+<<<<<<< master
 black = "^23.11.0"
+=======
+sphinx = "^7.2.6"
+>>>>>>> Fix deps
 
 [tool.poetry.scripts]
 rex = "release_exporter.cli:main"

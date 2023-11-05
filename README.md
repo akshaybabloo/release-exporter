@@ -16,10 +16,10 @@ pip install release-exporter
 ```
 
 Or download this repository and type in the following in your
-terminal/cmd
+terminal/cmd. You will need [poetry](https://python-poetry.org/).
 
 ```bash
-python setup.py install
+poetry install
 ```
 
 ## Usage

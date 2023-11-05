@@ -158,8 +158,8 @@ def all_format(ctx):
             repo_url=ctx.obj["repo_url"],
             file_type="markdown",
         ).write()
-        # github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-        #        file_type='rst').write()
+    # github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+    #        file_type='rst').write()
     else:
         # Creates for GitLab
         print("Creating change logs for GitLab.")
@@ -177,8 +177,10 @@ def all_format(ctx):
             repo_url=ctx.obj["repo_url"],
             file_type="markdown",
         ).write()
-        # gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-        #        file_type='rst').write()
+
+
+# gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+#        file_type='rst').write()
 
 
 def main():

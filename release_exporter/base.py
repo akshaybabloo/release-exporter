@@ -101,7 +101,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
             "repositoryName": self.info.name,
             "provider": self.info.resource,
             "owner": self.info.owner,
-            "repoUrl": "https://" + self.info.resource + "/" + self.info.owner + "/" + self.info.name,
+            "repoUrl": f"https://{self.info.resource}/{self.info.owner}/{self.info.name}",
             "totalTags": self.total_number_tags,
             "data": self.list_descriptions,
         }
@@ -110,7 +110,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
     @classmethod
     def _dict_data_template(cls, tag_name=None, description=None, date=None, compare_url=None):
-        data = {"tagName": tag_name, "description": description, "createdAt": date, "compareUrl": compare_url}
+        data = {
+            "tagName": tag_name,
+            "description": description,
+            "createdAt": date,
+            "compareUrl": compare_url,
+        }
 
         return data
 

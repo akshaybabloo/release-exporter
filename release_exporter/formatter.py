@@ -53,7 +53,13 @@ class GitHubFormat(GitHubRequest):
 
         self.total_number_tags = sum(1 for k in temp if k["node"]["tag"]["name"])
 
-        print(description(provider=self.info.resource, repo_name=self.info.name, tags_number=self.total_number_tags))
+        print(
+            description(
+                provider=self.info.resource,
+                repo_name=self.info.name,
+                tags_number=self.total_number_tags,
+            )
+        )
 
         if self.file_type == "markdown":
             self.all_content.append(self._header())
@@ -156,7 +162,13 @@ class GitLabFormat(GitLabRequest):
 
         self.total_number_tags = sum(1 for k in temp if k["name"])
 
-        print(description(provider=self.info.resource, repo_name=self.info.name, tags_number=self.total_number_tags))
+        print(
+            description(
+                provider=self.info.resource,
+                repo_name=self.info.name,
+                tags_number=self.total_number_tags,
+            )
+        )
 
         if self.file_type == "markdown":
             self.all_content.append(self._header())

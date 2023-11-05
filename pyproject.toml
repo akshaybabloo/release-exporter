@@ -34,7 +34,11 @@ codecov = "^2.1.13"
 black = "^23.11.0"
 =======
 sphinx = "^7.2.6"
+<<<<<<< master
 >>>>>>> Fix deps
+=======
+black = "^23.10.1"
+>>>>>>> Add black to format code
 
 [tool.poetry.scripts]
 rex = "release_exporter.cli:main"

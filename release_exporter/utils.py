@@ -26,14 +26,14 @@ def get_repo_url_info(location=os.getcwd(), repo_url=None):
     Parameters
     ----------
     location: str
-        Absolute location of the current directory.
+            Absolute location of the current directory.
     repo_url: str
-        URL of the repository.
+            URL of the repository.
 
     Returns
     -------
     parse: giturlparse.parser.Parsed
-        A named tuple.
+            A named tuple.
 
     """
     try:
@@ -59,12 +59,12 @@ def date_convert(date):
     Parameters
     ----------
     date: str
-        datetime string.
+            datetime string.
 
     Returns
     -------
     date: str
-        Date as Y-m-d format..
+            Date as Y-m-d format..
 
     """
     try:
@@ -82,12 +82,12 @@ def multi_key_gitlab(value):
     Parameters
     ----------
     value: dict
-        A dictionary of GitLab.
+            A dictionary of GitLab.
 
     Returns
     -------
     value: str or None
-        Username or none.
+            Username or none.
     """
 
     try:
@@ -103,18 +103,22 @@ def description(provider=None, repo_name=None, tags_number=None):
     Parameters
     ----------
     provider: str
-        Name of the Git host.
+            Name of the Git host.
     repo_name: str
-        Repository name.
+            Repository name.
     tags_number: str or int
-        Number of tags.
+            Number of tags.
 
     Return
     ------
     tabulate: str
-        A tabulated structure of the input.
+            A tabulated structure of the input.
     """
-    table = [["Provider", provider], ["Repository Name", repo_name], ["Number of Tags", tags_number]]
+    table = [
+        ["Provider", provider],
+        ["Repository Name", repo_name],
+        ["Number of Tags", tags_number],
+    ]
 
     return tabulate(table, tablefmt="grid")
 

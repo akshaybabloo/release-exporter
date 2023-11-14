@@ -3,11 +3,7 @@ import pathlib
 
 from .exceptions import FileExists
 
-FILE_TYPE = {
-    'markdown': '.md',
-    'json': '.json',
-    'rest': '.rst'
-}
+FILE_TYPE = {"markdown": ".md", "json": ".json", "rest": ".rst"}
 
 
 class FormatBase:
@@ -15,9 +11,18 @@ class FormatBase:
     Base formatter for logs.
     """
 
-    def __init__(self, token=None, request_header=None, api_url=None, info=None, repo_url=None, location=os.getcwd(),
-                 file_name='CHANGELOG', force=False, file_type='markdown'):
-
+    def __init__(
+        self,
+        token=None,
+        request_header=None,
+        api_url=None,
+        info=None,
+        repo_url=None,
+        location=os.getcwd(),
+        file_name="CHANGELOG",
+        force=False,
+        file_type="markdown",
+    ):
         self.location = location
         self.file_name = file_name
         self.force = force
@@ -40,7 +45,8 @@ class FormatBase:
         if not force:
             if pathlib.Path(location + os.sep + file_name + self._get_file_ext()).is_file():
                 raise FileExists(
-                    f"{file_name} {self._get_file_ext()} already exists at {location}. Use --force to override or force=True.'")
+                    f"{file_name} {self._get_file_ext()} already exists at {location}. Use --force to override or force=True.'"
+                )
 
     def _get_file_ext(self):
         try:
@@ -49,7 +55,7 @@ class FormatBase:
             print(e)
 
     def write(self):
-        raise NotImplementedError('Coming soon.')
+        raise NotImplementedError("Coming soon.")
 
     @classmethod
     def _header(cls):
@@ -66,9 +72,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 """
 
     def _body(self):
-
         if self.iter_count < self.total_number_tags - 1:
-
             return f"""\
     
 ## [{self.tag_name}] - {self.date}
@@ -87,33 +91,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     def _footer(self):
         return """\
 [{tag_name}]: {url}
-""".format(tag_name=self.tag_name, url=self.repo_url)
+""".format(
+            tag_name=self.tag_name, url=self.repo_url
+        )
 
     def _converter(self):
         pass
 
     def _dict_repo_template(self):
-
         repo = {
             "repositoryName": self.info.name,
             "provider": self.info.resource,
             "owner": self.info.owner,
-            "repoUrl": 'https://' + self.info.resource + '/' + self.info.owner + '/' + self.info.name,
+            "repoUrl": "https://" + self.info.resource + "/" + self.info.owner + "/" + self.info.name,
             "totalTags": self.total_number_tags,
-            "data": self.list_descriptions
+            "data": self.list_descriptions,
         }
 
         return repo
 
     @classmethod
     def _dict_data_template(cls, tag_name=None, description=None, date=None, compare_url=None):
-
-        data = {
-            "tagName": tag_name,
-            "description": description,
-            "createdAt": date,
-            "compareUrl": compare_url
-        }
+        data = {"tagName": tag_name, "description": description, "createdAt": date, "compareUrl": compare_url}
 
         return data
 
@@ -140,9 +139,7 @@ Unreleased_
 """
 
     def _body_rst(self):
-
         if self.iter_count < self.total_number_tags - 1:
-
             return f"""\
 
 {self.tag_name}_ - {self.date}

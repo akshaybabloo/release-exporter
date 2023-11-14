@@ -14,14 +14,15 @@ class GitHubRequest(FormatBase):
 
     def __init__(self, *args, **kwargs):
         super(GitHubRequest, self).__init__(*args, **kwargs)
-        self.request_headers = {'Authorization': 'token %s' % self.token}
-        self.api_url = 'https://api.github.com/graphql'
+        self.request_headers = {"Authorization": "token %s" % self.token}
+        self.api_url = "https://api.github.com/graphql"
 
         if self.token is None:
             raise InvalidToken(
                 "Oops! GitHub requires you to generate a private token to get the details. See "
                 "https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/ "
-                "for more information.")
+                "for more information."
+            )
 
         if self.repo_url is not None:
             self.info = get_repo_url_info(self.location, repo_url=self.repo_url)
@@ -35,7 +36,8 @@ class GitHubRequest(FormatBase):
         :returns: Number of releases.
         :rtype: int
         """
-        _json = {"query": f"""
+        _json = {
+            "query": f"""
             {{
               repository(owner: \"{self.info.owner}\", name: \"{self.info.name}\") {{
                 releases {{
@@ -43,13 +45,14 @@ class GitHubRequest(FormatBase):
                 }}
               }}
             }}
-        """}
+        """
+        }
 
         r = requests.post(url=self.api_url, json=_json, headers=self.request_headers)
         try:
-            return int(json.loads(r.text)['data']['repository']['releases']['totalCount'])
+            return int(json.loads(r.text)["data"]["repository"]["releases"]["totalCount"])
         except KeyError:
-            raise KeyError('Wrong credentials given. Please check if you have the correct token.')
+            raise KeyError("Wrong credentials given. Please check if you have the correct token.")
 
     def releases(self):
         """
@@ -80,6 +83,7 @@ class GitHubRequest(FormatBase):
         }
 
         r = requests.post(url=self.api_url, json=_json, headers=self.request_headers)
+        print(r.json())
         return json.loads(r.text)
 
 
@@ -90,14 +94,15 @@ class GitLabRequest(FormatBase):
 
     def __init__(self, *args, **kwargs):
         super(GitLabRequest, self).__init__(*args, **kwargs)
-        self.request_headers = {'Private-Token': '%s' % self.token}
-        self.api_url = 'https://gitlab.com/api/v4/'
+        self.request_headers = {"Private-Token": "%s" % self.token}
+        self.api_url = "https://gitlab.com/api/v4/"
 
         if self.token is None:
             raise InvalidToken(
                 "Oops! GitLab requires you to generate a private token to get the details. See "
                 "https://docs.gitlab.com/ce/user/profile/personal_access_tokens.html "
-                "for more information.")
+                "for more information."
+            )
 
         if self.repo_url is not None:
             self.info = get_repo_url_info(self.location, repo_url=self.repo_url)
@@ -114,26 +119,27 @@ class GitLabRequest(FormatBase):
         :rtype: int
 
         """
-        url = self.api_url + f'projects?search={self.info.name}'
+        url = self.api_url + f"projects?search={self.info.name}"
 
         r = requests.get(url=url, headers=self.request_headers)
         id_number = json.loads(r.text)
 
         if len(id_number) > 1:
             print(
-                "The search resulted in more that one repository. Please check your repository name and type in it's ID")
-            print('ID - Repository Name - Username')
+                "The search resulted in more that one repository. Please check your repository name and type in it's ID"
+            )
+            print("ID - Repository Name - Username")
 
             for content in id_number:
                 print(f"{content['id']} - {content['name']} - {multi_key_gitlab(content)}")
 
-            id_number = input('ID > ')
+            id_number = input("ID > ")
             return id_number
 
         try:
-            return id_number[0]['id']
+            return id_number[0]["id"]
         except KeyError:
-            raise KeyError('Wrong credentials given. Please check if you have the correct token.')
+            raise KeyError("Wrong credentials given. Please check if you have the correct token.")
 
     def releases(self):
         """
@@ -142,7 +148,7 @@ class GitLabRequest(FormatBase):
         :returns: A dict object
         :rtype: dict
         """
-        url = f'https://gitlab.com/api/v4/projects/{self._repo_id()}/repository/tags'
+        url = f"https://gitlab.com/api/v4/projects/{self._repo_id()}/repository/tags"
 
         r = requests.get(url=url, headers=self.request_headers)
         return json.loads(r.text)

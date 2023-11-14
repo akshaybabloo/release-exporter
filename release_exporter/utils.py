@@ -15,8 +15,8 @@ from tabulate import tabulate
 from release_exporter import version
 from release_exporter.exceptions import ParserError
 
-CONFIG_FILE_NAME = '.rex'
-VERSION_API_URL = 'https://pypi.org/pypi/release-exporter/json'
+CONFIG_FILE_NAME = ".rex"
+VERSION_API_URL = "https://pypi.org/pypi/release-exporter/json"
 
 
 def get_repo_url_info(location=os.getcwd(), repo_url=None):
@@ -39,16 +39,17 @@ def get_repo_url_info(location=os.getcwd(), repo_url=None):
     try:
         if repo_url is None:
             config = configparser.ConfigParser()
-            config.read(location + os.sep + '.git' + os.sep + 'config')
+            config.read(location + os.sep + ".git" + os.sep + "config")
             if 'remote "origin"' in config.sections():
-                return parse(config['remote "origin"']['url'])
+                return parse(config['remote "origin"']["url"])
             else:
-                raise ParserError('Git config file does not exist please provide the repository url by using --url.')
+                raise ParserError("Git config file does not exist please provide the repository url by using --url.")
         else:
-            return parse(repo_url + '.git')
+            return parse(repo_url + ".git")
     except configparser.DuplicateSectionError:
         raise configparser.DuplicateSectionError(
-            'There seems to be a duplicate section in your config. Try giving the repository URL by using --url.')
+            "There seems to be a duplicate section in your config. Try giving the repository URL by using --url."
+        )
 
 
 def date_convert(date):
@@ -67,10 +68,10 @@ def date_convert(date):
 
     """
     try:
-        date = datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%Sz')
-        date = date.strftime('%Y-%m-%d')
+        date = datetime.datetime.strptime(date, "%Y-%m-%dT%H:%M:%Sz")
+        date = date.strftime("%Y-%m-%d")
     except ValueError:
-        date = dateutil.parser.parse(date).date().strftime('%Y-%m-%d')
+        date = dateutil.parser.parse(date).date().strftime("%Y-%m-%d")
     return date
 
 
@@ -90,7 +91,7 @@ def multi_key_gitlab(value):
     """
 
     try:
-        return value['owner']['username']
+        return value["owner"]["username"]
     except (KeyError, TypeError):
         return None
 
@@ -107,17 +108,13 @@ def description(provider=None, repo_name=None, tags_number=None):
         Repository name.
     tags_number: str or int
         Number of tags.
-    
+
     Return
     ------
     tabulate: str
         A tabulated structure of the input.
     """
-    table = [
-        ['Provider', provider],
-        ['Repository Name', repo_name],
-        ['Number of Tags', tags_number]
-    ]
+    table = [["Provider", provider], ["Repository Name", repo_name], ["Number of Tags", tags_number]]
 
     return tabulate(table, tablefmt="grid")
 
@@ -138,7 +135,6 @@ class Init:
 
     @property
     def config(self):
-
         if self.config_file_path.is_file():
             config_file = configparser.ConfigParser()
             config_file.read(self.config_file_path)
@@ -149,23 +145,21 @@ class Init:
         return self.config_file_path
 
     def _init_config(self):
-
         config = configparser.ConfigParser()
 
-        config['DEFAULT'] = {
-            'Version': version.__version__,
-            'CheckCycle': 10,
-            'GitHubKey': '',
-            'GitLabKey': '',
-            'LastChecked': datetime.date.today()
+        config["DEFAULT"] = {
+            "Version": version.__version__,
+            "CheckCycle": 10,
+            "GitHubKey": "",
+            "GitLabKey": "",
+            "LastChecked": datetime.date.today(),
         }
 
-        with open(self.config_file_path, 'w') as configfile:
+        with open(self.config_file_path, "w") as configfile:
             config.write(configfile)
 
     @config.setter
     def config(self, config_dict):
-
         assert type(config_dict) == dict
 
         self.config_file_path, config_file = self.config
@@ -173,13 +167,16 @@ class Init:
         exists, config, dict_key = self._check_config_property(config_dict)
 
         if not exists:
-            if config_dict[dict_key]['Key']:
-                value = config['DEFAULT']['githubkey'] if config_dict[dict_key]['Provider'] == 'github' else \
-                config['DEFAULT']['gitlabkey']
-                config_dict[dict_key]['Key'] = value
+            if config_dict[dict_key]["Key"]:
+                value = (
+                    config["DEFAULT"]["githubkey"]
+                    if config_dict[dict_key]["Provider"] == "github"
+                    else config["DEFAULT"]["gitlabkey"]
+                )
+                config_dict[dict_key]["Key"] = value
 
             config.read_dict(config_dict)
-            with open(self.config_file_path, 'w') as configfile:
+            with open(self.config_file_path, "w") as configfile:
                 config.write(configfile)
 
     def _check_config_property(self, config_dict):
@@ -206,14 +203,16 @@ def check_version():
     try:
         r = requests.get(VERSION_API_URL)
 
-        versions = list(json.loads(r.text)['releases'].keys())
+        versions = list(json.loads(r.text)["releases"].keys())
 
         if len(versions) > 1:
             versions = sorted(versions, key=StrictVersion)
 
             if versions[-1] != version.__version__:
-                table = [["New version " + versions[-1] + " available. To update type in"],
-                         ["pip install -U release-exporter"]]
+                table = [
+                    ["New version " + versions[-1] + " available. To update type in"],
+                    ["pip install -U release-exporter"],
+                ]
                 print(Fore.RED + tabulate(table, stralign="center"))
         else:
             pass
@@ -255,8 +254,7 @@ class _Deprecate(object):
         if new_name is None:
             depdoc = "`%s` is deprecated!" % old_name
         else:
-            depdoc = "`%s` is deprecated, use `%s` instead!" % \
-                     (old_name, new_name)
+            depdoc = "`%s` is deprecated, use `%s` instead!" % (old_name, new_name)
 
         if message is not None:
             depdoc += "\n" + message
@@ -271,7 +269,7 @@ class _Deprecate(object):
         if doc is None:
             doc = depdoc
         else:
-            doc = '\n\n'.join([depdoc, doc])
+            doc = "\n\n".join([depdoc, doc])
         newfunc.__doc__ = doc
         try:
             d = func.__dict__
@@ -295,10 +293,10 @@ def deprecate(*args, **kwargs):
         fn = args[0]
         args = args[1:]
 
-        if 'newname' in kwargs:
-            kwargs['new_name'] = kwargs.pop('newname')
-        if 'oldname' in kwargs:
-            kwargs['old_name'] = kwargs.pop('oldname')
+        if "newname" in kwargs:
+            kwargs["new_name"] = kwargs.pop("newname")
+        if "oldname" in kwargs:
+            kwargs["old_name"] = kwargs.pop("oldname")
 
         return _Deprecate(*args, **kwargs)(fn)
     else:
@@ -307,7 +305,7 @@ def deprecate(*args, **kwargs):
 
 deprecate_with_doc = lambda msg: _Deprecate(message=msg)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = Init()
     # print(a.config)
     # a.config = {

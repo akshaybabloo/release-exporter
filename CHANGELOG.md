@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
     
+## [v1.1.2] - 2023-11-14
+
+## What's Changed
+
+* Bump pytest from 7.2.2 to 7.3.0 by @dependabot in https://github.com/akshaybabloo/release-exporter/pull/86
+* Bump codecov from 2.1.12 to 2.1.13 by @dependabot in https://github.com/akshaybabloo/release-exporter/pull/87
+
+## Fixes
+
+* Fixes an issue when the number of releases is more than 100 - [https://github.com/akshaybabloo/release-exporter/commit/baeac5b1344ec620258fa95a76acb61c0b93f314](baeac5b1344ec620258fa95a76acb61c0b93f314)
+
+
+**Full Changelog**: https://github.com/akshaybabloo/release-exporter/compare/1.1.1...v1.1.2
+    
 ## [1.1.1] - 2023-04-01
 
 ### Fixes
@@ -148,7 +162,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Initial release.
 
-[Unreleased]: https://github.com/akshaybabloo/release-exporter/compare/1.1.1...HEAD
+[Unreleased]: https://github.com/akshaybabloo/release-exporter/compare/v1.1.2...HEAD
+[v1.1.2]: https://github.com/akshaybabloo/release-exporter/compare/1.1.1...v1.1.2
 [1.1.1]: https://github.com/akshaybabloo/release-exporter/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/akshaybabloo/release-exporter/compare/v1.0.7...1.1.0
 [v1.0.7]: https://github.com/akshaybabloo/release-exporter/compare/1.0.6...v1.0.7

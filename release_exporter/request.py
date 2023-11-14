@@ -54,37 +54,63 @@ class GitHubRequest(FormatBase):
         except KeyError:
             raise KeyError("Wrong credentials given. Please check if you have the correct token.")
 
-    def releases(self):
+    def releases(self) -> dict[str, list]:
         """
         A JSON object with name of the repository, tag name, description and the created date and time.
 
         :returns: A dict object
         :rtype: dict
         """
-        _json = {
-            "query": f"""
-                query {{
-                     repository(owner: \"{self.info.owner}\", name: \"{self.info.name}\") {{
-                    releases(first:{self._total_number_releases()}, orderBy: {{field: CREATED_AT, direction: DESC}}){{
-                      edges{{
-                        node{{
-                          name
-                          tag{{
-                            name
-                          }}
-                          description
-                          createdAt
-                        }}
-                      }}
-                    }}
-                  }}
-                }}
-            """
-        }
+        result = {"releases": []}
+        after_cursor = None
+        total = self._total_number_releases()
 
-        r = requests.post(url=self.api_url, json=_json, headers=self.request_headers)
-        print(r.json())
-        return json.loads(r.text)
+        while total > 0:
+            after_query = f', after: "{after_cursor}"' if after_cursor else ""
+            _json = {
+                "query": f"""
+                        query {{
+                          repository(owner: \"{self.info.owner}\", name: \"{self.info.name}\") {{
+                            releases(
+                              first: 100
+                              {after_query}
+                              orderBy: {{field: CREATED_AT, direction: DESC}}
+                            ) {{
+                              pageInfo {{
+                                hasNextPage
+                                startCursor
+                              }}
+                              edges {{
+                                node {{
+                                  name
+                                  tag {{
+                                    name
+                                  }}
+                                  description
+                                  createdAt
+                                }}
+                              }}
+                            }}
+                          }}
+                        }}
+                        """
+            }
+
+            r = requests.post(url=self.api_url, json=_json, headers=self.request_headers)
+            response_data = r.json()
+
+            new_releases = response_data["data"]["repository"]["releases"]["edges"]
+            result["releases"].extend(new_releases)
+
+            # Check if there are more pages
+            page_info = response_data["data"]["repository"]["releases"]["pageInfo"]
+            if page_info["hasNextPage"]:
+                after_cursor = page_info["startCursor"]
+                total -= 100  # Assuming each page returns 100 results
+            else:
+                break
+
+        return result
 
 
 class GitLabRequest(FormatBase):

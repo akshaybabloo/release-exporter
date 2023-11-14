@@ -47,8 +47,7 @@ class GitHubFormat(GitHubRequest):
         :type: tuple -- A tuple of list.
         """
 
-        temp = self.releases()["data"]["repository"]["releases"]["edges"]
-        # Ignore draft releases
+        temp = self.releases()["releases"]
         temp = [i for i in temp if i["node"]["tag"]]
         temp_l = []
 

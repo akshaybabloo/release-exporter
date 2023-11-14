@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "release-exporter"
-version = "1.1.1"
+version = "1.1.2"
 description = "Release exporter for GitHub and GitLab"
 authors = ["Akshay Raj Gollahalli <akshay@gollahalli.com>"]
 license = "MIT"

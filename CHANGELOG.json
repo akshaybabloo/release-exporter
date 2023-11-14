@@ -3,13 +3,19 @@
     "provider": "github.com",
     "owner": "akshaybabloo",
     "repoUrl": "https://github.com/akshaybabloo/release-exporter",
-    "totalTags": 10,
+    "totalTags": 11,
     "data": [
         {
             "tagName": "Unreleased",
             "description": "",
             "createdAt": "",
-            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.1.1...HEAD"
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/v1.1.2...HEAD"
+        },
+        {
+            "tagName": "v1.1.2",
+            "description": "## What's Changed\n\n* Bump pytest from 7.2.2 to 7.3.0 by @dependabot in https://github.com/akshaybabloo/release-exporter/pull/86\n* Bump codecov from 2.1.12 to 2.1.13 by @dependabot in https://github.com/akshaybabloo/release-exporter/pull/87\n\n## Fixes\n\n* Fixes an issue when the number of releases is more than 100 - [baeac5b1344ec620258fa95a76acb61c0b93f314](https://github.com/akshaybabloo/release-exporter/commit/baeac5b1344ec620258fa95a76acb61c0b93f314)\n\n\n**Full Changelog**: https://github.com/akshaybabloo/release-exporter/compare/1.1.1...v1.1.2",
+            "createdAt": "2023-11-14",
+            "compareUrl": "https://github.com/akshaybabloo/release-exporter/compare/1.1.1...v1.1.2"
         },
         {
             "tagName": "1.1.1",

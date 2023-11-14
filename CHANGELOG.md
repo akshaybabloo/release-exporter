@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Fixes
 
-* Fixes an issue when the number of releases is more than 100 - [https://github.com/akshaybabloo/release-exporter/commit/baeac5b1344ec620258fa95a76acb61c0b93f314](baeac5b1344ec620258fa95a76acb61c0b93f314)
+* Fixes an issue when the number of releases is more than 100 - [baeac5b1344ec620258fa95a76acb61c0b93f314](https://github.com/akshaybabloo/release-exporter/commit/baeac5b1344ec620258fa95a76acb61c0b93f314)
 
 
 **Full Changelog**: https://github.com/akshaybabloo/release-exporter/compare/1.1.1...v1.1.2

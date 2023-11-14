@@ -1,7 +1,7 @@
 """
 MIT License
 
-Copyright (c) 2018 Akshay Raj Gollahalli
+Copyright (c) 2023 Akshay Raj Gollahalli
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

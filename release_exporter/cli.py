@@ -112,27 +112,27 @@ def json(ctx):
         raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")
 
 
-@cli.command(help="Creates reStructuredText file. Coming soon.")
-@click.pass_context
-def rst(ctx):
-    # if os.name == 'nt':
-    #     ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
-    #
-    # if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
-    #     click.echo('GitHub detected. \n')
-    #
-    #     github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-    #            file_type='rst').write()
-    #
-    # elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
-    #     click.echo('GitLab detected. \n')
-    #
-    #     gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
-    #            file_type='rst').write()
-    #
-    # else:
-    #     raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")
-    raise NotImplementedError("Coming soon.")
+# @cli.command(help="Creates reStructuredText file. Coming soon.")
+# @click.pass_context
+# def rst(ctx):
+#     # if os.name == 'nt':
+#     #     ctx.obj['location'] = r'{}'.format(ctx.obj['location'])
+#     #
+#     # if "github" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+#     #     click.echo('GitHub detected. \n')
+#     #
+#     #     github(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+#     #            file_type='rst').write()
+#     #
+#     # elif "gitlab" in get_repo_url_info(location=ctx.obj['location'], repo_url=ctx.obj['repo_url']).resource:
+#     #     click.echo('GitLab detected. \n')
+#     #
+#     #     gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
+#     #            file_type='rst').write()
+#     #
+#     # else:
+#     #     raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")
+#     raise NotImplementedError("Coming soon.")
 
 
 @cli.command("all", help="Creates change log for all formats.")
@@ -181,6 +181,18 @@ def all_format(ctx):
 
 # gitlab(force=True, token=ctx.obj['token'], location=ctx.obj['location'], repo_url=ctx.obj['repo_url'],
 #        file_type='rst').write()
+
+
+@cli.group(help="Authenticate with GitHub or GitLab.")
+@click.pass_context
+def auth(ctx):
+    pass
+
+
+@auth.command("github", help="Authenticate with GitHub.")
+@click.pass_context
+def github_auth(ctx):
+    pass
 
 
 def main():

@@ -109,3 +109,4 @@ tests/CHANGELOG.md
 tests/CHANGELOG.json
 
 temp\.py
+.pdm-python

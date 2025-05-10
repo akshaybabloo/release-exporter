@@ -78,7 +78,7 @@ class GitHubRequest(FormatBase):
                             ) {{
                               pageInfo {{
                                 hasNextPage
-                                startCursor
+                                endCursor
                               }}
                               edges {{
                                 node {{
@@ -105,7 +105,7 @@ class GitHubRequest(FormatBase):
             # Check if there are more pages
             page_info = response_data["data"]["repository"]["releases"]["pageInfo"]
             if page_info["hasNextPage"]:
-                after_cursor = page_info["startCursor"]
+                after_cursor = page_info["endCursor"]
                 total -= 100  # Assuming each page returns 100 results
             else:
                 break

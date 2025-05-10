@@ -1,0 +1,15 @@
+exclude=[
+    "docs/"
+]
+line-length=120
+
+[lint]
+ignore=[
+    "F841",
+    "E731"
+]
+
+[format]
+quote-style = "double"
+skip-magic-trailing-comma = false
+line-ending = "auto"

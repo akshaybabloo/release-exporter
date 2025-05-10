@@ -91,9 +91,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     def _footer(self):
         return """\
 [{tag_name}]: {url}
-""".format(
-            tag_name=self.tag_name, url=self.repo_url
-        )
+""".format(tag_name=self.tag_name, url=self.repo_url)
 
     def _converter(self):
         pass

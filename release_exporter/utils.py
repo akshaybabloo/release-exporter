@@ -160,7 +160,7 @@ class Init:
 
     @config.setter
     def config(self, config_dict):
-        assert type(config_dict) == dict
+        assert isinstance(config_dict, dict)
 
         self.config_file_path, config_file = self.config
 
@@ -217,7 +217,7 @@ def check_version():
         else:
             pass
 
-    except ConnectionError as e:
+    except ConnectionError:
         pass
 
 

@@ -49,10 +49,23 @@ class GitHubRequest(FormatBase):
         }
 
         r = requests.post(url=self.api_url, json=_json, headers=self.request_headers)
+
         try:
-            return int(json.loads(r.text)["data"]["repository"]["releases"]["totalCount"])
-        except KeyError:
-            raise KeyError("Wrong credentials given. Please check if you have the correct token.")
+            response_data = r.json()
+        except json.JSONDecodeError:
+            raise requests.HTTPError(f"Invalid JSON response: {r.text}")
+
+        if r.status_code >= 400:
+            raise requests.HTTPError(f"Request failed with status code {r.status_code}: {r.text}")
+
+        if "errors" in response_data:
+            error_messages = [error.get("message", "Unknown error") for error in response_data["errors"]]
+            raise ValueError(f"GraphQL query failed with errors: {', '.join(error_messages)}")
+
+        try:
+            return int(response_data["data"]["repository"]["releases"]["totalCount"])
+        except (TypeError, KeyError):
+            raise ValueError("Repository data not found in response")
 
     def releases(self) -> dict[str, list]:
         """
@@ -78,7 +91,7 @@ class GitHubRequest(FormatBase):
                             ) {{
                               pageInfo {{
                                 hasNextPage
-                                startCursor
+                                endCursor
                               }}
                               edges {{
                                 node {{
@@ -97,7 +110,11 @@ class GitHubRequest(FormatBase):
             }
 
             r = requests.post(url=self.api_url, json=_json, headers=self.request_headers)
-            response_data = r.json()
+
+            try:
+                response_data = r.json()
+            except json.JSONDecodeError:
+                raise requests.HTTPError(f"Invalid JSON response: {r.text}")
 
             new_releases = response_data["data"]["repository"]["releases"]["edges"]
             result["releases"].extend(new_releases)
@@ -105,7 +122,7 @@ class GitHubRequest(FormatBase):
             # Check if there are more pages
             page_info = response_data["data"]["repository"]["releases"]["pageInfo"]
             if page_info["hasNextPage"]:
-                after_cursor = page_info["startCursor"]
+                after_cursor = page_info["endCursor"]
                 total -= 100  # Assuming each page returns 100 results
             else:
                 break

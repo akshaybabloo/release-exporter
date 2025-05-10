@@ -3,7 +3,7 @@ import datetime
 import json
 import os
 import warnings
-from distutils.version import StrictVersion
+from packaging.version import Version
 from pathlib import Path
 
 import dateutil.parser
@@ -206,7 +206,7 @@ def check_version():
         versions = list(json.loads(r.text)["releases"].keys())
 
         if len(versions) > 1:
-            versions = sorted(versions, key=StrictVersion)
+            versions = sorted(versions, key=Version)
 
             if versions[-1] != version.__version__:
                 table = [

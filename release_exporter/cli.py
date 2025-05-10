@@ -77,7 +77,7 @@ def markdown(ctx):
         ).write()
 
     else:
-        raise UnknownRepo("Sorry, couldn't find the repository. Trying giving the repository URL by adding --url flag.")
+        raise UnknownRepo("Sorry, couldn't find the repository. Try giving the repository URL by adding --url flag.")
 
 
 @cli.command(help="Creates JSON file.")

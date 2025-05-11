@@ -1,5 +1,5 @@
 import logging
-import multiprocessing
+from multiprocessing import Manager, Process
 import sys
 import time
 import webbrowser
@@ -18,7 +18,7 @@ class AuthServerFlask:
         self.app = Flask(__name__)
         self.host = host
         self.port = port
-        self.queue = multiprocessing.Queue()
+        self.queue = Manager().Queue()
 
     def add_route(self, path, view_func):
         """Utility method to add routes to the Flask app from derived classes."""
@@ -32,7 +32,7 @@ class AuthServerFlask:
             print(f"Error in Flask app: {e}")
 
     def run(self):
-        self.server_proc = multiprocessing.Process(target=self.server_process)
+        self.server_proc = Process(target=self.server_process)
         self.server_proc.start()
         time.sleep(1)
 
@@ -43,7 +43,7 @@ class AuthServerFlask:
 
     def shutdown_server(self):
         print(f"Attempting to shutdown server. Current state of self.server_proc: {self.server_proc}")
-        if self.server_proc.is_alive() and self.server_proc._popen:
+        if self.server_proc and self.server_proc.is_alive():
             self.server_proc.terminate()
             self.server_proc.join()
             print("Server process terminated.")

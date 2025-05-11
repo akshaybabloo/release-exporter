@@ -27,8 +27,8 @@ python-dateutil = "^2.8.2"
 git-url-parse = "^1.2.2"
 packaging = "^25.0"
 click = "^8.1.8"
-flask = "^3.0.0"
-yarl = "^1.9.2"
+yarl = "^1.20.0"
+flask = "^3.1.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=7.4.3,<9.0.0"

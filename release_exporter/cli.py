@@ -1,8 +1,12 @@
 import os
+import threading
+import time
 from threading import Thread
 
 import click
 
+from release_exporter.authentication import save_token, Token, load_token
+from release_exporter.authentication.github import GithubAuthenticator
 from release_exporter.exceptions import UnknownRepo
 from release_exporter.formatter import github
 from release_exporter.formatter import gitlab
@@ -57,6 +61,9 @@ def markdown(ctx):
     if "github" in get_repo_url_info(location=ctx.obj["location"], repo_url=ctx.obj["repo_url"]).resource:
         print("GitHub detected. \n")
 
+        if ctx.obj["token"] is None:
+            ctx.obj["token"] = load_token().github_default
+
         github(
             force=True,
             token=ctx.obj["token"],
@@ -67,6 +74,9 @@ def markdown(ctx):
 
     elif "gitlab" in get_repo_url_info(location=ctx.obj["location"], repo_url=ctx.obj["repo_url"]).resource:
         print("GitLab detected. \n")
+
+        if ctx.obj["token"] is None:
+            ctx.obj["token"] = load_token().gitlab_default
 
         gitlab(
             force=True,
@@ -89,6 +99,9 @@ def json(ctx):
     if "github" in get_repo_url_info(location=ctx.obj["location"], repo_url=ctx.obj["repo_url"]).resource:
         click.echo("GitHub detected. \n")
 
+        if ctx.obj["token"] is None:
+            ctx.obj["token"] = load_token().github_default
+
         github(
             force=True,
             token=ctx.obj["token"],
@@ -99,6 +112,9 @@ def json(ctx):
 
     elif "gitlab" in get_repo_url_info(location=ctx.obj["location"], repo_url=ctx.obj["repo_url"]).resource:
         click.echo("GitLab detected. \n")
+
+        if ctx.obj["token"] is None:
+            ctx.obj["token"] = load_token().gitlab_default
 
         gitlab(
             force=True,
@@ -144,6 +160,8 @@ def all_format(ctx):
     if "github" in get_repo_url_info(location=ctx.obj["location"], repo_url=ctx.obj["repo_url"]).resource:
         # Creates for GitHub
         print("Creating change logs for GitHub.")
+        if ctx.obj["token"] is None:
+            ctx.obj["token"] = load_token().github_default
         github(
             force=True,
             token=ctx.obj["token"],
@@ -163,6 +181,8 @@ def all_format(ctx):
     else:
         # Creates for GitLab
         print("Creating change logs for GitLab.")
+        if ctx.obj["token"] is None:
+            ctx.obj["token"] = load_token().gitlab_default
         gitlab(
             force=True,
             token=ctx.obj["token"],
@@ -190,9 +210,26 @@ def auth(ctx):
 
 
 @auth.command("github", help="Authenticate with GitHub.")
+@click.option("--port", help="Port number for the authentication server.", default=8787)
 @click.pass_context
-def github_auth(ctx):
-    pass
+def github_auth(ctx, port):
+    auth = GithubAuthenticator(port=port)
+    auth.run()
+
+    try:
+        token = auth.queue.get()
+        print(f"Received token: {token}")
+        save_token(Token(github_default=token))
+
+        # Delay shutdown in a background thread so response can complete
+        def delayed_shutdown():
+            time.sleep(1)  # Let response finish sending
+            auth.shutdown_server()
+
+        threading.Thread(target=delayed_shutdown, daemon=True).start()
+    except Exception as e:
+        print(f"Error receiving token: {e}")
+        exit(1)
 
 
 def main():

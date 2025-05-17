@@ -9,9 +9,10 @@ keywords = ["changelog", "releases"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Intended Audience :: Developers",
     "Environment :: Console",
     "Development Status :: 5 - Production/Stable",
@@ -19,19 +20,22 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.10,<4.0"
 colorama = "^0.4.6"
 tabulate = "^0.9.0"
 requests = "^2.31.0"
 python-dateutil = "^2.8.2"
 git-url-parse = "^1.2.2"
 packaging = "^25.0"
-click = "^8.1.8"
+click = "^8.2.0"
+yarl = "^1.20.0"
+flask = "^3.1.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=7.4.3,<9.0.0"
 codecov = "^2.1.13"
 ruff = "^0.11.9"
+sphinx = "^7.2.6"
 
 [tool.poetry.scripts]
 rex = "release_exporter.cli:main"
